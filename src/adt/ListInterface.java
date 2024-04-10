@@ -4,6 +4,8 @@
  */
 package adt;
 
+import java.util.Iterator;
+
 /**
  *
  * @author User
@@ -84,6 +86,7 @@ public interface ListInterface<T> {
    public void replaceAll(String word, String word2);
    
    public void sort(int cond);
+   public Iterator<T> iterator();
 //public boolean finder(Predicate<T> predicate);
     /**
     * Task: Sees whether the list is empty.

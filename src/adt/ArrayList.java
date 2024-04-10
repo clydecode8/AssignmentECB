@@ -4,6 +4,9 @@
  */
 package adt;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author Kok Ming Han
@@ -558,6 +561,27 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
             
         }
         
+    }
+    
+    private class ArrayListIterator implements Iterator<T> {
+        private int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < numberOfEntries;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            return array[currentIndex++];
+        }
+    }
+    
+    public Iterator<T> iterator() {
+        return new ArrayListIterator();
     }
 
     @Override
