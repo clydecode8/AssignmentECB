@@ -16,7 +16,11 @@ import utility.MessageUI;
  */
 public class GroupManagement {
     
+
     private ListInterface<Student> studentList = new ArrayList<>();
+
+    //private ListInterface<Student> studentList = new ArrayList<>();
+
     private GroupManagementUI groupUI = new GroupManagementUI();
     private ProgrammeTutorialUI programmeUI = new ProgrammeTutorialUI();
     private StudentTutorialUI studentUI = new StudentTutorialUI();

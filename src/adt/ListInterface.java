@@ -4,15 +4,14 @@
  */
 package adt;
 
-import java.io.Serializable;
-
 /**
  *
  * @author User
+ * @param <T>
  */
 public interface ListInterface<T> {
     
-    /**
+    /**....
      
      * 2 add(), remove(), getEntry(), clear(), isempty()
      * contains(), replace(), isFull(), getNumberofentries()
@@ -76,11 +75,19 @@ public interface ListInterface<T> {
     * @param givenElement the object that is the desired entry
     * @return true if the list contains anEntry, or false if not
     */
-    public boolean contains(T gienElement);  
-
+    public boolean contains(T givenElement);  
+    //public boolean contains(String givenElement);  
+    public void customContains(String targetWord);
+   public void customIntegerContains(int targetValue);
+   public boolean twoCondSearch(String targetWord, String target2, int cond);
+   public boolean threeCondSearch(String targetWord, String target2, String target3, int cond);
+   public void replaceAll(String word, String word2);
+   
+   public void sort(int cond);
+//public boolean finder(Predicate<T> predicate);
     /**
     * Task: Sees whether the list is empty.
-    *
+    *s
     * @return true if the list is empty, or false if not
     */
     public boolean isEmpty();
@@ -135,9 +142,7 @@ public interface ListInterface<T> {
    *
    * @return the integer number of entries currently in the list
    */    
-    public void mergeSort(T[] arr, int startIndex, int endIndex);
-    
-    
+   
     
     
 }

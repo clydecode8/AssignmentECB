@@ -9,9 +9,8 @@ package adt;
  * @author Kok Ming Han
  * 
  */
-import java.io.Serializable;
 
-public class ArrayList<T> implements ListInterface<T> {
+public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
 
     
     private T[] array;
@@ -26,7 +25,7 @@ public class ArrayList<T> implements ListInterface<T> {
     public ArrayList(int initialCapacity){
         
         numberOfEntries = 0;
-        array = (T[]) new Object[initialCapacity];
+        array = (T[]) new Comparable[initialCapacity];
     }
  
 //------------------------------------------------------
@@ -158,6 +157,31 @@ public class ArrayList<T> implements ListInterface<T> {
     }
 
     //Checks whether list contains specific Element
+/*
+    public boolean contains(String givenElement) {
+        
+        boolean status = false;
+        
+        //Validation Check
+        //!status = If FALSE meaning that it has not been found
+        //!status = If TRUE meaning that it has been found
+        //Better efficiency instead of constant looping
+        
+        for (int index = 0; !status && (index < numberOfEntries); index++) {
+        
+            if (givenElement.equals(array[index])) {
+                status = true;
+            }
+        }
+        
+        return status;       
+        
+    }     
+    
+    */
+    
+    
+    //Checks whether list contains specific Element
     @Override
     public boolean contains(T givenElement) {
         
@@ -170,15 +194,213 @@ public class ArrayList<T> implements ListInterface<T> {
         
         for (int index = 0; !status && (index < numberOfEntries); index++) {
         
-            System.out.println("sdsd"+array[index]);
             if (givenElement.equals(array[index])) {
-                System.out.println("test");
                 status = true;
             }
         }
         
         return status;       
         
+    } 
+    
+    /*
+    public boolean finder(Predicate<T> predicate){
+        
+        for (int index = 0; index < numberOfEntries; index++) {
+            System.out.println("stop here" + array[index]);
+            if (predicate.test(array[index])) {
+                
+                
+                return true;
+                
+            }else{
+                
+               
+                return false;
+            }
+        }
+        
+        return false;
+    }
+    
+ */
+
+    @Override
+    public void customContains(String targetWord) {
+
+        for (int i = 0; i < numberOfEntries; i++) {
+              
+            if (array[i].toString().contains(targetWord)) {
+                System.out.println(array[i].toString());
+                
+            }
+        }
+       
+    }
+    
+    @Override
+    public boolean twoCondSearch(String targetWord, String targetWord2, int cond) {
+
+        boolean status = false;
+        
+        switch(cond){
+            
+            //String and String
+            case 1:
+                
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && array[i].toString().contains(targetWord2)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;
+            
+            //String and Integer
+            case 2:
+                
+                int targetValue = Integer.parseInt(targetWord2);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && containsInteger(array[i], targetValue)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;
+                
+            //String and Double
+            case 3:
+                
+                double targetValue2 = Double.parseDouble(targetWord2);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && containsDouble(array[i], targetValue2)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;
+              
+        }
+       
+        return status;
+    }
+    
+    public boolean threeCondSearch(String targetWord, String targetWord2, String targetWord3, int cond) {
+
+        boolean status = false;
+        
+        switch(cond){
+
+            //String, String and String
+            case 1:
+                
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && 
+                            array[i].toString().contains(targetWord2) &&
+                            array[i].toString().contains(targetWord3)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;                
+                
+            //String, String and Double
+            case 2:
+                
+                double targetValue = Double.parseDouble(targetWord3);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && 
+                            array[i].toString().contains(targetWord2) &&
+                            containsDouble(array[i], targetValue)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;    
+                
+            //String, String and Integer
+            case 3:
+                
+                int targetValue2 = Integer.parseInt(targetWord3);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && 
+                            array[i].toString().contains(targetWord2) &&
+                            containsInteger(array[i], targetValue2)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;                
+                
+                
+
+        }
+        
+
+       
+        return status;
+    }
+    
+
+    
+    public void customDoubleContains(double targetValue) {
+        for (int i = 0; i < numberOfEntries; i++) {
+           
+            if (containsDouble(array[i], targetValue)) {
+                System.out.println(array[i]);
+            }
+        }
+    }
+    
+    private boolean containsDouble(T item, double targetValue) {
+        String itemString = item.toString();
+        return itemString.contains(Double.toString(targetValue));
+    }
+    
+    public void customIntegerContains(int targetValue) {
+        for (int i = 0; i < numberOfEntries; i++) {
+           
+            if (containsInteger(array[i], targetValue)) {
+                System.out.println(array[i]);
+            }
+        }
+    }
+    
+
+    
+    private boolean containsInteger(T item, int targetValue) {
+        String itemString = item.toString();
+        return itemString.contains(Integer.toString(targetValue));
     }
 
     //Checks whether Empty
@@ -228,6 +450,20 @@ public class ArrayList<T> implements ListInterface<T> {
         return status;
         
         
+    }
+    
+    public void replaceAll(String oldValue, String newValue) {
+        
+        for (int i = 0; i < numberOfEntries; i++) {
+            
+            String currentString = array[i].toString();
+            if (currentString.contains(oldValue)) {
+
+                String newString = currentString.replace(oldValue, newValue);
+                array[i] = (T) newString; // Perform the replace operation
+
+            }
+        }
     }
     
     @Override
@@ -284,92 +520,56 @@ public class ArrayList<T> implements ListInterface<T> {
         }
     }
     
-    
-    //Sort Function
-    //Merge sort is the fastest
-    //It splits the array into half (A, B)
-    //A will be sorted, B will be sorted
-    //Final results will be the merged A and B
-    @Override
-    public void mergeSort(T[] arr, int startIndex, int endIndex) {
+    public void sort(int cond) {
         
-        if (startIndex < endIndex) {
-            int middleIndex = (startIndex + endIndex) / 2;
-            mergeSort(arr, startIndex, middleIndex);
-            mergeSort(arr, middleIndex + 1, endIndex);
-            merge(arr, startIndex, middleIndex, endIndex);
+        //Ascending
+        if(cond == 0){
+            
+            for (int i = 0; i < numberOfEntries - 1; i++) {
+                for (int j = 0; j < numberOfEntries - i - 1; j++) {
+
+                    if (array[j].toString().compareTo(array[j+1].toString()) > 0) {
+                        T temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+
+                    }
+                }
+
+
+            }
+            
+        //Descending
+        }else if(cond == 1){
+            
+            for (int i = 0; i < numberOfEntries - 1; i++) {
+                for (int j = 0; j < numberOfEntries - i - 1; j++) {
+
+                    if (array[j].toString().compareTo(array[j+1].toString()) < 0) {
+                        T temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+
+                    }
+                }
+
+
+            }            
+            
         }
         
     }
 
-    // Helper method to merge two sorted subarrays
-    private void merge(T[] arr, int startIndex, int middleIndex, int endIndex) {
-        
-        int leftLength = middleIndex - startIndex + 1;
-        int rightLength = endIndex - middleIndex;
-
-        // Create temporary arrays
-        Object[] leftArray = new Object[leftLength];
-        Object[] rightArray = new Object[rightLength];
-
-        // Copy data to temporary arrays leftArray[] and rightArray[]
-        for (int i = 0; i < leftLength; ++i){
-            
-            leftArray[i] = arr[startIndex + i];
-        }
-        
-        for (int j = 0; j < rightLength; ++j){
-            
-            rightArray[j] = arr[middleIndex + 1 + j];
-        }
-        
-        // Merge the temporary arrays
-        int i = 0, j = 0;
-        int k = startIndex;
-        
-        while (i < leftLength && j < rightLength) {
-            
-            //Retrieving leftArray[i] and casting to Comparable
-            Comparable<T> left = (Comparable<T>) leftArray[i];
-            
-            if (left.compareTo((T) rightArray[j]) <= 0) {
-                arr[k] = (T) leftArray[i];
-                i++;
-                
-            } else {
-                
-                arr[k] = (T) rightArray[j];
-                j++;
-                
-            }
-            
-            k++;
-        }
-
-        // Copy remaining elements of leftArray[] if any
-        while (i < leftLength) {
-            arr[k] = (T) leftArray[i];
-            i++;
-            k++;
-        }
-
-        // Copy remaining elements of rightArray[] if any
-        while (j < rightLength) {
-            arr[k] = (T) rightArray[j];
-            j++;
-            k++;
-        }
-    }    
-    
     @Override
     public String toString() {
         
-        String outputStr = "";
-        for (int index = 0; index < numberOfEntries; ++index) {
-          outputStr += array[index] + "\n";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numberOfEntries; i++) {
+            sb.append(array[i].toString());
+            sb.append("\n");
         }
-
-        return outputStr;
+        return sb.toString();
+        
     }
     
 //------------------------------------------------------   

@@ -10,7 +10,8 @@ import java.util.Objects;
  *
  * @author User
  */
-public class Programme {
+
+public class Programme implements Comparable<Programme>{
  
     private String name;
     private String id;
@@ -63,5 +64,11 @@ public class Programme {
     @Override
     public int hashCode() {
         return Objects.hash(name, id);
+    }
+
+    @Override
+    public int compareTo(Programme o) {
+       // Compare based on the name of the Programme
+       return this.getName().compareTo(o.getName());
     }
 }
