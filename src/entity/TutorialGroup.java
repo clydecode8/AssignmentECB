@@ -52,20 +52,23 @@ public class TutorialGroup {
     public String toString() {
         return String.format("%-10s %-40s %-40s", name, id, programme.toString());
     }
-    
+   
+
     @Override
-public boolean equals(Object obj) {
-    if (this == obj) {
-        return true;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        TutorialGroup other = (TutorialGroup) obj;
+        return Objects.equals(name, other.name) &&
+                Objects.equals(id, other.id) &&
+               Objects.equals(programme, other.programme);
     }
-    if (obj == null || getClass() != obj.getClass()) {
-        return false;
-    }
-    TutorialGroup other = (TutorialGroup) obj;
-    return Objects.equals(name, other.name) &&
-            Objects.equals(id, other.id) &&
-           Objects.equals(programme, other.programme);
-}
+    
+    
 
     @Override
     public int hashCode() {

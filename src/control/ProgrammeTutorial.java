@@ -19,6 +19,8 @@ public class ProgrammeTutorial {
     private ListInterface<Programme> programmeList = new ArrayList<>();
     private ListInterface<TutorialGroup> tutorialList = new ArrayList<>();
     
+    private TutorialGroup tg = new TutorialGroup("Han", "12", new Programme("FCP", "TEST"));
+    
     public void addProgrammeTutorial(){
         
         String name = "han";
@@ -63,21 +65,19 @@ public class ProgrammeTutorial {
     
     public void listProgrammeTutorial(){
         
-        String name = "han";
+        String name = "Han";
         
+        
+        
+        tutorialList.add(tg);
         tutorialList.add(new TutorialGroup(name, "12", new Programme("FCP", "TEST")));
         tutorialList.add(new TutorialGroup("test", "12", new Programme("FCP", "TEST")));
+        tutorialList.add(new TutorialGroup("test", "23", new Programme("FCP", "TEST")));
+        tutorialList.add(new TutorialGroup("ab", "12", new Programme("FCP", "test")));
  
-        System.out.println(tutorialList.getEntry(1));
-        System.out.println("this is " + tutorialList.contains(new TutorialGroup("test", "12", new Programme("FCP", "TEST"))));
-        
-        System.out.println(tutorialList.getNumberOfEntries());
-        tutorialList.replace(0, new TutorialGroup("newlyadded", "12", new Programme("FCP", "TEST")));
-        System.out.println(tutorialList.getIndexOf(new TutorialGroup("newlyadded", "12", new Programme("FCP", "TEST"))));
-        System.out.println(tutorialList.toString());
-        System.out.println(tutorialList.getEntry(2));
-    
-        
+        System.out.println(tg.toString());
+        tutorialList.customContains("FCP");
+
        
     }
 }

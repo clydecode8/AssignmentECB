@@ -5,6 +5,7 @@
 package adt;
 
 import java.io.Serializable;
+import java.util.function.Predicate;
 
 /**
  *
@@ -76,11 +77,13 @@ public interface ListInterface<T> {
     * @param givenElement the object that is the desired entry
     * @return true if the list contains anEntry, or false if not
     */
-    public boolean contains(T gienElement);  
-
+    public boolean contains(T givenElement);  
+    //public boolean contains(String givenElement);  
+    public void customContains(String customWord);
+//public boolean finder(Predicate<T> predicate);
     /**
     * Task: Sees whether the list is empty.
-    *
+    *s
     * @return true if the list is empty, or false if not
     */
     public boolean isEmpty();

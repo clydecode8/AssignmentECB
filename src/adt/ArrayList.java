@@ -10,6 +10,7 @@ package adt;
  * 
  */
 import java.io.Serializable;
+import java.util.function.Predicate;
 
 public class ArrayList<T> implements ListInterface<T> {
 
@@ -158,6 +159,31 @@ public class ArrayList<T> implements ListInterface<T> {
     }
 
     //Checks whether list contains specific Element
+/*
+    public boolean contains(String givenElement) {
+        
+        boolean status = false;
+        
+        //Validation Check
+        //!status = If FALSE meaning that it has not been found
+        //!status = If TRUE meaning that it has been found
+        //Better efficiency instead of constant looping
+        
+        for (int index = 0; !status && (index < numberOfEntries); index++) {
+        
+            if (givenElement.equals(array[index])) {
+                status = true;
+            }
+        }
+        
+        return status;       
+        
+    }     
+    
+    */
+    
+    
+    //Checks whether list contains specific Element
     @Override
     public boolean contains(T givenElement) {
         
@@ -170,16 +196,48 @@ public class ArrayList<T> implements ListInterface<T> {
         
         for (int index = 0; !status && (index < numberOfEntries); index++) {
         
-            System.out.println("sdsd"+array[index]);
             if (givenElement.equals(array[index])) {
-                System.out.println("test");
                 status = true;
             }
         }
         
         return status;       
         
+    } 
+    
+    /*
+    public boolean finder(Predicate<T> predicate){
+        
+        for (int index = 0; index < numberOfEntries; index++) {
+            System.out.println("stop here" + array[index]);
+            if (predicate.test(array[index])) {
+                
+                
+                return true;
+                
+            }else{
+                
+               
+                return false;
+            }
+        }
+        
+        return false;
     }
+    
+ */
+    public void customContains(String targetWord) {
+        for (int i = 0; i < numberOfEntries; i++) {
+            
+            
+            
+            if (array[i].toString().contains(targetWord)) {
+                System.out.println(array[i]);
+                
+            }
+        }
+       
+    } 
 
     //Checks whether Empty
     @Override
@@ -364,12 +422,13 @@ public class ArrayList<T> implements ListInterface<T> {
     @Override
     public String toString() {
         
-        String outputStr = "";
-        for (int index = 0; index < numberOfEntries; ++index) {
-          outputStr += array[index] + "\n";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numberOfEntries; i++) {
+            sb.append(array[i].toString());
+            sb.append("\n");
         }
-
-        return outputStr;
+        return sb.toString();
+        
     }
     
 //------------------------------------------------------   
