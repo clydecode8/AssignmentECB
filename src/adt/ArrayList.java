@@ -238,6 +238,91 @@ public class ArrayList<T> implements ListInterface<T> {
        
     }
     
+    public boolean customContainsBoolean(String targetWord, String targetWord2, String targetWord3, int cond) {
+
+        boolean status = false;
+        
+        switch(cond){
+            
+            //String and String
+            case 1:
+                
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && array[i].toString().contains(targetWord2)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;
+            
+            //String and Integer
+            case 2:
+                
+                int targetValue = Integer.parseInt(targetWord2);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && containsInteger(array[i], targetValue)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;
+                
+            //String and Double
+            case 3:
+                
+                double targetValue2 = Double.parseDouble(targetWord2);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && containsDouble(array[i], targetValue2)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;
+              
+            //String, String and String
+            case 4:
+                
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && 
+                            array[i].toString().contains(targetWord2) &&
+                            array[i].toString().contains(targetWord3)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;                
+                
+                
+
+        }
+        
+
+       
+        return status;
+    }
+    
+    
+    
     public void customDoubleContains(double targetValue) {
         for (int i = 0; i < numberOfEntries; i++) {
            
@@ -260,6 +345,8 @@ public class ArrayList<T> implements ListInterface<T> {
             }
         }
     }
+    
+
     
     private boolean containsInteger(T item, int targetValue) {
         String itemString = item.toString();

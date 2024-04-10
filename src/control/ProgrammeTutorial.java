@@ -44,12 +44,12 @@ public class ProgrammeTutorial {
         
         tutorialList.add(tg);
         tutorialList.add(new TutorialGroup(name, "12", 23, new Programme("FCP", "TEST")));
-        tutorialList.add(new TutorialGroup("sd", "12", 23, new Programme("FCP", "TEST")));
+        tutorialList.add(new TutorialGroup("sd", "12", 23, new Programme("SD", "TEST")));
         tutorialList.add(new TutorialGroup("test", "12", 24,  new Programme("FCP", "TEST")));
         tutorialList.add(new TutorialGroup("ab", "12", 23, new Programme("FCP", "test")));
  
-    
-        tutorialList.customIntegerContains(23);
-       
+ 
+        System.out.println(tutorialList.customContainsBoolean("FCP", "23", "Han", 4));
+
     }
 }
