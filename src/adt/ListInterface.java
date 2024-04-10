@@ -80,6 +80,7 @@ public interface ListInterface<T> {
     public boolean contains(T givenElement);  
     //public boolean contains(String givenElement);  
     public void customContains(String customWord);
+   public void customIntegerContains(int targetValue);
 //public boolean finder(Predicate<T> predicate);
     /**
     * Task: Sees whether the list is empty.

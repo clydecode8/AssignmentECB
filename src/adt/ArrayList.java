@@ -227,40 +227,44 @@ public class ArrayList<T> implements ListInterface<T> {
     
  */
     public void customContains(String targetWord) {
-       
+
         for (int i = 0; i < numberOfEntries; i++) {
-            if (array[i] instanceof String && array[i].toString().contains(targetWord)) {
-                System.out.println(array[i]);
-                
-            } else if (array[i] instanceof Integer) {
-                int intValue = (Integer) array[i];
-                if (Integer.toString(intValue).equals(targetWord)) {
-                    System.out.println(array[i]);
-                }
-                
-            } else if (array[i] instanceof Float) {
-                float floatValue = (Float) array[i];
-                if (Float.toString(floatValue).equals(targetWord)) {
-                    System.out.println(array[i]);
-                }
-            }
-        }     
-        
-        
-        
-        
-        /*
-        for (int i = 0; i < numberOfEntries; i++) {
-            
-            
-            
+              
             if (array[i].toString().contains(targetWord)) {
                 System.out.println(array[i].toString());
                 
             }
         }
-       */
-    } 
+       
+    }
+    
+    public void customDoubleContains(double targetValue) {
+        for (int i = 0; i < numberOfEntries; i++) {
+           
+            if (containsDouble(array[i], targetValue)) {
+                System.out.println(array[i]);
+            }
+        }
+    }
+    
+    private boolean containsDouble(T item, double targetValue) {
+        String itemString = item.toString();
+        return itemString.contains(Double.toString(targetValue));
+    }
+    
+    public void customIntegerContains(int targetValue) {
+        for (int i = 0; i < numberOfEntries; i++) {
+           
+            if (containsInteger(array[i], targetValue)) {
+                System.out.println(array[i]);
+            }
+        }
+    }
+    
+    private boolean containsInteger(T item, int targetValue) {
+        String itemString = item.toString();
+        return itemString.contains(Integer.toString(targetValue));
+    }
 
     //Checks whether Empty
     @Override

@@ -63,7 +63,7 @@ public class TutorialGroup {
     
     @Override
     public String toString() {
-        return String.format("%-10s %-40s %-40s", name, id, programme.toString());
+        return String.format("%-10s %-40s %-40s %-40s", name, id, numb, programme.toString());
     }
    
 

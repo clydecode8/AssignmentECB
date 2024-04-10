@@ -49,8 +49,7 @@ public class ProgrammeTutorial {
         tutorialList.add(new TutorialGroup("ab", "12", 23, new Programme("FCP", "test")));
  
     
-        tutorialList.customContains("23");
-
+        tutorialList.customIntegerContains(23);
        
     }
 }
