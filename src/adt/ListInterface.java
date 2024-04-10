@@ -145,7 +145,7 @@ public interface ListInterface<T> {
    *
    * @return the integer number of entries currently in the list
    */    
-    public void mergeSort(T[] arr, int startIndex, int endIndex);
+  
     
     
     
