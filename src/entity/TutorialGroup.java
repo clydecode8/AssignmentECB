@@ -15,37 +15,50 @@ public class TutorialGroup {
     private String name;
     private String id;
     private Programme programme;
+    private int numb;
     
     public TutorialGroup() {
         
         this.name = "";
         this.id = "";
+        this.numb = 0;
         this.programme = null;
     }
 
-    public TutorialGroup(String name, String id, Programme programme) {
+    public TutorialGroup(String name, String id, int numb, Programme programme) {
 
       this.name = name;
       this.id = id;
+      this.numb = numb;
       this.programme = programme;
     }
 
-
-    public String getName() {
-      return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-      this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getID() {
-      return name;
+    public Programme getProgramme() {
+        return programme;
     }
 
-    public void setID(String id) {
-      this.id = id;
+    public void setProgramme(Programme programme) {
+        this.programme = programme;
     }
+
+    public int getNumb() {
+        return numb;
+    }
+
+    public void setNumb(int numb) {
+        this.numb = numb;
+    }
+
+    
+
     
     
     @Override

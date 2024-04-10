@@ -227,16 +227,39 @@ public class ArrayList<T> implements ListInterface<T> {
     
  */
     public void customContains(String targetWord) {
+       
+        for (int i = 0; i < numberOfEntries; i++) {
+            if (array[i] instanceof String && array[i].toString().contains(targetWord)) {
+                System.out.println(array[i]);
+                
+            } else if (array[i] instanceof Integer) {
+                int intValue = (Integer) array[i];
+                if (Integer.toString(intValue).equals(targetWord)) {
+                    System.out.println(array[i]);
+                }
+                
+            } else if (array[i] instanceof Float) {
+                float floatValue = (Float) array[i];
+                if (Float.toString(floatValue).equals(targetWord)) {
+                    System.out.println(array[i]);
+                }
+            }
+        }     
+        
+        
+        
+        
+        /*
         for (int i = 0; i < numberOfEntries; i++) {
             
             
             
             if (array[i].toString().contains(targetWord)) {
-                System.out.println(array[i]);
+                System.out.println(array[i].toString());
                 
             }
         }
-       
+       */
     } 
 
     //Checks whether Empty
