@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public interface ListInterface<T> {
     
-    /**
+    /**.
      
      * 2 add(), remove(), getEntry(), clear(), isempty()
      * contains(), replace(), isFull(), getNumberofentries()
