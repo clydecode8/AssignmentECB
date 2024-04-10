@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author User
  */
-public class Student {
+public class Student implements Comparable<Student> {
 
   private String name;
   private String id;
@@ -46,6 +46,11 @@ public class Student {
   public void setID(String id) {
     this.id = id;
   }
+
+    @Override
+    public int compareTo(Student o) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 
 

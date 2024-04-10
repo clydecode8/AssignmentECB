@@ -3,18 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/GroupManagementUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/ProgrammeTutorialUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/ProgrammeTutorial.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/adt/ListInterface.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/TutorialGroup.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/Student.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/DAO/StudentInitializer.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/StudentTutorial.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/GroupManagement.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/Programme.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/StudentTutorialUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/adt/ArrayList.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/adt/ArrayList.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/entity/Programme.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/entity/TutorialGroup.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/adt/ListInterface.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/control/GroupManagement.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/control/ProgrammeTutorial.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/control/StudentTutorial.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/ECB/src/entity/Student.java</file>
         </group>
     </open-files>
 </project-private>

@@ -12,7 +12,7 @@ package adt;
 import java.io.Serializable;
 import java.util.function.Predicate;
 
-public class ArrayList<T> implements ListInterface<T> {
+public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
 
     
     private T[] array;
@@ -27,7 +27,7 @@ public class ArrayList<T> implements ListInterface<T> {
     public ArrayList(int initialCapacity){
         
         numberOfEntries = 0;
-        array = (T[]) new Object[initialCapacity];
+        array = (T[]) new Comparable[initialCapacity];
     }
  
 //------------------------------------------------------
@@ -227,7 +227,7 @@ public class ArrayList<T> implements ListInterface<T> {
     
  */
 
-    
+    @Override
     public void customContains(String targetWord) {
 
         for (int i = 0; i < numberOfEntries; i++) {
@@ -240,6 +240,7 @@ public class ArrayList<T> implements ListInterface<T> {
        
     }
     
+    @Override
     public boolean twoCondSearch(String targetWord, String targetWord2, int cond) {
 
         boolean status = false;
@@ -520,84 +521,47 @@ public class ArrayList<T> implements ListInterface<T> {
             return 1 + size(passInFirstNode.next);
         }
     }
-
     
-    //Sort Function
-    //Merge sort is the fastest
-    //It splits the array into half (A, B)
-    //A will be sorted, B will be sorted
-    //Final results will be the merged A and B
-    @Override
-    public void mergeSort(T[] arr, int startIndex, int endIndex) {
+    public void sort(int cond) {
         
-        if (startIndex < endIndex) {
-            int middleIndex = (startIndex + endIndex) / 2;
-            mergeSort(arr, startIndex, middleIndex);
-            mergeSort(arr, middleIndex + 1, endIndex);
-            merge(arr, startIndex, middleIndex, endIndex);
+        //Ascending
+        if(cond == 0){
+            
+            for (int i = 0; i < numberOfEntries - 1; i++) {
+                for (int j = 0; j < numberOfEntries - i - 1; j++) {
+
+                    if (array[j].toString().compareTo(array[j+1].toString()) > 0) {
+                        T temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+
+                    }
+                }
+
+
+            }
+            
+        //Descending
+        }else if(cond == 1){
+            
+            for (int i = 0; i < numberOfEntries - 1; i++) {
+                for (int j = 0; j < numberOfEntries - i - 1; j++) {
+
+                    if (array[j].toString().compareTo(array[j+1].toString()) < 0) {
+                        T temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+
+                    }
+                }
+
+
+            }            
+            
         }
         
     }
 
-    // Helper method to merge two sorted subarrays
-    private void merge(T[] arr, int startIndex, int middleIndex, int endIndex) {
-        
-        int leftLength = middleIndex - startIndex + 1;
-        int rightLength = endIndex - middleIndex;
-
-        // Create temporary arrays
-        Object[] leftArray = new Object[leftLength];
-        Object[] rightArray = new Object[rightLength];
-
-        // Copy data to temporary arrays leftArray[] and rightArray[]
-        for (int i = 0; i < leftLength; ++i){
-            
-            leftArray[i] = arr[startIndex + i];
-        }
-        
-        for (int j = 0; j < rightLength; ++j){
-            
-            rightArray[j] = arr[middleIndex + 1 + j];
-        }
-        
-        // Merge the temporary arrays
-        int i = 0, j = 0;
-        int k = startIndex;
-        
-        while (i < leftLength && j < rightLength) {
-            
-            //Retrieving leftArray[i] and casting to Comparable
-            Comparable<T> left = (Comparable<T>) leftArray[i];
-            
-            if (left.compareTo((T) rightArray[j]) <= 0) {
-                arr[k] = (T) leftArray[i];
-                i++;
-                
-            } else {
-                
-                arr[k] = (T) rightArray[j];
-                j++;
-                
-            }
-            
-            k++;
-        }
-
-        // Copy remaining elements of leftArray[] if any
-        while (i < leftLength) {
-            arr[k] = (T) leftArray[i];
-            i++;
-            k++;
-        }
-
-        // Copy remaining elements of rightArray[] if any
-        while (j < rightLength) {
-            arr[k] = (T) rightArray[j];
-            j++;
-            k++;
-        }
-    }    
-    
     @Override
     public String toString() {
         
