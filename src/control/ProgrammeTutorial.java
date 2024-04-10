@@ -50,8 +50,8 @@ public class ProgrammeTutorial {
  
         //System.out.println("Index: " + tutorialList.getIndexOf(tg));
         
-        tutorialList.replaceAll("ab", "RSW");
-        //tutorialList.twoCondSearch("FCP", "23", 2);
+        tutorialList.replaceAll("FCP", "RSW");
+        tutorialList.twoCondSearch("12", "RSW", 1);
         //tutorialList.threeCondSearch("RSW", "12", "23", 3);
 
         

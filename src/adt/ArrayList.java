@@ -372,7 +372,7 @@ public class ArrayList<T> implements ListInterface<T> {
         return status;
     }
     
-    
+
     
     public void customDoubleContains(double targetValue) {
         for (int i = 0; i < numberOfEntries; i++) {
@@ -454,26 +454,15 @@ public class ArrayList<T> implements ListInterface<T> {
     }
     
     public void replaceAll(String oldValue, String newValue) {
-        boolean containsOldValue = false;
         
-        // Check if the list contains the old value
         for (int i = 0; i < numberOfEntries; i++) {
-                
             
-            if (array[i].toString().equals(oldValue)) {
-                System.out.println(array[i]);
-                containsOldValue = true;
-                break;
-            }
-        }
-        
-        // If the list contains the old value, perform the replace operation
-        if (containsOldValue) {
-            for (int i = 0; i < numberOfEntries; i++) {
-                if (array[i].toString().equals(oldValue)) {
-                    array[i] = (T) newValue; // Perform the replace operation
-                    
-                }
+            String currentString = array[i].toString();
+            if (currentString.contains(oldValue)) {
+
+                String newString = currentString.replace(oldValue, newValue);
+                array[i] = (T) newString; // Perform the replace operation
+
             }
         }
     }
@@ -531,9 +520,7 @@ public class ArrayList<T> implements ListInterface<T> {
             return 1 + size(passInFirstNode.next);
         }
     }
-    
-    
-    
+
     
     //Sort Function
     //Merge sort is the fastest
