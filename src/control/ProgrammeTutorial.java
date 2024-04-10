@@ -48,9 +48,11 @@ public class ProgrammeTutorial {
         tutorialList.add(new TutorialGroup("test", "12", 24,  new Programme("FCP", "TEST")));
         tutorialList.add(new TutorialGroup("ab", "12", 23, new Programme("FCP", "test")));
  
-        tutorialList.replaceAll("FCP", "RSW");
+        //System.out.println("Index: " + tutorialList.getIndexOf(tg));
+        
+        tutorialList.replaceAll("ab", "RSW");
         //tutorialList.twoCondSearch("FCP", "23", 2);
-        tutorialList.threeCondSearch("RSW", "12", "23", 3);
+        //tutorialList.threeCondSearch("RSW", "12", "23", 3);
 
         
     }

@@ -458,7 +458,10 @@ public class ArrayList<T> implements ListInterface<T> {
         
         // Check if the list contains the old value
         for (int i = 0; i < numberOfEntries; i++) {
-            if (array[i].equals(oldValue)) {
+                
+            
+            if (array[i].toString().equals(oldValue)) {
+                System.out.println(array[i]);
                 containsOldValue = true;
                 break;
             }
@@ -467,8 +470,9 @@ public class ArrayList<T> implements ListInterface<T> {
         // If the list contains the old value, perform the replace operation
         if (containsOldValue) {
             for (int i = 0; i < numberOfEntries; i++) {
-                if (array[i].equals(oldValue)) {
+                if (array[i].toString().equals(oldValue)) {
                     array[i] = (T) newValue; // Perform the replace operation
+                    
                 }
             }
         }
