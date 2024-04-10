@@ -48,8 +48,10 @@ public class ProgrammeTutorial {
         tutorialList.add(new TutorialGroup("test", "12", 24,  new Programme("FCP", "TEST")));
         tutorialList.add(new TutorialGroup("ab", "12", 23, new Programme("FCP", "test")));
  
- 
-        System.out.println(tutorialList.customContainsBoolean("FCP", "23", "Han", 4));
+        tutorialList.replaceAll("FCP", "RSW");
+        //tutorialList.twoCondSearch("FCP", "23", 2);
+        tutorialList.threeCondSearch("RSW", "12", "23", 3);
 
+        
     }
 }

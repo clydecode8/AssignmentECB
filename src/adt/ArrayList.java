@@ -226,6 +226,8 @@ public class ArrayList<T> implements ListInterface<T> {
     }
     
  */
+
+    
     public void customContains(String targetWord) {
 
         for (int i = 0; i < numberOfEntries; i++) {
@@ -238,7 +240,7 @@ public class ArrayList<T> implements ListInterface<T> {
        
     }
     
-    public boolean customContainsBoolean(String targetWord, String targetWord2, String targetWord3, int cond) {
+    public boolean twoCondSearch(String targetWord, String targetWord2, int cond) {
 
         boolean status = false;
         
@@ -294,8 +296,19 @@ public class ArrayList<T> implements ListInterface<T> {
                 
                 break;
               
+        }
+       
+        return status;
+    }
+    
+    public boolean threeCondSearch(String targetWord, String targetWord2, String targetWord3, int cond) {
+
+        boolean status = false;
+        
+        switch(cond){
+
             //String, String and String
-            case 4:
+            case 1:
                 
                 for (int i = 0; i < numberOfEntries; i++) {
                     
@@ -303,6 +316,44 @@ public class ArrayList<T> implements ListInterface<T> {
                     if (array[i].toString().contains(targetWord) && 
                             array[i].toString().contains(targetWord2) &&
                             array[i].toString().contains(targetWord3)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;                
+                
+            //String, String and Double
+            case 2:
+                
+                double targetValue = Double.parseDouble(targetWord3);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && 
+                            array[i].toString().contains(targetWord2) &&
+                            containsDouble(array[i], targetValue)) {
+
+                        status = true;
+                        System.out.println(array[i]);
+
+                    }
+                }
+                
+                break;    
+                
+            //String, String and Integer
+            case 3:
+                
+                int targetValue2 = Integer.parseInt(targetWord3);
+                for (int i = 0; i < numberOfEntries; i++) {
+                    
+                    
+                    if (array[i].toString().contains(targetWord) && 
+                            array[i].toString().contains(targetWord2) &&
+                            containsInteger(array[i], targetValue2)) {
 
                         status = true;
                         System.out.println(array[i]);
@@ -402,6 +453,27 @@ public class ArrayList<T> implements ListInterface<T> {
         
     }
     
+    public void replaceAll(String oldValue, String newValue) {
+        boolean containsOldValue = false;
+        
+        // Check if the list contains the old value
+        for (int i = 0; i < numberOfEntries; i++) {
+            if (array[i].equals(oldValue)) {
+                containsOldValue = true;
+                break;
+            }
+        }
+        
+        // If the list contains the old value, perform the replace operation
+        if (containsOldValue) {
+            for (int i = 0; i < numberOfEntries; i++) {
+                if (array[i].equals(oldValue)) {
+                    array[i] = (T) newValue; // Perform the replace operation
+                }
+            }
+        }
+    }
+    
     @Override
     //Get number of entries
     public int getNumberOfEntries(){
@@ -455,6 +527,8 @@ public class ArrayList<T> implements ListInterface<T> {
             return 1 + size(passInFirstNode.next);
         }
     }
+    
+    
     
     
     //Sort Function

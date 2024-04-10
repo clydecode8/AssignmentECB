@@ -81,8 +81,9 @@ public interface ListInterface<T> {
     //public boolean contains(String givenElement);  
     public void customContains(String customWord);
    public void customIntegerContains(int targetValue);
-   public boolean customContainsBoolean(String targetWord, String target2, String target3, int cond);
-
+   public boolean twoCondSearch(String targetWord, String target2, int cond);
+   public boolean threeCondSearch(String targetWord, String target2, String target3, int cond);
+   public void replaceAll(String word, String word2);
 //public boolean finder(Predicate<T> predicate);
     /**
     * Task: Sees whether the list is empty.
