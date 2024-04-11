@@ -36,6 +36,10 @@ public class AssTeam {
         Student stud2 = new Student("Alex", "WPF12344", g1, t1);
         Student stud3 = new Student("Lex", "WPF22534", g1, t1);
         Student stud4 = new Student("Pearl", "WPF54565", g1, t1);
+        Student stud5 = new Student("Max", "WPF532432", g1, t1);
+        Student stud6 = new Student("Jeremy", "WPF532323", g1, null);
+
+
 
         tg.setTutorialGroupList(g1);
         tg.setTutorialGroupList(g2);
@@ -52,11 +56,16 @@ public class AssTeam {
         student.setStudentList(stud2);
         student.setStudentList(stud3);
         student.setStudentList(stud4);
+        student.setStudentList(stud5);
+        student.setStudentList(stud6);
 
-        int reportNum = tg.getTutorialGroupList().size()+1;
-        int reportNum2 = team.getTeamList().size()+1;
+
+        int reportNum = tg.getTutorialGroupList().size();
+        int teamNum = 0;
+        int memberNum = 0;
 
         int choice =0;
+        // tut group start
         do{
             choice = assTeamUI.getMenuChoice();
             
@@ -67,27 +76,115 @@ public class AssTeam {
             else if (choice == reportNum){
                 assTeamUI.Report();               
             }
+            
+            // ass team start
             else if (choice < reportNum){
                 int choice2 = 0;
                 do{
                     ArrayList<Team> filteredTeam = new ArrayList<>();
                     TutorialGroup search = tg.getTutorialGroupList().getEntry(choice-1);
+                    choice2=0;
+                    teamNum=0;
                     for(int i=0; i< team.getTeamList().size(); i++){
+                        
                         if(team.getTeamList().getEntry(i).getTg().equals(search)){
                             filteredTeam.add(team.getTeamList().getEntry(i));
-                        }           
+                            teamNum++;
+                        }    
+                        
+                               
                     }
                     choice2 = assTeamUI.getAssTeamChoice(search);
+        
                     if(choice2 == 0){
                         break;
                     }
-                    else if(choice2 == reportNum2){
+                    else if(choice2 == teamNum+1){
                         assTeamUI.Report();
                     }
-                    else if (choice2 < reportNum2){
-                        Team search2 = filteredTeam.getEntry(choice2-1);
-                        assTeamUI.displayStudent(search, search2);
+                    // create assignment team
+                    else if(choice2 == teamNum +2){
+                        Team newTeam = assTeamUI.createTeam(search);
+                        Team.getTeamList().add(newTeam);
                     }
+                    
+                    //remove assignment team
+                    else if(choice2 == teamNum +3){
+                        int removeNum = assTeamUI.removeTeam();
+                        Team removedTeam = filteredTeam.getEntry(removeNum-1);
+                        System.out.println(removedTeam);
+                        for(int i=0; i< Team.getTeamList().size(); i++){
+                            if(Team.getTeamList().getEntry(i).equals(removedTeam)){
+                                System.out.println("remove: "+ Team.getTeamList().getEntry(i));
+                                Team.getTeamList().remove(i);
+                                break;
+                            }
+                        }
+                        for(int i=0; i<Team.getTeamList().size(); i++){
+                            System.out.println(Team.getTeamList().getEntry(i));
+                        }
+                        
+                    }
+                    
+                    // team member start
+                    else if (choice2 < (teamNum+1)){
+                        int choice3 = 0;
+                        do{
+                            Team search2 = filteredTeam.getEntry(choice2-1);
+                            choice3 = assTeamUI.displayStudent(search, search2);              
+                            memberNum=0;
+                            for(int i=0; i< student.getStudentList().size(); i++){
+                                if(student.getStudentList().getEntry(i).getTeam() != null){
+                                    if(student.getStudentList().getEntry(i).getTutorialGroup().equals(search) &&
+                                            student.getStudentList().getEntry(i).getTeam().equals(search2) ){                                       
+                                        memberNum++;
+                                    }  
+                                }
+                                         
+                            }
+                        
+                            if(choice3 ==0){
+                                break;
+                            }
+                            else if(choice3 == memberNum+1){
+                                assTeamUI.Report();
+                            }
+                            
+                            // add new student
+                            else if(choice3 == 7){
+                                // num of member >5
+                                if(memberNum == 5){
+                                    assTeamUI.error();
+                                }
+                                else{
+                                    Student addStudent = assTeamUI.addNewStudentPage();
+                                    if(addStudent != null){
+                                        addStudent.setTeam(search2);
+ 
+                                    }
+                             
+                                }
+                            }
+                            // remove student
+                            else if (choice3 == 8){
+                                // no member
+                                if(memberNum == 0){
+                                    assTeamUI.error2();
+                                }
+                                else{
+                                    Student removeStudent = assTeamUI.removeStudent(search, search2);
+                                    if(removeStudent != null){
+                                        removeStudent.setTeam(null);
+                                    }
+                                    
+                                }
+                            }
+                        }
+                        while(choice3!=0);
+   
+                    } 
+                    
+                    //  team member end
                     
                 }
                 while(choice2 !=0);

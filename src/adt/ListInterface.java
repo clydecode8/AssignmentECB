@@ -60,7 +60,6 @@ public interface ListInterface<T> {
     */
     public T remove(int indexPosition);
 
-
    /**
     * Task: Retrieves the entry at a given position in the list.
     *
