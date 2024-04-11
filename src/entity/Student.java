@@ -53,11 +53,6 @@ public class Student implements Comparable<Student> {
     this.id = id;
   }
 
-    @Override
-    public int compareTo(Student o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public String getId() {
         return id;
     }
@@ -90,7 +85,56 @@ public class Student implements Comparable<Student> {
         this.team = team;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%-10s %-20s %-20s", group, qty, programme.toString());
+    }
+   
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Student other = (Student) obj;
+        return Objects.equals(name, other.name) &&
+                Objects.equals(id, other.id) &&
+               Objects.equals(tutorialGroup, other.tutorialGroup);
+    }
+    
+    
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, id, tutorialGroup);
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        
+        String thisName = this.getName();
+        String otherName = other.getName();
+
+        // Handle null values
+        if (thisName == null && otherName == null) {
+            
+            return 0; // Both names are null, consider them equal
+        
+        }else if (thisName == null) {
+            
+            return -1; // This name is null, consider it less than the other name
+        
+        } else if (otherName == null) {
+            
+            return 1; // Other name is null, consider it greater than this name
+        }
+
+        // Compare based on the names
+        return thisName.compareTo(otherName); 
+    }
 
 
 
