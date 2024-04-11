@@ -167,14 +167,15 @@ public class StudentTutorial {
             System.out.println("");
             studentList.condSearch(tutorialList.getEntry(choice).toString());
             
-            String removal = stdUI.chooseStudent();
-            boolean status = studentList.customRemove(removal);
+            String chg = stdUI.chooseStudent();
             
-            if(status == true){
+            for(int j = 0; j < studentList.getNumberOfEntries(); j++){
                 
-                System.out.println("Student successfully removed! ");
+                
             }
             
+            
+        
             
         }else if(cond == 2){
             
