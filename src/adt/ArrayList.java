@@ -538,12 +538,11 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     @Override
     public void replaceAll(String oldValue, String newValue) {
         
+        Pattern pattern = Pattern.compile("\\b" + Pattern.quote(oldValue) + "\\b", Pattern.CASE_INSENSITIVE);
         for (int i = 0; i < numberOfEntries; i++) {
             
-            T currentElement = array[i];
-       
             
-            if (array[i].toString().contains(oldValue)) {
+            if (pattern.matcher(array[i].toString()).find()) {
                     
                     String newString = array[i].toString().replace(oldValue, newValue);
                     

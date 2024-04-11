@@ -198,6 +198,9 @@ public class StudentTutorial {
                     System.out.println(i+1 + ". " + std.toString());
                     i++;
             }
+              
+            studentList.replaceAll("RSW", "12333");
+                
             
         }else if(choice == 2){
             
