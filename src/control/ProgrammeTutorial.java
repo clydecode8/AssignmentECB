@@ -58,7 +58,7 @@ public class ProgrammeTutorial {
 
  
         
-        //tutorialList.customRemove("RSW");
+        tutorialList.customRemove("RSW");
         //System.out.println(tutorialList.size());
         
         System.out.println(tutorialList.toString());

@@ -78,16 +78,8 @@ public interface ListInterface<T> {
     * @return true if the list contains anEntry, or false if not
     */
     public boolean contains(T givenElement);  
-    //public boolean contains(String givenElement);  
-    public void customContains(String targetWord);
-   public void customIntegerContains(int targetValue);
-   public boolean twoCondSearch(String targetWord, String target2, int cond);
-   public boolean threeCondSearch(String targetWord, String target2, String target3, int cond);
-   public <E extends T> void replaceAll(String word, String word2);
-   public boolean customRemove(String word);
-   public void sort(int cond);
-   public Iterator<T> iterator();
-//public boolean finder(Predicate<T> predicate);
+
+
     /**
     * Task: Sees whether the list is empty.
     *s
@@ -143,8 +135,75 @@ public interface ListInterface<T> {
     /** "change"
    * Task: Gets the size of entries in the list.
    *
-   * @return the integer number of entries currently in the list
+   * 
+   * @return 
    */    
+    public void condSearch(String targetWord);
+    
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public boolean twoCondSearch(String targetWord, String target2, int cond);
+   
+    
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public boolean threeCondSearch(String targetWord, String target2, String target3, int cond);
+   
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public void customIntegerContains(int targetValue);
+   
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public void customDoubleContains(double targetValue);
+    
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public void replaceAll(String word, String word2);
+    
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public boolean customRemove(String word);
+    
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public void sort(int cond);
+    
+    /** "change"
+   * Task: Gets the size of entries in the list.
+   *
+   * 
+   * @return 
+   */
+    public Iterator<T> iterator();
    
     
     

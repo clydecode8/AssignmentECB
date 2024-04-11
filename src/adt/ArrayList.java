@@ -217,31 +217,6 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     }
 
     //Checks whether list contains specific Element
-/*
-    public boolean contains(String givenElement) {
-        
-        boolean status = false;
-        
-        //Validation Check
-        //!status = If FALSE meaning that it has not been found
-        //!status = If TRUE meaning that it has been found
-        //Better efficiency instead of constant looping
-        
-        for (int index = 0; !status && (index < numberOfEntries); index++) {
-        
-            if (givenElement.equals(array[index])) {
-                status = true;
-            }
-        }
-        
-        return status;       
-        
-    }     
-    
-    */
-    
-    
-    //Checks whether list contains specific Element
     @Override
     public boolean contains(T givenElement) {
         
@@ -263,30 +238,115 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         
     } 
     
-    /*
-    public boolean finder(Predicate<T> predicate){
+
+    //Checks whether Empty
+    @Override
+    public boolean isEmpty() {
         
-        for (int index = 0; index < numberOfEntries; index++) {
-            System.out.println("stop here" + array[index]);
-            if (predicate.test(array[index])) {
-                
-                
-                return true;
-                
-            }else{
-                
-               
-                return false;
-            }
-        }
+        //Returns false if not empty, true if empty
+        return numberOfEntries == 0;
+    }
+    
+    //Checks whether full
+    @Override
+    public boolean isFull() {
         
+        //Dynamic Array where size is increased every time array is full is being used
         return false;
     }
     
- */
+    //Clears everything
+    @Override
+    public void clear() {
+        
+        //Enhance efficiency 
+        for (int i = 0; i < array.length; i++) {
+            array[i] = null;
+        }
+        
+        numberOfEntries = 0;
+    }
+    
+    //Replace element at specific position
+    @Override
+    public boolean replace(int indexPosition, T newElement) {
+
+        boolean status = true;
+        
+        //Validation to check indexPosition whether in range of 1 and noEntries
+        if ((indexPosition >= 0) && (indexPosition < numberOfEntries)){
+            
+            array[indexPosition] = newElement;
+            
+        }else{
+            
+            status = false;
+        }
+        
+        return status;
+        
+        
+    }
 
     @Override
-    public void customContains(String targetWord) {
+    //Get number of entries
+    public int getNumberOfEntries(){
+        
+        return numberOfEntries;
+    }
+    
+    //Get the index of the element
+    @Override
+    public int getIndexOf(T givenElement){
+        
+        int index = -1;
+        
+        //Cannot be 0
+        if (numberOfEntries == 0) {
+            
+            return -1; // Return -1 to indicate failure
+        }
+        
+        //Loop through array to find the element
+        for(int i = 0; i < numberOfEntries; i++){
+            
+            if(array[i] != null || array[i].equals(givenElement)){
+                
+                System.out.println(array[i]);
+                index = i;
+                break;
+                
+            }
+        }
+        
+        return index;        
+    }
+    
+    //Finds the size of the list
+    @Override
+    public int size(){
+        
+        //Returns the number of values inside of the list
+        return size(firstNode);
+    }
+    
+    public int size(Node passInFirstNode){
+        
+        if(passInFirstNode == null){
+            
+            return 0;
+            
+        }else{
+            
+            return 1 + size(passInFirstNode.next);
+        }
+    }
+    
+    //Checks whether list contains specific word (String)
+    //Returns the entry that has that specific word
+    //Duplicate words in an entry also are returned
+    @Override
+    public void condSearch(String targetWord) {
 
         for (int i = 0; i < numberOfEntries; i++) {
               
@@ -298,6 +358,11 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
        
     }
     
+    //Search method with conditions
+    //Same as condSearch(), returns entries but with validation of two values
+    //twoCondSearch takes 2 Strings and 1 integer as parameters
+    //The integers are for conditions (1-3)
+    //Duplicatewords in an entry are also returned
     @Override
     public boolean twoCondSearch(String targetWord, String targetWord2, int cond) {
 
@@ -360,6 +425,13 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return status;
     }
     
+    
+    //Search method with conditions
+    //Same as condSearch(), returns entries but with validation of three values
+    //twoCondSearch takes 3 Strings and 1 integer as parameters
+    //The integers are for conditions (1-3)
+    //Duplicatewords in an entry are also returned
+    @Override
     public boolean threeCondSearch(String targetWord, String targetWord2, String targetWord3, int cond) {
 
         boolean status = false;
@@ -431,8 +503,23 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return status;
     }
     
+    //Checks whether the entry contains this integer value
+    //Returns all entries
+    //Returns duplicate values in an entry ("12", 12)
+    @Override
+    public void customIntegerContains(int targetValue) {
+        for (int i = 0; i < numberOfEntries; i++) {
+           
+            if (containsInteger(array[i], targetValue)) {
+                System.out.println(array[i]);
+            }
+        }
+    }
 
-    
+    //Checks whether the entry contains this double value
+    //Returns all entries
+    //Returns duplicate values in an entry ("12.0", 12.0)    
+    @Override
     public void customDoubleContains(double targetValue) {
         for (int i = 0; i < numberOfEntries; i++) {
            
@@ -442,76 +529,9 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         }
     }
     
-    private boolean containsDouble(T item, double targetValue) {
-        String itemString = item.toString();
-        return itemString.contains(Double.toString(targetValue));
-    }
-    
-    public void customIntegerContains(int targetValue) {
-        for (int i = 0; i < numberOfEntries; i++) {
-           
-            if (containsInteger(array[i], targetValue)) {
-                System.out.println(array[i]);
-            }
-        }
-    }
-    
-
-    
-    private boolean containsInteger(T item, int targetValue) {
-        String itemString = item.toString();
-        return itemString.contains(Integer.toString(targetValue));
-    }
-
-    //Checks whether Empty
+    //Replaces all oldValues with newValue in all entries
+    //Duplicate oldValues in an entry will also be changed to newValue
     @Override
-    public boolean isEmpty() {
-        
-        //Returns false if not empty, true if empty
-        return numberOfEntries == 0;
-    }
-    
-    //Checks whether full
-    @Override
-    public boolean isFull() {
-        
-        //Dynamic Array where size is increased every time array is full is being used
-        return false;
-    }
-    
-    //Clears everything
-    @Override
-    public void clear() {
-        
-        //Enhance efficiency 
-        for (int i = 0; i < array.length; i++) {
-            array[i] = null;
-        }
-        
-        numberOfEntries = 0;
-    }
-    
-    //Replace element at specific position
-    @Override
-    public boolean replace(int indexPosition, T newElement) {
-
-        boolean status = true;
-        
-        //Validation to check indexPosition whether in range of 1 and noEntries
-        if ((indexPosition >= 0) && (indexPosition < numberOfEntries)){
-            
-            array[indexPosition] = newElement;
-            
-        }else{
-            
-            status = false;
-        }
-        
-        return status;
-        
-        
-    }
-    
     public void replaceAll(String oldValue, String newValue) {
         
         for (int i = 0; i < numberOfEntries; i++) {
@@ -522,69 +542,19 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
             if (array[i].toString().contains(oldValue)) {
                     
                     String newString = array[i].toString().replace(oldValue, newValue);
+                    
+                    //Cast comparator onto newString
                     array[i] = (T) newString;
-
             }
-        
-           
+               
         }
     }
-
     
+    //Bubble sort
+    //Sort according to each entities' critieria
+    //Each entities contains a compareTo()
+    //Sort will work according to the compareTo() logic code
     @Override
-    //Get number of entries
-    public int getNumberOfEntries(){
-        
-        return numberOfEntries;
-    }
-    
-    //Get the index of the element
-    @Override
-    public int getIndexOf(T givenElement){
-        
-        int index = -1;
-        
-        //Cannot be 0
-        if (numberOfEntries == 0) {
-            
-            return -1; // Return -1 to indicate failure
-        }
-        
-        //Loop through array to find the element
-        for(int i = 0; i < numberOfEntries; i++){
-            
-            if(array[i] != null || array[i].equals(givenElement)){
-                
-                System.out.println(array[i]);
-                index = i;
-                break;
-                
-            }
-        }
-        
-        return index;        
-    }
-    
-    //Finds the size of the list
-    @Override
-    public int size(){
-        
-        //Returns the number of values inside of the list
-        return size(firstNode);
-    }
-    
-    public int size(Node passInFirstNode){
-        
-        if(passInFirstNode == null){
-            
-            return 0;
-            
-        }else{
-            
-            return 1 + size(passInFirstNode.next);
-        }
-    }
-    
     public void sort(int cond) {
         
         //Ascending
@@ -625,6 +595,16 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         
     }
     
+    //Iterator method
+    //Its a for loop substitude
+    //hasNext() checks for size
+    //Must be comparable when calling the method
+    //Comparable tutorialGroup = iterator.next();
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayListIterator();
+    }
+    
     private class ArrayListIterator<T extends Comparable<T>> implements Iterator<T> {
         
         private int currentIndex = 0;
@@ -643,22 +623,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         }
     }
     
-    public Iterator<T> iterator() {
-        return new ArrayListIterator();
-    }
 
-    @Override
-    public String toString() {
-        
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numberOfEntries; i++) {
-            sb.append(array[i].toString());
-            sb.append("\n");
-        }
-        return sb.toString();
-        
-    }
-    
 //------------------------------------------------------   
     //Extra methods for implementation
 //------------------------------------------------------
@@ -738,8 +703,34 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
             
         }
     }
+    
+    //Validation for customIntegerContains()
+    //item is array[i], it will check whether it contains the specific value
+    private boolean containsInteger(T item, int targetValue) {
+        String itemString = item.toString();
+        return itemString.contains(Integer.toString(targetValue));
+    }
+    
+        
+    //Validation for customDoubleContains()
+    //item is array[i], it will check whether it contains the specific value
+    private boolean containsDouble(T item, double targetValue) {
+        String itemString = item.toString();
+        return itemString.contains(Double.toString(targetValue));
+    }
+    
 
-
+    @Override
+    public String toString() {
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numberOfEntries; i++) {
+            sb.append(array[i].toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+        
+    }
     
     
     
