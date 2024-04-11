@@ -96,5 +96,11 @@ tutorialList.replace(0, new TutorialGroup(...))<br /><br />
 > - `Utility`
 >   - MessageUI
 
-
+# Entity
+---------
+> - `Every entity must include:`
+> - implements Comparable<class name><br />
+> - equals(): cnp from other entity and change
+> - hashCode()
+> - compareTo(): ur sort() method, getName() = sort by getName() <br />
 
