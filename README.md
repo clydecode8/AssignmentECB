@@ -1,6 +1,6 @@
 private ListInterface<TutorialGroup> **tutorialList** = new ArrayList<>(); //Declare sin
 
-#Basic Function
+# Basic Function
 -------------------------
 
 `add(T newElement)`
@@ -24,7 +24,7 @@ private ListInterface<TutorialGroup> **tutorialList** = new ArrayList<>(); //Dec
 `replace(int indexPosition, T newElement)` <br />
 tutorialList.replace(0, new TutorialGroup(...))<br /><br />
 
-#New Functions
+# New Functions
 ---------------------------
 `getIndexOf(T givenElement)` <br />
 > - Returns index value of that element. <br />
@@ -81,3 +81,20 @@ tutorialList.replace(0, new TutorialGroup(...))<br /><br />
 > - must be comparable
 > - substitute for loop with .next
 > - for(int i = 0; i < tutorialList.size(); i++){} sama meaning with iterator
+
+
+# ECB Design
+---------------
+> - `ADT`
+>   - ArrayList + ListInterface
+> - `Boundary`
+>   - UI classes, GroupManagementUI, AssignmentTeamUI
+> - `Control`
+>   - Main class + ur module
+> - `Entity`
+>   - Student, Programme, TutorialGroup, Registration
+> - `Utility`
+>   - MessageUI
+
+
+
