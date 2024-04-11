@@ -87,7 +87,7 @@ public class Student implements Comparable<Student> {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-20s", group, qty, programme.toString());
+        return String.format("%-10s %-20s %-20s %-20s", name, id, tutorialGroup.toString(), team.toString());
     }
    
 

@@ -78,7 +78,7 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
 
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-20s", group, qty, programme.toString());
+        return String.format("%-10s %-15s %-40s", group, qty, programme.toString());
     }
    
 

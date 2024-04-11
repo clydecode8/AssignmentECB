@@ -73,8 +73,44 @@ public class GroupManagement {
                 break;
                 
             case 2:
-                groupUI.manageStudentGroup();
+                
+                int menuChoice2 = 0;
+                
+                do {
+                    
+                    menuChoice2 = studentUI.getMenuChoice();
+                    switch(menuChoice2){
+                        
+                        case 0:
+                            break;
+                            
+                        case 1:
+                            
+                            stdT.addStudentTutorial();
+                            break;
+                            
+                        case 2:
+                            stdT.removeStudentTutorial();
+                            break;
+                            
+                        case 3:
+                            stdT.changeStudentTutorial();
+                            break;
+                            
+                        case 4:
+                            stdT.listStudentTutorial();
+                            break;
+                            
+                            
+                        default:
+                            MessageUI.displayInvalidChoiceMessage();
+                            
+                    }
+                    
+                }while (menuChoice2 != 0);
+                
                 break;
+                
             case 3:
                 groupUI.summaryReport();
                 break;

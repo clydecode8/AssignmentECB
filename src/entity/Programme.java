@@ -47,7 +47,7 @@ public class Programme implements Comparable<Programme>{
     
     @Override
     public String toString() {
-        return String.format("%-10s %-20s", name, yearIntake);
+        return String.format("%-25s %-15s", name, yearIntake);
     }
    
     @Override
