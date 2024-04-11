@@ -14,38 +14,40 @@ import java.util.Objects;
 public class Programme implements Comparable<Programme>{
  
     private String name;
-    private String id;
+    private String yearIntake;
 
-    public Programme() {
-
+    public Programme(){
+        
+        name = "";
+        yearIntake = "";
     }
-
-    public Programme(String name, String id ) {
-
-      this.name = name;
-      this.id = id;
+    
+    public Programme(String name, String yearIntake) {
+        this.name = name;
+        this.yearIntake = yearIntake;
     }
-
-
+    
     public String getName() {
-      return name;
+        return name;
     }
 
     public void setName(String name) {
-      this.name = name;
+        this.name = name;
     }
 
-    public String getID() {
-      return name;
+    public String getYearIntake() {
+        return yearIntake;
     }
 
-    public void setID(String id) {
-      this.id = id;
+    public void setYearIntake(String yearIntake) {
+        this.yearIntake = yearIntake;
     }
+
+    
     
     @Override
     public String toString() {
-        return String.format("%-10s %-40s", name, id);
+        return String.format("%-10s %-20s", name, yearIntake);
     }
    
     @Override
@@ -58,12 +60,12 @@ public class Programme implements Comparable<Programme>{
         }
         Programme other = (Programme) obj;
         return Objects.equals(name, other.name) &&
-               Objects.equals(id, other.id);
+               Objects.equals(yearIntake, other.yearIntake);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id);
+        return Objects.hash(name, yearIntake);
     }
 
     @Override

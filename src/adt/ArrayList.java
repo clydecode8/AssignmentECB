@@ -146,6 +146,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return result;
     }
     
+    @Override
     public boolean customRemove(String word){
         
         boolean status = false;

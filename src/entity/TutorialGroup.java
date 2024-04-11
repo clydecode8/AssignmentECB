@@ -13,44 +13,39 @@ import java.util.Objects;
 
 public class TutorialGroup implements Comparable<TutorialGroup>{
     
-    private String name;
-    private String id;
+    private String group;
+    private int qty;
     private Programme programme;
-    private int numb;
+    
     
     public TutorialGroup() {
         
-        this.name = "";
-        this.id = "";
-        this.numb = 0;
+        this.group = "";
+        this.qty = 0;
         this.programme = null;
     }
 
-    public TutorialGroup(String name, String id, int numb, Programme programme) {
+    public TutorialGroup(String group, int qty, Programme programme) {
 
-      this.name = name;
-      this.id = id;
-      this.numb = numb;
+      this.group = group;
+      this.qty = qty;
       this.programme = programme;
     }
-    
 
-    public String getName() {
-        return name;
+    public String getGroup() {
+        return group;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
-    
-    
-    public String getId() {
-        return id;
+    public int getQty() {
+        return qty;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public Programme getProgramme() {
@@ -61,21 +56,9 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
         this.programme = programme;
     }
 
-    public int getNumb() {
-        return numb;
-    }
-
-    public void setNumb(int numb) {
-        this.numb = numb;
-    }
-
-    
-
-    
-    
     @Override
     public String toString() {
-        return String.format("%-10s %-40s %-40s %-40s", name, id, numb, programme.toString());
+        return String.format("%-10s %-20s %-20s", group, qty, programme.toString());
     }
    
 
@@ -88,8 +71,8 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
             return false;
         }
         TutorialGroup other = (TutorialGroup) obj;
-        return Objects.equals(name, other.name) &&
-                Objects.equals(id, other.id) &&
+        return Objects.equals(group, other.group) &&
+                Objects.equals(qty, other.qty) &&
                Objects.equals(programme, other.programme);
     }
     
@@ -97,14 +80,14 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id, programme);
+        return Objects.hash(group, qty, programme);
     }
 
     @Override
     public int compareTo(TutorialGroup other) {
         
-        String thisName = this.getName();
-        String otherName = other.getName();
+        String thisName = this.getGroup();
+        String otherName = other.getGroup();
 
         // Handle null values
         if (thisName == null && otherName == null) {

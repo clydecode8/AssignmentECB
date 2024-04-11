@@ -30,6 +30,7 @@ public class GroupManagement {
     
     public void runGroupManagement(){
         
+        programmeT.initialiser();
         int choice = 0;
         do {
           choice = groupUI.getMenuChoice();
@@ -50,6 +51,7 @@ public class GroupManagement {
                             break;
                             
                         case 1:
+                            
                             programmeT.addProgrammeTutorial();
                             break;
                             
