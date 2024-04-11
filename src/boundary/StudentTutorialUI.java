@@ -72,6 +72,57 @@ public class StudentTutorialUI {
     
     }
     
+    public int chooseWhichRemove(){
+        
+        int choice = 0;
+        do {
+            
+            System.out.println("");
+            System.out.println("");
+            System.out.println("------------------------------------");
+            System.out.println("1. Choose from existing Tutorial Group.");
+            System.out.println("2. Input Tutorial Group Manually.");
+            System.out.println("3. Exit.");
+            System.out.println("------------------------------------");
+            System.out.print(">:    ");
+            choice = scanner.nextInt();
+    
+        }while(choice > 0 && choice > 3);
+
+        return choice;   
+    
+    }
+    
+    public int chooseWhichChange(){
+        
+        int choice = 0;
+        do {
+            
+            System.out.println("");
+            System.out.println("");
+            System.out.println("------------------------------------");
+            System.out.println("1. Choose from existing Tutorial Group.");
+            System.out.println("2. Input Tutorial Group Manually.");
+            System.out.println("3. Exit.");
+            System.out.println("------------------------------------");
+            System.out.print(">:    ");
+            choice = scanner.nextInt();
+    
+        }while(choice > 0 && choice > 3);
+
+        return choice;   
+    
+    }
+    
+    public String chooseStudent(){
+        
+        System.out.println("---------------------------");
+        System.out.print("Type an ID: > ");
+        String tg = scanner.next();
+        
+        return tg;
+    }
+    
     public int chooseWhichTutorialGroup(){
         
         System.out.println("Choose which tutorial group to see: ");
@@ -83,6 +134,20 @@ public class StudentTutorialUI {
     public int inputAddIterator(){
         
         System.out.println("Choose which Tutorial Group to add: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    
+    public int inputRemoveIterator(){
+        
+        System.out.println("Choose which Tutorial Group to remove: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    
+    public int inputChangeIterator(){
+        
+        System.out.println("Choose which Tutorial Group to change: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }

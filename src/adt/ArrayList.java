@@ -6,6 +6,7 @@ package adt;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -154,11 +155,12 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         T result = null;
         Node currentNode = firstNode;
         Node prevNode = null;
+        Pattern pattern = Pattern.compile("\\b" + Pattern.quote(word) + "\\b", Pattern.CASE_INSENSITIVE);
         
         for (int i = 0; i < numberOfEntries; i++) {
               
             
-            if (array[i].toString().contains(word)) {
+            if (pattern.matcher(array[i].toString()).find()) {
                 
 
                 // Shift elements to the left to fill the gap

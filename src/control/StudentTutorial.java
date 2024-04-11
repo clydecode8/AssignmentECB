@@ -107,13 +107,79 @@ public class StudentTutorial {
     
     public void removeStudentTutorial(){
         
+        int cond = stdUI.chooseWhichRemove();
         
+        
+        if(cond == 1){
+        
+            Iterator<TutorialGroup> iterator = tutorialList.iterator();
+            int i = 0;
+            while (iterator.hasNext()) {
+                Comparable tg = iterator.next();
+               
+                System.out.println(i+1 + ". " + tg.toString());
+                i++;
+            }
+            
+            int choice = stdUI.inputRemoveIterator();
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            studentList.condSearch(tutorialList.getEntry(choice).toString());
+            
+            String removal = stdUI.chooseStudent();
+            boolean status = studentList.customRemove(removal);
+            
+            if(status == true){
+                
+                System.out.println("Student successfully removed! ");
+            }
+
+            
+        }else if(cond == 2){
+
+            
+            
+            
+        }
         
     }
     
     public void changeStudentTutorial(){
         
-        
+        int cond = stdUI.chooseWhichChange();
+        if(cond == 1){
+            
+            Iterator<TutorialGroup> iterator = tutorialList.iterator();
+            int i = 0;
+            while (iterator.hasNext()) {
+                Comparable tg = iterator.next();
+               
+                System.out.println(i+1 + ". " + tg.toString());
+                i++;
+            }
+            
+            int choice = stdUI.inputChangeIterator();
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            studentList.condSearch(tutorialList.getEntry(choice).toString());
+            
+            String removal = stdUI.chooseStudent();
+            boolean status = studentList.customRemove(removal);
+            
+            if(status == true){
+                
+                System.out.println("Student successfully removed! ");
+            }
+            
+            
+        }else if(cond == 2){
+            
+            
+        }
         
     }
     
