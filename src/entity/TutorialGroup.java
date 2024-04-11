@@ -4,6 +4,7 @@
  */
 package entity;
 
+import adt.ArrayList;
 import java.util.Objects;
 
 /**
@@ -16,13 +17,16 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
     private String group;
     private int qty;
     private Programme programme;
-    
+    private int numb;
+    private final static ArrayList<TutorialGroup> tutorialGroupList = new ArrayList<>();    
+
     
     public TutorialGroup() {
         
         this.group = "";
         this.qty = 0;
         this.programme = null;
+  
     }
 
     public TutorialGroup(String group, int qty, Programme programme) {
@@ -54,6 +58,22 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
 
     public void setProgramme(Programme programme) {
         this.programme = programme;
+    }
+
+    public int getNumb() {
+        return numb;
+    }
+
+    public void setNumb(int numb) {
+        this.numb = numb;
+    }    
+    
+   public static ArrayList<TutorialGroup> getTutorialGroupList() {
+        return tutorialGroupList;
+    }
+
+    public static void setTutorialGroupList(TutorialGroup tg) {
+        tutorialGroupList.add(tg);
     }
 
     @Override
