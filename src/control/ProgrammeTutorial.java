@@ -40,7 +40,7 @@ public class ProgrammeTutorial {
         
         String name = "han";
         
-        
+       tutorialList.clear();
         
         //tutorialList.add(tg);
         tutorialList.add(new TutorialGroup(name, "12", 23, new Programme("FCP", "TEST")));
@@ -50,7 +50,7 @@ public class ProgrammeTutorial {
  
         //System.out.println("Index: " + tutorialList.getIndexOf(tg));
         
-        tutorialList.replaceAll("ab", "RSW");
+        tutorialList.replaceAll("23", "21");
         tutorialList.sort(0);
         //System.out.println(tutorialList.getEntry(1));
         //tutorialList.twoCondSearch("12", "RSW", 1);
@@ -59,7 +59,7 @@ public class ProgrammeTutorial {
  
         
         tutorialList.customRemove("RSW");
-        //System.out.println(tutorialList.size());
+        System.out.println(tutorialList.size());
         
         System.out.println(tutorialList.toString());
         // Iterate over the list

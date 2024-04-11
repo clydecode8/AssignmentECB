@@ -4,7 +4,6 @@
  */
 package adt;
 
-import entity.TutorialGroup;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -263,6 +262,8 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         for (int i = 0; i < array.length; i++) {
             array[i] = null;
         }
+        
+        firstNode = null;
         
         numberOfEntries = 0;
     }
