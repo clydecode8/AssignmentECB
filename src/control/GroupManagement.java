@@ -31,6 +31,7 @@ public class GroupManagement {
     public void runGroupManagement(){
         
         programmeT.initialiser();
+        stdT.initialiser();
         int choice = 0;
         do {
           choice = groupUI.getMenuChoice();

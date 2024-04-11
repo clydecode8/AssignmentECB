@@ -51,11 +51,54 @@ public class StudentTutorialUI {
         return choice;
     }
     
+    public int chooseWhichShow(){
+        
+        int choice = 0;
+        do {
+            
+            System.out.println("");
+            System.out.println("");
+            System.out.println("------------------------------------");
+            System.out.println("1. List all.");
+            System.out.println("2. List from specific Tutorial Group.");
+            System.out.println("3. Exit.");
+            System.out.println("------------------------------------");
+            System.out.print(">:    ");
+            choice = scanner.nextInt();
+    
+        }while(choice > 0 && choice > 3);
+
+        return choice;   
+    
+    }
+    
+    public int chooseWhichTutorialGroup(){
+        
+        System.out.println("Choose which tutorial group to see: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    
+    
     public int inputAddIterator(){
         
         System.out.println("Choose which Tutorial Group to add: ");
         int chosen = scanner.nextInt();
         return chosen-1;
+    }
+    
+    public String inputName(){
+        
+        System.out.println("Input the name: ");
+        String name = scanner.next();
+        return name;
+    }
+    
+    public String inputID(){
+        
+        System.out.println("Input the ID");
+        String id = scanner.next();
+        return id;
     }
     
     

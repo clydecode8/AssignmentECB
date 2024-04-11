@@ -29,7 +29,7 @@ public class StudentTutorial {
     private ListInterface<TutorialGroup> tutorialList = new ArrayList<>();
     
     private Programme[] pg = new Programme[3];
-    private TutorialGroup[] tg = new TutorialGroup[9];
+    private TutorialGroup[] tg = new TutorialGroup[4];
     private Student[] std = new Student[5];
     
      public void initialiser(){
@@ -47,11 +47,6 @@ public class StudentTutorial {
         Team t3 = new Team("Robot team3", "Robot Development", tg[1]);
         Team t4 = new Team("Gundam team1", "Robot Development", tg[2]);
         Team t5 = new Team("Gundam team2", "Robot Development", tg[2]);
-        
-        TutorialGroup g1 = new TutorialGroup("Group 1", 24, pg[0]);
-        TutorialGroup g2 = new TutorialGroup("Group 2", 24, pg[0]);
-        TutorialGroup g3 = new TutorialGroup("Group 3", 24, pg[0]);
-        TutorialGroup g4 = new TutorialGroup("Group 4", 24, pg[0]);
         
         std[0] = new Student("Han", "2213577", tg[0], t1);
         std[1] = new Student("Jack", "2214577", tg[0], t2);
@@ -93,9 +88,15 @@ public class StudentTutorial {
             
             int choice2 = stdUI.inputAddIterator();
             
+            String name = stdUI.inputName();
+            String id = stdUI.inputID();
+            
+            Student std = new Student(name, id, tg[choice2], null);
+            studentList.add(std);
             
             
         }else if(choice == 2){
+            
             
             
             
@@ -118,6 +119,39 @@ public class StudentTutorial {
     
     public void listStudentTutorial(){
         
+        int choice = stdUI.chooseWhichShow();
+        
+        if(choice == 1){
+            
+            Iterator<Student> iterator = studentList.iterator();
+                int i = 0;
+                while (iterator.hasNext()) {
+                    Comparable std = iterator.next();
+
+                    System.out.println(i+1 + ". " + std.toString());
+                    i++;
+            }
+            
+        }else if(choice == 2){
+            
+            Iterator<TutorialGroup> iterator2 = tutorialList.iterator();
+                int i = 0;
+                while (iterator2.hasNext()) {
+                    Comparable tg = iterator2.next();
+
+                    System.out.println(i+1 + ". " + tg.toString());
+                    i++;
+            }
+            
+            int choice2 = stdUI.chooseWhichTutorialGroup();
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            studentList.condSearch(tutorialList.getEntry(choice2).toString());
+
+            
+        }
         
     }
     
