@@ -4,16 +4,18 @@
  */
 package adt;
 
+import entity.TutorialGroup;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  *
  * @author Kok Ming Han
+ * @param <T>
  * 
  */
 
-public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
+public class ArrayList<T extends Comparable<? super T>> implements ListInterface<T> {
 
     
     private T[] array;
@@ -105,7 +107,7 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
             result = array[indexPosition];
             
 
-            numberOfEntries--;
+            
             
             //Node Size
             //add removal of nodes
@@ -133,6 +135,7 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
                 removeGap(indexPosition+1);
             }
             
+            numberOfEntries--;
             
         }else{
             
@@ -143,6 +146,60 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
         
         return result;
     }
+    
+    public boolean customRemove(String word){
+        
+        boolean status = false;
+        int tempNumb = numberOfEntries;
+        T result = null;
+        Node currentNode = firstNode;
+        Node prevNode = null;
+        
+        for (int i = 0; i < numberOfEntries; i++) {
+              
+            
+            if (array[i].toString().contains(word)) {
+                
+
+                // Shift elements to the left to fill the gap
+                for (int j = i; j < numberOfEntries - 1; j++) {
+                    array[j] = array[j + 1];
+                }
+                
+                while (currentNode != null) {
+                    if (currentNode.data.toString().contains(word)) {
+
+                        status = true;
+
+                        if (prevNode == null) { // Removing the first node
+                            firstNode = currentNode.next;
+                        } else {
+                            prevNode.next = currentNode.next;
+                        }
+
+                        numberOfEntries--;
+                    } else {
+                        prevNode = currentNode;
+                    }
+
+                    currentNode = currentNode.next;
+                }
+
+                
+                i--; // Adjust the loop index since you removed an element
+            }
+        }
+        
+        
+        
+        
+        
+        
+        return status;
+    }
+    
+    
+    
     
     //Getting the value at specific position
     @Override
@@ -459,15 +516,20 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
         
         for (int i = 0; i < numberOfEntries; i++) {
             
-            String currentString = array[i].toString();
-            if (currentString.contains(oldValue)) {
-
-                String newString = currentString.replace(oldValue, newValue);
-                array[i] = (T) newString; // Perform the replace operation
+            T currentElement = array[i];
+       
+            
+            if (array[i].toString().contains(oldValue)) {
+                    
+                    String newString = array[i].toString().replace(oldValue, newValue);
+                    array[i] = (T) newString;
 
             }
+        
+           
         }
     }
+
     
     @Override
     //Get number of entries
@@ -563,7 +625,8 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
         
     }
     
-    private class ArrayListIterator implements Iterator<T> {
+    private class ArrayListIterator<T extends Comparable<T>> implements Iterator<T> {
+        
         private int currentIndex = 0;
 
         @Override
@@ -574,9 +637,9 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
         @Override
         public T next() {
             if (!hasNext()) {
-                throw new NoSuchElementException();
+                throw new NoSuchElementException("No next element");
             }
-            return array[currentIndex++];
+            return (T) array[currentIndex++];
         }
     }
     
@@ -658,7 +721,7 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
         int removedIndex = givenPosition - 1;
         int lastIndex = numberOfEntries - 1;
 
-        for (int i = removedIndex; i < lastIndex; i++) {
+        for (int i = removedIndex; i < lastIndex-1; i++) {
             array[i] = array[i + 1];
         }
         
@@ -668,7 +731,7 @@ public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
     private void doubleArray(){
         
         T[] oldArray = array;
-        array = (T[]) new Object[oldArray.length * 2];
+        array = (T[]) new Comparable[oldArray.length * 2];
         for (int i = 0; i < oldArray.length; i++) {
             
             array[i] = oldArray[i];

@@ -7,6 +7,7 @@ package control;
 import adt.*;
 import boundary.*;
 import entity.*;
+import java.util.Iterator;
 
 /**
  *
@@ -49,13 +50,25 @@ public class ProgrammeTutorial {
  
         //System.out.println("Index: " + tutorialList.getIndexOf(tg));
         
-        tutorialList.replaceAll("FCP", "RSW");
-        tutorialList.sort(1);
-
-        tutorialList.twoCondSearch("12", "RSW", 1);
+        tutorialList.replaceAll("ab", "RSW");
+        tutorialList.sort(0);
+        //System.out.println(tutorialList.getEntry(1));
+        //tutorialList.twoCondSearch("12", "RSW", 1);
         //tutorialList.threeCondSearch("RSW", "12", "23", 3);
 
+ 
         
+        //tutorialList.customRemove("RSW");
+        //System.out.println(tutorialList.size());
+        
+        System.out.println(tutorialList.toString());
+        // Iterate over the list
+        Iterator<TutorialGroup> iterator = tutorialList.iterator();
+        while (iterator.hasNext()) {
+            Comparable tutorialGroup = iterator.next();
+            // Do something with tutorialGroup...
+            System.out.println(tutorialGroup.toString());
+        }
 
     }
 }

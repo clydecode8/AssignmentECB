@@ -83,8 +83,8 @@ public interface ListInterface<T> {
    public void customIntegerContains(int targetValue);
    public boolean twoCondSearch(String targetWord, String target2, int cond);
    public boolean threeCondSearch(String targetWord, String target2, String target3, int cond);
-   public void replaceAll(String word, String word2);
-   
+   public <E extends T> void replaceAll(String word, String word2);
+   public boolean customRemove(String word);
    public void sort(int cond);
    public Iterator<T> iterator();
 //public boolean finder(Predicate<T> predicate);
