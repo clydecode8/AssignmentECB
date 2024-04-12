@@ -20,7 +20,7 @@ public class ProgrammeTutorial {
     private ListInterface<Programme> programmeList = new ArrayList<>();
     private ListInterface<TutorialGroup> tutorialList = new ArrayList<>();
     
-    private Programme[] pg = new Programme[3];
+    private Programme[] pg = new Programme[5];
     private TutorialGroup[] tg = new TutorialGroup[9];
     
     public void initialiser(){
@@ -57,7 +57,11 @@ public class ProgrammeTutorial {
                 
         for (int i = 0; i < pg.length; i++) {
             
-            programmeList.add(pg[i]);  
+            if(pg[i] != null){
+                
+                programmeList.add(pg[i]);  
+                
+            }
         }  
             
             
@@ -89,12 +93,11 @@ public class ProgrammeTutorial {
             
             TutorialGroup inputTG = new TutorialGroup(tgroup, tgroupStudents, pg[choice]);
             pg[choice].getTutorialGroupList().add(inputTG);
-            System.out.println(pg[1].getTutorialGroupList().toString());
             
         }else if(cond == 2){
         
-            TutorialGroup userInput = programmeUI.inputProgrammeTutorial();
-            tutorialList.add(userInput);
+            //TutorialGroup userInput = programmeUI.inputProgrammeTutorial();
+            
         }
         
 
@@ -123,17 +126,20 @@ public class ProgrammeTutorial {
             System.out.println("");
             System.out.println("");
             System.out.println("");
-            tutorialList.condSearch(programmeList.getEntry(choice).toString());
             
-            String removal = programmeUI.chooseTG();
-            boolean status = tutorialList.customRemove(removal);
-            
-            if(status == true){
-                
-                System.out.println("Tutorial Group successfully removed! ");
-            }
+            Iterator<TutorialGroup> iterator2 = pg[choice].getTutorialGroupList().iterator();
+            int j = 0;
+            while (iterator2.hasNext()) {
+                Comparable tg = iterator2.next();
+               
+                System.out.println(j+1 + ". " + tg.toString());
+                j++;
+            }            
 
             
+            int removal = programmeUI.chooseTG();
+            pg[choice].getTutorialGroupList().remove(removal-1);
+             
         }else if(cond == 2){
 
             
@@ -181,7 +187,7 @@ public class ProgrammeTutorial {
             System.out.println("");
             System.out.println("");
             System.out.println("");
-            tutorialList.condSearch(programmeList.getEntry(choice2).toString());
+            System.out.println(pg[choice2].getTutorialGroupList().toString());
 
             
         }

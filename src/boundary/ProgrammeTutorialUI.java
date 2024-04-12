@@ -73,11 +73,11 @@ public class ProgrammeTutorialUI {
     
     }
     
-    public String chooseTG(){
+    public int chooseTG(){
         
         System.out.println("---------------------------");
-        System.out.print("Type a code: > ");
-        String tg = scanner.next();
+        System.out.print("Choose a number: > ");
+        int tg = scanner.nextInt();
         
         return tg;
     }
