@@ -132,7 +132,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
             if(indexPosition < numberOfEntries){
                 
                 //Removes the gap when noEntries exceed index
-                removeGap(indexPosition+1);
+                removeGap(indexPosition);
             }
             
             numberOfEntries--;
@@ -686,10 +686,10 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         * numberOfEntries; numberOfEntries is array's numberOfEntries before removal.
         */
 
-        int removedIndex = givenPosition - 1;
+        int removedIndex = givenPosition;
         int lastIndex = numberOfEntries - 1;
 
-        for (int i = removedIndex; i < lastIndex-1; i++) {
+        for (int i = removedIndex; i < lastIndex; i++) {
             array[i] = array[i + 1];
         }
         

@@ -191,15 +191,16 @@ public class StudentTutorial {
         if(choice == 1){
             
             Iterator<Student> iterator = studentList.iterator();
-                int i = 0;
-                while (iterator.hasNext()) {
-                    Comparable std = iterator.next();
+            int i = 0;
+            while (iterator.hasNext()) {
+                Comparable std = iterator.next();
 
-                    System.out.println(i+1 + ". " + std.toString());
-                    i++;
+                System.out.println(i+1 + ". " + std.toString());
+                i++;
             }
-              
-            studentList.replaceAll("RSW", "12333");
+
+            studentList.remove(2);
+                
                 
             
         }else if(choice == 2){
