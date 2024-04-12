@@ -99,6 +99,10 @@ public class GroupManagement {
                             break;
                             
                         case 4:
+                            stdT.mergeStudentTutorial();
+                            break;
+                            
+                        case 5:
                             stdT.listStudentTutorial();
                             break;
                             

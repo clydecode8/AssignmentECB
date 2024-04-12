@@ -20,7 +20,7 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
     private Programme programme;
     private int numb;
     private final static ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();    
-    private final static ListInterface<Student> stdList = new ArrayList<>();
+    private ListInterface<Student> stdList = new ArrayList<>();
     
     public TutorialGroup() {
         
@@ -35,6 +35,7 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
       this.group = group;
       this.qty = qty;
       this.programme = programme;
+      
     }
 
     public String getGroup() {
@@ -77,11 +78,11 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
         tutorialGroupList.add(tg);
     }
     
-    public static ListInterface<Student> getStudentList() {
+    public ListInterface<Student> getStudentList() {
         return stdList;
     }
 
-    public static void setStudentList(Student std) {
+    public void addStudentList(Student std) {
         stdList.add(std);
     }
 

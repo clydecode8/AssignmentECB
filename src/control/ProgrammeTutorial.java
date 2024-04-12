@@ -43,10 +43,6 @@ public class ProgrammeTutorial {
     
 
         
-
-        
-
-        
         for (int i = 0; i < 3; i++) {
             
             pg[0].addTutorialGroupList(tg[i]);

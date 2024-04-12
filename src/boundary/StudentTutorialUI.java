@@ -114,22 +114,22 @@ public class StudentTutorialUI {
     
     }
     
-    public String chooseStudent(){
+    public int chooseStudent(){
         
         System.out.println("---------------------------");
-        System.out.print("Type an ID: > ");
-        String tg = scanner.next();
+        System.out.print("Choose a number: > ");
+        int std = scanner.nextInt();
         
-        return tg;
+        return std-1;
     }
-    
-    public int chooseWhichTutorialGroup(){
+
+    public int inputChangeIteratorFindTG(){
         
-        System.out.println("Choose which tutorial group to see: ");
-        int chosen = scanner.nextInt();
-        return chosen-1;
+        System.out.println("Which tutorial group you would like to change?: ");
+        int ans = scanner.nextInt();
+        return ans-1;
+        
     }
-    
     
     public int inputAddIterator(){
         
@@ -148,6 +148,22 @@ public class StudentTutorialUI {
     public int inputChangeIterator(){
         
         System.out.println("Choose which Tutorial Group to change: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    
+    public int inputChooseIterator(){
+     
+        System.out.println("Choose which Tutorial Group to see: ");
+    
+        int chosen = scanner.nextInt();
+        return chosen-1;    
+    }
+    
+    public int inputChooseName(){
+        
+        System.out.println("Choose which Student to be removed: ");
+        
         int chosen = scanner.nextInt();
         return chosen-1;
     }

@@ -47,7 +47,7 @@ public class Student implements Comparable<Student> {
   }
 
   public String getID() {
-    return name;
+    return id;
   }
 
   public void setID(String id) {
