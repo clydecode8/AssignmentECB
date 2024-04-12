@@ -1,6 +1,7 @@
 package entity;
 
 import adt.ArrayList;
+import adt.ListInterface;
 import entity.Student;
 /**
  *
@@ -10,7 +11,7 @@ public class Team implements Comparable<Team>{
     private String teamName;
     private String subject;
     private TutorialGroup tg;
-    private final static ArrayList<Team> teamList = new ArrayList<>();
+    private final static ListInterface<Team> teamList = new ArrayList<>();
     
     public Team(){
         this.teamName ="";
@@ -48,7 +49,7 @@ public class Team implements Comparable<Team>{
         this.tg = tg;
     }
 
-        public static ArrayList<Team> getTeamList() {
+    public static ListInterface<Team> getTeamList() {
         return teamList;
     }
 

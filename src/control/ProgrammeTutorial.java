@@ -41,16 +41,27 @@ public class ProgrammeTutorial {
         tg[7] = new TutorialGroup("RSW02", 18, pg[2]);
         tg[8] = new TutorialGroup("RSW03", 16, pg[2]);
     
-        tutorialList.clear();
-        for (int i = 0; i < tg.length; i++) {
-            tutorialList.add(tg[i]);
-            
-        }
+
         
-        for (int i = 0; i < pg.length; i++) {
-            programmeList.add(pg[i]);
+
+        
+
+        
+        for (int i = 0; i < 3; i++) {
             
+            pg[0].addTutorialGroupList(tg[i]);
+            pg[1].addTutorialGroupList(tg[i+3]);
+            pg[2].addTutorialGroupList(tg[i+6]);
         }
+          
+                
+        for (int i = 0; i < pg.length; i++) {
+            
+            programmeList.add(pg[i]);  
+        }  
+            
+            
+            
     }
     
     
@@ -77,7 +88,8 @@ public class ProgrammeTutorial {
             int tgroupStudents = programmeUI.inputNoStudents();
             
             TutorialGroup inputTG = new TutorialGroup(tgroup, tgroupStudents, pg[choice]);
-            tutorialList.add(inputTG);
+            pg[choice].getTutorialGroupList().add(inputTG);
+            System.out.println(pg[1].getTutorialGroupList().toString());
             
         }else if(cond == 2){
         
@@ -136,15 +148,21 @@ public class ProgrammeTutorial {
 
         int choice = programmeUI.chooseWhichShow();
         
+        
         if(choice == 1){
             
-            Iterator<TutorialGroup> iterator = tutorialList.iterator();
-                int i = 0;
-                while (iterator.hasNext()) {
-                    Comparable tg = iterator.next();
+            
+            for(int i = 0; i < 3; i++){
+                
+                Iterator<TutorialGroup> iterator = pg[i].getTutorialGroupList().iterator();
+                    int j = 0;
+                    while (iterator.hasNext()) {
+                        Comparable tg = iterator.next();
 
-                    System.out.println(i+1 + ". " + tg.toString());
-                    i++;
+                        System.out.println(i+1 + ". " + tg.toString());
+                        j++;
+                }
+                
             }
             
         }else if(choice == 2){

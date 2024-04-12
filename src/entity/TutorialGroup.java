@@ -5,6 +5,7 @@
 package entity;
 
 import adt.ArrayList;
+import adt.ListInterface;
 import java.util.Objects;
 
 /**
@@ -18,8 +19,8 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
     private int qty;
     private Programme programme;
     private int numb;
-    private final static ArrayList<TutorialGroup> tutorialGroupList = new ArrayList<>();    
-
+    private final static ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();    
+    private final static ListInterface<Student> stdList = new ArrayList<>();
     
     public TutorialGroup() {
         
@@ -68,12 +69,20 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
         this.numb = numb;
     }    
     
-   public static ArrayList<TutorialGroup> getTutorialGroupList() {
+   public static ListInterface<TutorialGroup> getTutorialGroupList() {
         return tutorialGroupList;
     }
 
     public static void setTutorialGroupList(TutorialGroup tg) {
         tutorialGroupList.add(tg);
+    }
+    
+    public static ListInterface<Student> getStudentList() {
+        return stdList;
+    }
+
+    public static void setStudentList(Student std) {
+        stdList.add(std);
     }
 
     @Override

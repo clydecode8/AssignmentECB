@@ -5,6 +5,7 @@
 package entity;
 
 import adt.ArrayList;
+import adt.ListInterface;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,7 @@ public class Student implements Comparable<Student> {
   private String id;
   private TutorialGroup tutorialGroup;
   private Team team;
-  private final static ArrayList<Student> studentList = new ArrayList<>();
+  private final static ListInterface<Student> studentList = new ArrayList<>();
 
   public Student() {
       
@@ -69,7 +70,7 @@ public class Student implements Comparable<Student> {
         this.tutorialGroup = tutorialGroup;
     }
 
-    public ArrayList<Student> getStudentList() {
+    public ListInterface<Student> getStudentList() {
         return studentList;
     }
 

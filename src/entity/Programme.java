@@ -4,6 +4,8 @@
  */
 package entity;
 
+import adt.ArrayList;
+import adt.ListInterface;
 import java.util.Objects;
 
 /**
@@ -15,7 +17,8 @@ public class Programme implements Comparable<Programme>{
  
     private String name;
     private String yearIntake;
-
+    private ListInterface<TutorialGroup> tgList = new ArrayList<>();
+    
     public Programme(){
         
         name = "";
@@ -43,6 +46,13 @@ public class Programme implements Comparable<Programme>{
         this.yearIntake = yearIntake;
     }
 
+   public ListInterface<TutorialGroup> getTutorialGroupList() {
+        return tgList;
+    }
+
+    public void addTutorialGroupList(TutorialGroup tg) {
+        tgList.add(tg);
+    }
     
     
     @Override
