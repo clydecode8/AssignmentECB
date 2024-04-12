@@ -112,18 +112,73 @@ public class AssTeam {
                     else if(choice2 == teamNum +3){
                         int removeNum = assTeamUI.removeTeam();
                         Team removedTeam = filteredTeam.getEntry(removeNum-1);
-                        System.out.println(removedTeam);
+                    
                         for(int i=0; i< Team.getTeamList().size(); i++){
                             if(Team.getTeamList().getEntry(i).equals(removedTeam)){
-                                System.out.println("remove: "+ Team.getTeamList().getEntry(i));
+                              
                                 Team.getTeamList().remove(i);
                                 break;
                             }
                         }
-                        for(int i=0; i<Team.getTeamList().size(); i++){
-                            System.out.println(Team.getTeamList().getEntry(i));
+       
+                        
+                    }
+                    // amend assignment team details
+                    else if (choice2 == teamNum +4){
+                        int amendChoice = assTeamUI.amendTeam();
+                        Team amendTeam = filteredTeam.getEntry(amendChoice-1);
+                        int teamNo = 0;
+                        for(int i=0; i< Team.getTeamList().size(); i++){
+                            if(Team.getTeamList().getEntry(i).equals(amendTeam)){                         
+                               teamNo = i;
+                               break;
+                            }
+                        }
+                        int amendChoice2 = assTeamUI.amendTeamChoice(amendTeam);
+                        String newData = assTeamUI.amendTeamInput(amendChoice2);
+                        if (newData != null){
+                            if(amendChoice2 == 1){
+                                Team.getTeamList().getEntry(teamNo).setTeamName(newData);
+                            }
+                            else if(amendChoice2 == 2){
+                                Team.getTeamList().getEntry(teamNo).setSubject(newData);
+                            }
+                           
                         }
                         
+                    }
+                    // merge assignment group
+                    else if (choice2 == teamNum + 5){
+                        ArrayList<Integer> mergeChoice = assTeamUI.mergeTeam();                   
+
+                        Team mergeTeam1 = filteredTeam.getEntry((mergeChoice.getEntry(0))-1);
+                        Team mergeTeam2 = filteredTeam.getEntry((mergeChoice.getEntry(1))-1);
+
+                        // check whether total num of student > 5 or not
+                        int numOfStudent =0;
+                        ArrayList<Student> studentList = student.getStudentList();
+                        for(int i=0; i<studentList.size(); i++){
+                            if(studentList.getEntry(i).getTeam() != null){
+                                 if(studentList.getEntry(i).getTeam().equals(mergeTeam1) ||
+                                  studentList.getEntry(i).getTeam().equals(mergeTeam2)  ){
+                                    numOfStudent ++;
+                                }
+                            }
+                           
+                        }
+                        if(numOfStudent > 5){
+                            assTeamUI.error();
+                        }
+                        else{
+                            for(int j=0; j<studentList.size(); j++){
+                                if(studentList.getEntry(j).getTeam() != null){
+                                    if(studentList.getEntry(j).getTeam().equals(mergeTeam2)){
+                                        studentList.getEntry(j).setTeam(mergeTeam1);
+                                    }
+                                }
+                            }
+                            assTeamUI.success();
+                        }
                     }
                     
                     // team member start
