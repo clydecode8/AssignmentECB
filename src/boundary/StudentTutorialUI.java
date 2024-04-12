@@ -21,7 +21,8 @@ public class StudentTutorialUI {
         System.out.println("1. Add Student to Tutorial Group");
         System.out.println("2. Remove Student from Tutorial Group");
         System.out.println("3. Change Tutorial Group for a Student");
-        System.out.println("4. List all Tutorial Groups");
+        System.out.println("4. Merge Tutorial Groups");
+        System.out.println("5. List all Tutorial Groups");
         System.out.println("0. Quit");
         System.out.print("Enter choice: ");
         int choice = scanner.nextInt();
@@ -148,6 +149,19 @@ public class StudentTutorialUI {
     public int inputChangeIterator(){
         
         System.out.println("Choose which Tutorial Group to change: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    
+    public int inputMergeIterator(){
+        
+        System.out.println("Choose the first Tutorial Group: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    public int inputMergeIterator2(){
+        
+        System.out.println("Choose the second Tutorial Group to merge to first: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }

@@ -32,33 +32,48 @@ public class StudentTutorial {
     private TutorialGroup[] tg = new TutorialGroup[4];
     private Student[] std = new Student[6];
     private Student stdInput;
+    private String[] group = new String[3];
     
      public void initialiser(){
         
         pg[0] = new Programme("Software Engineering", "2023/09");
 
-        tg[0] = new TutorialGroup("RSW01", 25, pg[0]);
-        tg[1] = new TutorialGroup("RSW02", 18, pg[0]);
-        tg[2] = new TutorialGroup("RSW03", 16, pg[0]);
+        group = new String[]{"RSW01", "RSW02", "RSW03"};
         
+        tg[0] = new TutorialGroup(group[0], 25, pg[0]);
+        tg[1] = new TutorialGroup(group[1], 18, pg[0]);
+        tg[2] = new TutorialGroup(group[2], 16, pg[0]);
         
-        Team t1 = new Team("Robot team1", "Robot Development", tg[0]);
-        Team t2 = new Team("Robot team2", "Robot Development", tg[0]);
-        Team t3 = new Team("Robot team3", "Robot Development", tg[1]);
-        Team t4 = new Team("Gundam team1", "Robot Development", tg[2]);
-        Team t5 = new Team("Gundam team2", "Robot Development", tg[2]);
+         for (int i = 0; i < tg.length; i++) {
+             
+             if(tg[i] != null){
+                 
+                 tg[i].setGroup(group[i]);
+             }
+             
+         }
+        
+        Team team[] = new Team[6];
+        team[0] = new Team("Robot team1", "Robot Development", tg[0]);
+        team[1] = new Team("Robot team2", "Robot Development", tg[0]);
+        team[2] = new Team("Robot team3", "Robot Development", tg[1]);
+        team[3] = new Team("Gundam team1", "Robot Development", tg[1]);
+        team[4] = new Team("Gundam team2", "Robot Development", tg[2]);
+        team[5] = new Team("Gundam team3", "Robot Development", tg[2]);
+        
+
         
         String name[] = new String[]{"Han", "Jack", "Bob", "Clyde", "Robert", "Janice"};
         String id[] = new String[]{"2213577", "2214577", "2215577", "2216177", "2216577", "2211577"};
         
         for (int i = 0; i < id.length; i++) {
         
-            std[0] = new Student(name[i], id[i], tg[0], t1);
-            std[1] = new Student(name[i], id[i], tg[0], t2);
-            std[2] = new Student(name[i], id[i], tg[1], t3);
-            std[3] = new Student(name[i], id[i], tg[1], t4);
-            std[4] = new Student(name[i], id[i], tg[2], t5);
-            std[5] = new Student(name[i], id[i], tg[2], t5);
+            std[0] = new Student(name[i], id[i], tg[0], team[0]);
+            std[1] = new Student(name[i], id[i], tg[0], team[1]);
+            std[2] = new Student(name[i], id[i], tg[1], team[2]);
+            std[3] = new Student(name[i], id[i], tg[1], team[3]);
+            std[4] = new Student(name[i], id[i], tg[2], team[4]);
+            std[5] = new Student(name[i], id[i], tg[2], team[5]);
 
 
         }
@@ -88,8 +103,23 @@ public class StudentTutorial {
             
             if(std[i] != null){
                 
-                 std[i].setName(name[i]);
-                 std[i].setID(id[i]);
+                std[i].setName(name[i]);
+                std[i].setID(id[i]);
+                std[i].setTeam(team[0]);
+                 
+                if(i == 0 || i == 1){
+                    
+                    std[i].setTutorialGroup(tg[0]);
+                
+                }else if(i == 2 || i == 3){
+                    
+                    
+                    std[i].setTutorialGroup(tg[1]);
+                
+                }else if(i == 4 || i == 5){
+                    
+                    std[i].setTutorialGroup(tg[2]);
+                } 
                 
             }
         }
@@ -257,8 +287,50 @@ public class StudentTutorial {
                 i++;
             }
             
-        int choice = stdUI.inputChangeIterator();
+        int choice = stdUI.inputMergeIterator();
         
+        
+        Iterator<TutorialGroup> iterator2 = pg[0].getTutorialGroupList().iterator();
+            int j = 0;
+            while (iterator2.hasNext()) {
+                Comparable tg = iterator2.next();
+               
+                System.out.println(j+1 + ". " + tg.toString());
+                j++;
+            }
+            
+        int choice2 = stdUI.inputMergeIterator2();
+        
+        //(old, new) = merge(b, a) = replaceAll(b, a) = replace All B to A
+        //replaceAll(RSWG4, RSWG2) replace rswg4 to rswg2
+        int initialSize = tg[choice2].getStudentList().getNumberOfEntries();
+        int removedEntry = 0;
+        for (int k = 0; k < initialSize; k++) {
+            
+            if(tg[choice2] != null){
+
+                Student tempStd = tg[choice2].getStudentList().getEntry(k);
+                String name = tempStd.getName();
+                String id = tempStd.getID();
+                TutorialGroup tutorialgroup = tg[choice];
+                Team team = tempStd.getTeam();
+
+
+                tg[choice].addStudentList(new Student(name, id, tutorialgroup, team));
+                removedEntry++;
+            }
+
+            
+        }
+        
+        for(int l=0; l<removedEntry; l++){
+            
+            tg[choice2].getStudentList().remove(0);
+            
+        }
+
+
+
     }
     
     public void listStudentTutorial(){
