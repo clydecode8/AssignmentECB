@@ -1,6 +1,7 @@
 package control;
 
 import adt.ArrayList;
+import adt.ListInterface;
 import boundary.AssTeamUI;
 import entity.Programme;
 import entity.Student;
@@ -156,7 +157,7 @@ public class AssTeam {
 
                         // check whether total num of student > 5 or not
                         int numOfStudent =0;
-                        ArrayList<Student> studentList = student.getStudentList();
+                        ListInterface<Student> studentList = student.getStudentList();
                         for(int i=0; i<studentList.size(); i++){
                             if(studentList.getEntry(i).getTeam() != null){
                                  if(studentList.getEntry(i).getTeam().equals(mergeTeam1) ||
