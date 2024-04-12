@@ -204,6 +204,7 @@ public interface ListInterface<T> {
    */
     public Iterator<T> iterator();
    
+    public String toString2();
     
     
 }
