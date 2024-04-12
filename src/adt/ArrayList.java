@@ -735,6 +735,22 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         
     }
     
+    public String toString2(){
+         StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numberOfEntries; i++) {
+            if(i!= numberOfEntries-1){
+                sb.append(array[i].toString());
+                sb.append(", ");
+            }
+            else{
+                sb.append(array[i].toString());
+
+            }
+            
+        }
+        return sb.toString();
+    }
+    
     
     
 }
