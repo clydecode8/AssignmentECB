@@ -123,9 +123,10 @@ public class GroupSummary {
                                    pg[i].getYearIntake());
                 System.out.println("=====================================================================================================");
                 System.out.printf("%-20s | %-10s | %-10s |%n", 
-                                   "Student Name", 
-                                   "ID", 
-                                   "Group");
+                                   "Group",
+                                    "Student Name", 
+                                   "ID"
+                                   );
                 System.out.println("=====================================================================================================");
 
                 
@@ -144,9 +145,10 @@ public class GroupSummary {
 
 
                         System.out.printf("%-20s | %-10s | %-10s |%n", 
-                                           std.getName(), 
-                                           std.getID(), 
-                                           std.getTutorialGroup().getGroup());
+                                std.getTutorialGroup().getGroup(),           
+                                std.getName(), 
+                                           std.getID()
+                                           );
 
 
 
@@ -233,6 +235,64 @@ public class GroupSummary {
 
             }
 */
+        }else if (choice == 3){
+            
+            int chooseSort = gsUI.chooseSort();
+            int[] totalStudents = new int[3];
+            int[] totalGroups = new int[3];
+            String leastGroup[] = new String[3];
+            String leastIntake[] = new String[3];
+            
+            GroupManagementUI.clearScreen();
+            System.out.println("=====================================================================================================");
+            System.out.printf("%75s%n", "TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY");
+            System.out.printf("%55s%n", "TUTORIAL GROUP SUBSYSTEM");
+            System.out.println("");
+            System.out.printf("%61s%n", "[----------------------------------]");
+            System.out.printf("%54s%n", "TUTORIAL GROUP REPORT");
+            System.out.printf("%61s%n", "[----------------------------------]");
+
+            for(int i = 0; i < 3; i++){
+                
+                
+                pg[i].getTutorialGroupList().sort(chooseSort-1);
+                Iterator<TutorialGroup> iterator = pg[i].getTutorialGroupList().iterator(); 
+                
+                System.out.println("");
+                System.out.println("=====================================================================================================");
+                System.out.printf("Programme: %-40s  Year Intake: %-15s%n", 
+                                   pg[i].getName(), 
+                                   pg[i].getYearIntake());
+                System.out.println("");
+                while (iterator.hasNext()) {
+                    TutorialGroup tgLoop = iterator.next();
+
+
+
+                    totalGroups[i]++;
+                    Iterator<Student> iterator2 = tgLoop.getStudentList().iterator();
+                    
+
+                    while(iterator2.hasNext()){
+                        totalStudents[i]++;
+                        Student std = iterator2.next();
+
+                    }
+                    
+
+                }
+                
+
+
+                System.out.printf("Total Students: %-10d | Total Groups: %-10d%n", totalStudents[i], totalGroups[i]);
+                System.out.printf("%s%n", "=====================================================================================================");
+                
+            }
+            
+            System.out.println("");
+            System.out.printf("%54s%n", "END OF TUTORIAL GROUP REPORT");
+            System.out.println("=====================================================================================================");
+            System.out.println("");
         }
 
 

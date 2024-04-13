@@ -24,13 +24,14 @@ public class GroupSummaryUI {
             System.out.println("");
             System.out.println("------------------------------------");
             System.out.println("1. Summary of Tutorial Group Intakes.");
-            System.out.println("2. Summary of Tutorial Group for Programme.");
-            System.out.println("3. Exit.");
+            System.out.println("2. Summary of Students per Tutorial Group.");
+            System.out.println("3. Summary of Students per Programme.");
+            System.out.println("4. Exit.");
             System.out.println("------------------------------------");
             System.out.print(">:    ");
             choice = scanner.nextInt();
     
-        }while(choice > 0 && choice > 3);
+        }while(choice > 0 && choice > 4);
 
         return choice; 
         
