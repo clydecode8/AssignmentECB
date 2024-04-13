@@ -10,6 +10,7 @@ import boundary.ProgrammeTutorialUI;
 import entity.Programme;
 import entity.Student;
 import entity.TutorialGroup;
+import java.util.Iterator;
 
 /**
  *
@@ -76,7 +77,22 @@ public class GroupSummary {
             if(pg[i] != null){
                 
                 
-                System.out.println(pg[i].getTutorialGroupList());
+                for (int j = 0; j < pg[i].getTutorialGroupList().size(); j++) {
+                    TutorialGroup tutorialGroup = tg[j];
+                    System.out.println(pg[i].getTutorialGroupList());
+                    TutorialGroup tgs = pg[i].getTutorialGroupList().getEntry(j);
+                    Iterator<Student> iterator = tgs.getStudentList().iterator();
+                    int k = 0;
+                    while (iterator.hasNext()) {
+                        Comparable tl = iterator.next();
+
+                        System.out.println(k+1 + ". " + tl.toString());
+                        k++;
+                    }
+                    
+                }
+                
+                
                 
             }
             
