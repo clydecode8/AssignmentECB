@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package control;
 
 import adt.ArrayList;
 import adt.ListInterface;
@@ -10,14 +10,12 @@ import boundary.ProgrammeTutorialUI;
 import entity.Programme;
 import entity.Student;
 import entity.TutorialGroup;
-import java.util.Iterator;
 
 /**
  *
  * @author User
  */
-public class StudentInitializer {
-
+public class GroupSummary {
     
     private ProgrammeTutorialUI programmeUI = new ProgrammeTutorialUI();
     private ListInterface<Student> studentList = new ArrayList<>();
@@ -68,6 +66,33 @@ public class StudentInitializer {
             
     }
     
+    
+    
+    public void generateReport(Programme[] pg, TutorialGroup[] tg){
         
 
+        for (int i = 0; i < pg.length; i++) {
+            
+            if(pg[i] != null){
+                
+                
+                System.out.println(pg[i].getTutorialGroupList());
+                
+            }
+            
+
+            
+            
+        }
+        
+        for (int i = 0; i < tg.length; i++) {
+            
+            if(tg[i] != null){
+                
+                System.out.println(tg[i].getStudentList());
+            }
+            
+            
+        }
+    }
 }
