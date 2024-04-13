@@ -5,6 +5,8 @@
 package entity;
 
 import adt.ArrayList;
+import adt.ArrayQueueInterface;
+import adt.CustomArrayQueue;
 import adt.ListInterface;
 import java.util.Objects;
 
@@ -15,11 +17,13 @@ import java.util.Objects;
 
 public class Student implements Comparable<Student> {
 
-  private String name;
-  private String id;
-  private TutorialGroup tutorialGroup;
-  private Team team;
-  private final static ListInterface<Student> studentList = new ArrayList<>();
+    private String name;
+    private String id;
+    private TutorialGroup tutorialGroup;
+    private Team team;
+    private final static ListInterface<Student> studentList = new ArrayList<>();
+    private final static ArrayQueueInterface<Student> studentQueue = new CustomArrayQueue<>();
+
 
   public Student() {
       
@@ -76,7 +80,13 @@ public class Student implements Comparable<Student> {
 
     public void setStudentList(Student student) {
         studentList.add(student);
+        studentQueue.enqueue(student);
     }
+    
+    public static ArrayQueueInterface<Student> getStudentQueue() {
+        return studentQueue;
+    }
+
 
     public Team getTeam() {
         return team;
