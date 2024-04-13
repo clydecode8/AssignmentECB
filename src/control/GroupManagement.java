@@ -44,9 +44,11 @@ public class GroupManagement {
         initialiser();
         int choice = 0;
         do {
+            GroupManagementUI.clearScreen();
             choice = groupUI.getMenuChoice();
             switch(choice) {
             case 0:
+                GroupManagementUI.clearScreen();
                 MessageUI.displayExitMessage();
                 break;
 
@@ -55,6 +57,7 @@ public class GroupManagement {
                 
                 do {
                     
+                    GroupManagementUI.clearScreen();
                     menuChoice = programmeUI.getMenuChoice();
                     switch(menuChoice){
                         
@@ -63,14 +66,17 @@ public class GroupManagement {
                             
                         case 1:
                             
+                            GroupManagementUI.clearScreen();
                             programmeT.addProgrammeTutorial(pg, tg, programmeList);
                             break;
                             
                         case 2:
+                            GroupManagementUI.clearScreen();
                             programmeT.removeProgrammeTutorial(pg, programmeList);
                             break;
                             
                         case 3:
+                            GroupManagementUI.clearScreen();
                             programmeT.listProgrammeTutorial(pg, programmeList);
                             break;
                             
@@ -89,6 +95,7 @@ public class GroupManagement {
                 
                 do {
                     
+                    GroupManagementUI.clearScreen();
                     menuChoice2 = studentUI.getMenuChoice();
                     switch(menuChoice2){
                         
@@ -97,22 +104,27 @@ public class GroupManagement {
                             
                         case 1:
                             
+                            GroupManagementUI.clearScreen();
                             stdT.addStudentTutorial(tg, pg, tutorialList);
                             break;
                             
                         case 2:
+                            GroupManagementUI.clearScreen();
                             stdT.removeStudentTutorial(tg, pg, tutorialList);
                             break;
                             
                         case 3:
+                            GroupManagementUI.clearScreen();
                             stdT.changeStudentTutorial(tg, pg, tutorialList);
                             break;
                             
                         case 4:
+                            GroupManagementUI.clearScreen();
                             stdT.mergeStudentTutorial(tg, pg, tutorialList);
                             break;
                             
                         case 5:
+                            GroupManagementUI.clearScreen();
                             stdT.listStudentTutorial(tg, pg, tutorialList);
                             break;
                             
@@ -127,6 +139,7 @@ public class GroupManagement {
                 break;
                 
             case 3:
+                GroupManagementUI.clearScreen();
                 groupsummary.generateReport(pg, tg);
                 break;
             default:

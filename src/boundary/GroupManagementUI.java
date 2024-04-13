@@ -30,25 +30,14 @@ public class GroupManagementUI {
         
     }
     
-    public void manageProgrammeGroup(){
+    public static void clearScreen() {
         
-        
-        
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }  
     }
     
-    
-    
-    public void manageStudentGroup(){
-        
-        
-        
-    }
-    
-    public void summaryReport(){
-        
-        
-        
-    }
+
 
     
 }
