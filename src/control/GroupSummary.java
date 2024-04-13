@@ -100,6 +100,7 @@ public class GroupSummary {
             
             
             int chooseSort = gsUI.chooseSort();
+            
             GroupManagementUI.clearScreen();
             System.out.println("=====================================================================================================");
             System.out.printf("%75s%n", "TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY");
@@ -112,7 +113,7 @@ public class GroupSummary {
             for(int i = 0; i < 3; i++){
                 
                 
-                
+                pg[i].getTutorialGroupList().sort(chooseSort-1);
                 Iterator<TutorialGroup> iterator = pg[i].getTutorialGroupList().iterator(); 
                 
                 System.out.println("");
@@ -153,7 +154,7 @@ public class GroupSummary {
                     
                     if(tgLoop.getStudentList().isEmpty()){
 
-                        System.out.println("-----------------------------------------Empty----------------------------");
+                        System.out.println("[--------------------------------------EMPTY----------------------------]");
                         break;
                     }
 
@@ -186,7 +187,11 @@ public class GroupSummary {
                 
             }
             System.out.println("Total Empty: " + empty);
-                   
+            System.out.println("");
+            System.out.printf("%54s%n", "END OF TUTORIAL GROUP REPORT");
+            System.out.println("=====================================================================================================");
+            System.out.println("");
+            
             /*
             
             for (int i = 0; i < pg.length; i++) {
