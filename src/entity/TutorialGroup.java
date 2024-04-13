@@ -5,6 +5,8 @@
 package entity;
 
 import adt.ArrayList;
+import adt.ArrayQueueInterface;
+import adt.CustomArrayQueue;
 import adt.ListInterface;
 import java.util.Objects;
 
@@ -19,8 +21,12 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
     private int qty;
     private Programme programme;
     private int numb;
-    private final static ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();    
+    private final static ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();   
+    private final static ArrayQueueInterface<TutorialGroup> tutorialGroupQueue = new CustomArrayQueue<>();    
+
     private ListInterface<Student> stdList = new ArrayList<>();
+    private ArrayQueueInterface<Student> stdQueue = new CustomArrayQueue<>();
+
     
     public TutorialGroup() {
         
@@ -73,17 +79,27 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
    public static ListInterface<TutorialGroup> getTutorialGroupList() {
         return tutorialGroupList;
     }
+   
+   public static ArrayQueueInterface<TutorialGroup> getTutorialGroupQueue() {
+        return tutorialGroupQueue;
+    }
 
     public static void setTutorialGroupList(TutorialGroup tg) {
         tutorialGroupList.add(tg);
+        tutorialGroupQueue.enqueue(tg);
     }
     
     public ListInterface<Student> getStudentList() {
         return stdList;
     }
 
+    public ArrayQueueInterface<Student> getStudentQueue() {
+        return stdQueue;
+    }
+
     public void addStudentList(Student std) {
         stdList.add(std);
+        stdQueue.enqueue(std);
     }
 
     @Override

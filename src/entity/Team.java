@@ -1,6 +1,8 @@
 package entity;
 
 import adt.ArrayList;
+import adt.ArrayQueueInterface;
+import adt.CustomArrayQueue;
 import adt.ListInterface;
 import entity.Student;
 /**
@@ -12,6 +14,7 @@ public class Team implements Comparable<Team>{
     private String subject;
     private TutorialGroup tg;
     private final static ListInterface<Team> teamList = new ArrayList<>();
+    private final static ArrayQueueInterface<Team> teamQueue = new CustomArrayQueue<>();
     
     public Team(){
         this.teamName ="";
@@ -55,8 +58,18 @@ public class Team implements Comparable<Team>{
 
     public static void setTeamList(Team team) {
         teamList.add(team);
+        teamQueue.enqueue(team);
     }
     
+    public static ArrayQueueInterface<Team> getTeamQueue() {
+        return teamQueue;
+    }
+    
+    public static void removeTeam(int entry){
+        teamList.remove(entry);
+        teamQueue.dequeueMiddle(entry);
+    }
+
     @Override
     public int compareTo(Team o) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
