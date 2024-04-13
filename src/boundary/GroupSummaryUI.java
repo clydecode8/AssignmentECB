@@ -4,10 +4,55 @@
  */
 package boundary;
 
+import java.util.Scanner;
+
 /**
  *
  * @author User
  */
 public class GroupSummaryUI {
     
+    Scanner scanner = new Scanner(System.in);
+    
+    public int summaryReport(){
+        
+        
+        int choice = 0;
+        do {
+            
+            System.out.println("Choose a Summary Report.");
+            System.out.println("");
+            System.out.println("------------------------------------");
+            System.out.println("1. Summary of Tutorial Group Intakes.");
+            System.out.println("2. Summary of Tutorial Group for Programme.");
+            System.out.println("3. Exit.");
+            System.out.println("------------------------------------");
+            System.out.print(">:    ");
+            choice = scanner.nextInt();
+    
+        }while(choice > 0 && choice > 3);
+
+        return choice; 
+        
+        
+    }
+    
+    public int chooseSort(){
+        
+        int choice = 0;
+        do {
+            
+            System.out.println("Sort Tutorial Group by.");
+            System.out.println("");
+            System.out.println("------------------------------------");
+            System.out.println("1. Ascending.");
+            System.out.println("2. Descending.");
+            System.out.println("------------------------------------");
+            System.out.print(">:    ");
+            choice = scanner.nextInt();
+    
+        }while(choice > 0 && choice > 2);
+
+        return choice; 
+    }
 }

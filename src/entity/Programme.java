@@ -81,6 +81,6 @@ public class Programme implements Comparable<Programme>{
     @Override
     public int compareTo(Programme o) {
        // Compare based on the name of the Programme
-       return this.getName().compareTo(o.getName());
+       return this.getYearIntake().compareTo(o.getYearIntake());
     }
 }

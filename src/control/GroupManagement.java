@@ -159,7 +159,7 @@ public class GroupManagement {
         tutorialList = new ArrayList<>();
         
         
-        pg[0] = new Programme("Software Engineering", "2023/09");
+        pg[0] = new Programme("Software Engineering", "2023/05");
         pg[1] = new Programme("Marketing", "2023/09");
         pg[2] = new Programme("Accounting", "2023/09");
     
