@@ -122,10 +122,14 @@ public class LinkedList<T> implements LinkedListInterface<T> {
     public boolean isEmpty() {
         return size == 0;
     }
+    @Override
+    public boolean isFull(){
+        return false;
+    }
 
     // Optional methods (not part of the original interface)
 
-    public void addFirst(T element) {
+    /*public void addFirst(T element) {
         // Add the element to the beginning of the list
         Node<T> newNode = new Node<>(element);
         if (isEmpty()) {
@@ -138,23 +142,32 @@ public class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     public void addAtIndex(T element, int index) {
-        // Check for index validity and empty list
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Invalid index: " + index);
-        }
+    // Check for index validity and empty list
+    if (index < 0 || index > size) {
+        throw new IndexOutOfBoundsException("Invalid index: " + index);
+    }
 
-        if (index == 0) {
-            addFirst(element);
-            return;
-        }
+    if (index == 0) {
+        addFirst(element);
+        return;
+    }
 
-        Node<T> current = head;
-        Node<T> previous = null;
-        for (int i = 0; i < index; i++) {
-            previous = current;
-            current = current.next;
-        }
+    Node<T> current = head;
+    Node<T> previous = null;
+    for (int i = 0; i < index; i++) {
+        previous = current;
+        current = current.next;
+    }
 
-        Node<T> newNode = new Node<>(element);
-        //newNode.next;
+    Node<T> newNode = new Node<>(element);
+    newNode.next = current; // Insert the new node after the previous node
+
+    if (previous == null) { // Adding at the beginning (handled by addFirst)
+        head = newNode;
+    } else {
+        previous.next = newNode;
+    }
+
+    size++;
+    }*/
 }
