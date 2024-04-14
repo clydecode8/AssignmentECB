@@ -20,6 +20,16 @@ public class Programme implements Comparable<Programme>{
     private String yearIntake;
     private ListInterface<TutorialGroup> tgList = new ArrayList<>();
     private ListInterface<Course> courseList =new CircularArrayList<>();
+    private final static CircularArrayList<Programme> programmeList = new CircularArrayList<>();
+
+    
+    public ListInterface<Course> getCourseList() {
+        return courseList;
+    }
+    
+    public ListInterface<Programme> getProgrammeList() {
+        return programmeList;
+    }
     
     public Programme(){
         
@@ -56,12 +66,17 @@ public class Programme implements Comparable<Programme>{
         tgList.add(tg);
     }
     
+    public void setProgrammeList(Programme programme) {
+        programmeList.add(programme);
+    }
     
     @Override
     public String toString() {
-        return String.format("%-25s %-15s", name, yearIntake);
+        return String.format("Programme Name: %-25s Year of Intake: %-15s", name, yearIntake);
     }
    
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

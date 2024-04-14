@@ -3,19 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/GroupManagementUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/ProgrammeTutorialUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/GroupSummaryUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/StudentTutorial.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/DAO/StudentInitializer.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/GroupManagement.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/Programme.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/GroupSummary.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/ProgrammeTutorial.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/TutorialGroup.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/Student.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/StudentTutorialUI.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/adt/ArrayList.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/control/CourseManagement.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/boundary/CourseManagementUI.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/entity/Programme.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/control/AssTeam.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/boundary/AssTeamUI.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/entity/Course.java</file>
         </group>
     </open-files>
 </project-private>

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class CircularArrayList<T> implements ListInterface<T> {
-    private static final int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 20;
     private T[] elements;
     private int size;
     private int front;
@@ -147,7 +147,7 @@ public class CircularArrayList<T> implements ListInterface<T> {
     @Override
     public int size() {
        
-        return 0;
+        return size;
        
     }
     
