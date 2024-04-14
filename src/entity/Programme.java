@@ -5,6 +5,7 @@
 package entity;
 
 import adt.ArrayList;
+import adt.CircularArrayList;
 import adt.ListInterface;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class Programme implements Comparable<Programme>{
     private String name;
     private String yearIntake;
     private ListInterface<TutorialGroup> tgList = new ArrayList<>();
+    private ListInterface<Course> courseList =new CircularArrayList<>();
     
     public Programme(){
         
