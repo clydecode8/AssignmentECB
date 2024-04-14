@@ -7,6 +7,7 @@ package entity;
 import adt.ArrayList;
 import adt.ArrayQueueInterface;
 import adt.CustomArrayQueue;
+import adt.LinkedList;
 import adt.ListInterface;
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class Student implements Comparable<Student> {
     private Team team;
     private final static ListInterface<Student> studentList = new ArrayList<>();
     private final static ArrayQueueInterface<Student> studentQueue = new CustomArrayQueue<>();
-
+    private LinkedList<Course> courseList= new LinkedList<>();
 
   public Student() {
       
