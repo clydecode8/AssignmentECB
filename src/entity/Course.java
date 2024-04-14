@@ -3,6 +3,7 @@ package entity;
 import adt.ArrayList;
 import adt.CircularArrayList;
 import adt.LinkedList;
+import adt.LinkedListInterface;
 import adt.ListInterface;
 
 /**
@@ -15,8 +16,7 @@ public class Course {
     private String courseDetails;
     private String courseType;
     private final static CircularArrayList<Course> courseList = new CircularArrayList<>();
-
-    
+    private LinkedList<Course> CourseList = new LinkedList<>();
     private LinkedList<Student> studentList = new LinkedList<>();
     
     public Course(){
@@ -36,6 +36,10 @@ public class Course {
     public static ListInterface<Course> getCourseList() {
             return courseList;
         }
+
+    public LinkedListInterface<Course> getCourseList2() {
+            return CourseList;
+        }
     
     public String getCourseID() {   
         return courseID;
@@ -53,6 +57,10 @@ public class Course {
         return studentList;
     }
 
+    public void setCourseList2(Course course){
+        CourseList.add(course);
+    }
+    
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }

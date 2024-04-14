@@ -24,7 +24,6 @@ public class Student implements Comparable<Student> {
     private Team team;
     private final static ListInterface<Student> studentList = new ArrayList<>();
     private final static ArrayQueueInterface<Student> studentQueue = new CustomArrayQueue<>();
-    private LinkedList<Course> courseList= new LinkedList<>();  
 
   public Student() {
       
@@ -97,6 +96,10 @@ public class Student implements Comparable<Student> {
         this.team = team;
     }
 
+    public String getNameId(){
+        return String.format("%-10s %-20s", name, id);
+    }
+    
     @Override
     public String toString() {
         return String.format("%-10s %-20s %-20s %-20s", name, id, tutorialGroup.toString(), team.toString());
