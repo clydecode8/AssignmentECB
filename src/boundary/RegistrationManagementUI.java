@@ -68,5 +68,19 @@ public class RegistrationManagementUI {
         scanner.nextLine();
         return addtocourse;
     }
+    
+    public int chooseCourse(){
+        System.out.println("Enter number to choose course: ");
+        int choosecourse = scanner.nextInt();
+        scanner.nextLine();
+        return choosecourse-1;
+    }
+    
+        public int removeStuFromCourse(){
+        System.out.println("Enter number to remove the student from course: ");
+        int removestufromcourse = scanner.nextInt();
+        scanner.nextLine();
+        return removestufromcourse-1;
+    }
 
 }

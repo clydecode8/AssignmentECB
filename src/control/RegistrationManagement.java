@@ -99,6 +99,9 @@ public class RegistrationManagement {
                     int courseIndex = rmUI.getSelection("Enter number to choose course: ");
                     addToCourse(stuIndex,courseIndex);
                     break;
+                case 6:
+                    displayCourse();
+                    removeStuFromCourse();
             }
         }while(choice !=0);
     }
@@ -154,6 +157,19 @@ public class RegistrationManagement {
         for(int i= 0; i< student.getStudentListlinked().get(search).getCourseList2().size();i++){
         System.out.println(student.getStudentListlinked().get(search).getNameId()+"\t"+student.getStudentListlinked().get(search).getCourseList2().get(i).toString2());
         }
+    }
+    
+    public void removeStuFromCourse(){
+        int choosecourse = rmUI.chooseCourse();
+        int num = 1;
+        for(int i =0;i < course.getCourseList2().get(choosecourse).getStudentList().size();i++){
+        System.out.println(num+". "+course.getCourseList2().get(choosecourse).toString() +"\t" +course.getCourseList2().get(choosecourse).getStudentList().get(i).getNameId());
+        num++;
+        }
+        int removestufromCourse = rmUI.removeStuFromCourse();
+        course.getCourseList2().get(choosecourse).getStudentList().remove(student.getStudentListlinked().get(removestufromCourse));
+        student.getStudentListlinked().get(removestufromCourse).getCourseList2().remove(course.getCourseList2().get(choosecourse));
+        System.out.println("Remove successfully!");
     }
     
     

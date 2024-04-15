@@ -44,8 +44,34 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     @Override
     public T remove(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Check for empty list and element existence
+        if (isEmpty()) {
+            return null; // Or throw an exception if preferred
+        }
+
+        Node<T> current = head;
+        Node<T> previous = null;
+
+        while (current != null) {
+            if (current.data.equals(element)) {
+                if (previous == null) { // Removing the head node
+                    head = current.next;
+                    if (head == null) { // Handle removing the only element
+                        tail = null;
+                    }
+                } else {
+                    previous.next = current.next;
+                }
+                size--;
+                return current.data;
+            }
+            previous = current;
+            current = current.next;
+        }
+
+        return null; // Element not found
     }
+    
     public T remove(int position) {
       // Validate position (check for empty list and invalid index)
       if (isEmpty() || position < 0 || position >= size) {
