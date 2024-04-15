@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/control/CourseManagement.java</file>
-            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/boundary/CourseManagementUI.java</file>
-            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/entity/Programme.java</file>
-            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/control/AssTeam.java</file>
-            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/boundary/AssTeamUI.java</file>
-            <file>file:/C:/Users/Admin/Desktop/TARUC%20Study/java/AssignmentECB/src/entity/Course.java</file>
+            <file>file:/C:/Users/yuanf/OneDrive/Desktop/Documents/NetBeansProjects/AssignmentECB/src/entity/Course.java</file>
+            <file>file:/C:/Users/yuanf/OneDrive/Desktop/Documents/NetBeansProjects/AssignmentECB/src/entity/Student.java</file>
+            <file>file:/C:/Users/yuanf/OneDrive/Desktop/Documents/NetBeansProjects/AssignmentECB/src/boundary/RegistrationManagementUI.java</file>
+            <file>file:/C:/Users/yuanf/OneDrive/Desktop/Documents/NetBeansProjects/AssignmentECB/src/control/RegistrationManagement.java</file>
         </group>
     </open-files>
 </project-private>

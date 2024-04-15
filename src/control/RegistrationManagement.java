@@ -11,12 +11,14 @@ import entity.Programme;
 import entity.Student;
 import entity.Team;
 import entity.TutorialGroup;
+import java.util.Scanner;
 import utility.MessageUI;
 /**
  *
  * @author yuanf
  */
 public class RegistrationManagement {
+    Scanner scanner = new Scanner(System.in);
     private RegistrationManagementUI rmUI = new RegistrationManagementUI();
     private Student student = new Student();
     private TutorialGroup tg = new TutorialGroup();
@@ -43,8 +45,8 @@ public class RegistrationManagement {
         Student stud5 = new Student("Max", "WPF532432", g1, t1);                
         Student stud6 = new Student("Jeremy", "WPF532323", g1, t1);
         
-        Course course1 = new Course("ACCOUNT","12345","ACCOUNT");
-        Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT");
+        Course course1 = new Course("ACCOUNT","12345","ACCOUNT",null);
+        Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT",null);
 
         tg.setTutorialGroupList(g1);
         tg.setTutorialGroupList(g2);
@@ -75,13 +77,20 @@ public class RegistrationManagement {
                     break;
                 case 1:
                     displaystudent();
-                    rmUI.addnewStudentUI();
+                    addnewStudent();
                     break;
                 case 2:
+                    displaystudent();
+                    removeStudent();
                     break;
                 case 3:
+                    displaystudent();
+                    int amendstudentIndex = rmUI.amendstudent();
+                    amendStudent(amendstudentIndex);
                     break;
                 case 4:
+                    displaystudent();
+                    searchStudentCourse();
                     break;
                 case 5:
                     displaystudent();
@@ -96,8 +105,8 @@ public class RegistrationManagement {
     
     private void displaystudent(){
         int num = 1;
-        for(int i=0; i<student.getStudentList().size();i++){
-        System.out.println(num+"."+student.getStudentList().getEntry(i).getNameId());
+        for(int i=0; i<student.getStudentListlinked().size();i++){
+        System.out.println(num+"."+student.getStudentListlinked().get(i).getNameId());
         num++;
         }
     }
@@ -108,12 +117,45 @@ public class RegistrationManagement {
         num++;
         }
     }
-    //public static void addnewStudent();
+    public void addnewStudent(){
+        Student addnewstudent = rmUI.addnewStudentUI();
+        student.getStudentListlinked().add(addnewstudent);
+        System.out.println("ADD SUCCESSFULLY");
+    }
+    
+    public void removeStudent(){
+        int removestudent = rmUI.removestudent();
+        student.getStudentListlinked().remove(removestudent);
+    }
+    
+    public void amendStudent(int amendstudentIndex){
+        System.out.println("Enter new name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter new ID: ");
+        String id = scanner.nextLine();
+        student.getStudentListlinked().get(amendstudentIndex).setName(name);
+        student.getStudentListlinked().get(amendstudentIndex).setID(id);
+    }
     
     public void addToCourse(int stuIndex,int courseIndex){
-        course.getCourseList2().get(courseIndex).getStudentList().add(student.getStudentList().getEntry(stuIndex));
-        System.out.println(course.getCourseList2().get(courseIndex).toString() +"\t" +course.getCourseList2().get(courseIndex).getStudentList().get(0).toString());
+        course.getCourseList2().get(courseIndex-1).getStudentList().add(student.getStudentListlinked().get(stuIndex-1));
+        student.getStudentListlinked().get(stuIndex-1).getCourseList2().add(course.getCourseList2().get(courseIndex-1));
+        System.out.println("Enter course type (main,elective,resit,repeat): ");
+        String courseType = scanner.nextLine();
+        course.getCourseList2().get(courseIndex-1).setCourseType(courseType);
+        System.out.println("Student "+student.getStudentListlinked().get(stuIndex-1).getName()+" Already add to the course " +course.getCourseList2().get(courseIndex-1).getCourseName());
+        /*for(int i =0;i < course.getCourseList2().get(courseIndex-1).getStudentList().size();i++){
+        System.out.println(course.getCourseList2().get(courseIndex-1).toString() +"\t" +course.getCourseList2().get(courseIndex-1).getStudentList().get(i).getNameId());
+        }*/
     }
+    
+    public void searchStudentCourse(){
+        int search = rmUI.searchstudentCourse();
+        for(int i= 0; i< student.getStudentListlinked().get(search).getCourseList2().size();i++){
+        System.out.println(student.getStudentListlinked().get(search).getNameId()+"\t"+student.getStudentListlinked().get(search).getCourseList2().get(i).toString2());
+        }
+    }
+    
     
     public static void main(String[] args) {
         RegistrationManagement registration = new RegistrationManagement();

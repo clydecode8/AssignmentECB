@@ -16,6 +16,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
     private Node<T> tail; // Reference to the last node in the list
     private int size;       // Number of elements in the list
 
+
     // Nested Node class to encapsulate data and next reference
     private static class Node<T> {
         private T data;
@@ -43,32 +44,40 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     @Override
     public T remove(T element) {
-        // Check for empty list and element existence
-        if (isEmpty()) {
-            return null; // Or throw an exception if preferred
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    public T remove(int position) {
+      // Validate position (check for empty list and invalid index)
+      if (isEmpty() || position < 0 || position >= size) {
+        throw new IndexOutOfBoundsException("Invalid position: " + position);
+      }
+
+      // Handle removing the head node
+      if (position == 0) {
+        T removedData = head.data;
+        head = head.next;
+        if (head == null) {
+          tail = null; // Handle removing the only element
         }
+        size--;
+        return removedData;
+      }
 
-        Node<T> current = head;
-        Node<T> previous = null;
+      // Traverse to the node before the target position
+      Node<T> current = head;
+      Node<T> previous = null;
+      for (int i = 0; i < position; i++) {
+        previous = current;
+        current = current.next;
+      }
 
-        while (current != null) {
-            if (current.data.equals(element)) {
-                if (previous == null) { // Removing the head node
-                    head = current.next;
-                    if (head == null) { // Handle removing the only element
-                        tail = null;
-                    }
-                } else {
-                    previous.next = current.next;
-                }
-                size--;
-                return current.data;
-            }
-            previous = current;
-            current = current.next;
-        }
-
-        return null; // Element not found
+      // Remove the target node
+      previous.next = current.next;
+      if (current == tail) {
+        tail = previous; // Update tail if removing the last node
+      }
+      size--;
+      return current.data;
     }
 
     @Override

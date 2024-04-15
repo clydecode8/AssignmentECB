@@ -8,6 +8,7 @@ import adt.ArrayList;
 import adt.ArrayQueueInterface;
 import adt.CustomArrayQueue;
 import adt.LinkedList;
+import adt.LinkedListInterface;
 import adt.ListInterface;
 import java.util.Objects;
 
@@ -24,6 +25,8 @@ public class Student implements Comparable<Student> {
     private Team team;
     private final static ListInterface<Student> studentList = new ArrayList<>();
     private final static ArrayQueueInterface<Student> studentQueue = new CustomArrayQueue<>();
+    private final static LinkedList<Student> studentListlinked = new LinkedList<>();
+    private LinkedList<Course> courseListlinked = new LinkedList<>();
 
   public Student() {
       
@@ -31,6 +34,11 @@ public class Student implements Comparable<Student> {
       id = "";
       tutorialGroup = null;
       team = null;
+  }
+public Student(String name, String id) {
+
+    this.name = name;
+    this.id = id;
   }
 
   public Student(String name, String id, TutorialGroup tutorialGroup, Team team) {
@@ -81,12 +89,22 @@ public class Student implements Comparable<Student> {
     public void setStudentList(Student student) {
         studentList.add(student);
         studentQueue.enqueue(student);
+        studentListlinked.add(student);
     }
     
     public static ArrayQueueInterface<Student> getStudentQueue() {
         return studentQueue;
     }
-
+    public LinkedList<Student> getStudentListlinked() {
+        return studentListlinked;
+    }
+    
+    public LinkedList<Course> getCourseList2() {
+        return courseListlinked;
+    }
+    public void setCourseList2(LinkedList<Course> course){
+        this.courseListlinked = course;
+    }
 
     public Team getTeam() {
         return team;
