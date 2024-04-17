@@ -1,6 +1,8 @@
 package control;
 
 import adt.ArrayList;
+import adt.ArrayQueueInterface;
+import adt.CustomArrayQueue;
 import adt.ListInterface;
 import boundary.AssTeamUI;
 import entity.Programme;
@@ -46,6 +48,7 @@ public class AssTeam {
         tg.setTutorialGroupList(g2);
         tg.setTutorialGroupList(g3);
         tg.setTutorialGroupList(g4);
+ 
 
         team.setTeamList(t1);
         team.setTeamList(t2);
@@ -61,7 +64,7 @@ public class AssTeam {
         student.setStudentList(stud6);
 
 
-        int reportNum = tg.getTutorialGroupList().size();
+        int reportNum = tg.getTutorialGroupQueue().size();
         int teamNum = 0;
         int memberNum = 0;
 
@@ -84,43 +87,46 @@ public class AssTeam {
             else if (choice < reportNum){
                 int choice2 = 0;
                 do{
-                    ArrayList<Team> filteredTeam = new ArrayList<>();
-                    TutorialGroup search = tg.getTutorialGroupList().getEntry(choice-1);
+                    CustomArrayQueue<Team> filteredTeam = new CustomArrayQueue<>();
+                    TutorialGroup search = tg.getTutorialGroupQueue().peekMiddle(choice-1);
                     choice2=0;
                     teamNum=0;
-                    for(int i=0; i< team.getTeamList().size(); i++){
+                    for(int i=0; i< team.getTeamQueue().size(); i++){
                         
-                        if(team.getTeamList().getEntry(i).getTg().equals(search)){
-                            filteredTeam.add(team.getTeamList().getEntry(i));
+                        if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
+                            filteredTeam.enqueue(team.getTeamQueue().peekMiddle(i));
                             teamNum++;
                         }    
                         
                                
                     }
+               
                     choice2 = assTeamUI.getAssTeamChoice(search);
         
                     if(choice2 == 0){
                         break;
                     }
-//                    else if(choice2 == teamNum+1){
-//                        assTeamUI.TeamReport();
-//                    }
+
                     // create assignment team
                     else if(choice2 == teamNum +2){
                         Team newTeam = assTeamUI.createTeam(search);
-                        Team.getTeamList().add(newTeam);
+                        Team.setTeamList(newTeam);
                     }
                     
                     //remove assignment team
                     else if(choice2 == teamNum +3){
                         int removeNum = assTeamUI.removeTeam(search);
                         if(removeNum != 0){
-                            Team removedTeam = filteredTeam.getEntry(removeNum-1);
+                            Team removedTeam = filteredTeam.peekMiddle(removeNum-1);
                     
-                            for(int i=0; i< Team.getTeamList().size(); i++){
-                                if(Team.getTeamList().getEntry(i).equals(removedTeam)){
-
-                                    Team.getTeamList().remove(i);
+                            for(int i=0; i< Team.getTeamQueue().size(); i++){
+                                if(Team.getTeamQueue().peekMiddle(i).equals(removedTeam)){
+                                    for(int j=0; j<Student.getStudentQueue().size(); j++){
+                                        if(Student.getStudentQueue().peekMiddle(j).getTeam().equals(removedTeam)){
+                                            Student.getStudentQueue().peekMiddle(j).setTeam(null);
+                                        }
+                                    }
+                                    Team.removeTeam(i);
                                     break;
                                 }
                             }
@@ -130,10 +136,10 @@ public class AssTeam {
                     else if (choice2 == teamNum +4){
                         int amendChoice = assTeamUI.amendTeam(search);
                         if(amendChoice != 0){
-                            Team amendTeam = filteredTeam.getEntry(amendChoice-1);
+                            Team amendTeam = filteredTeam.peekMiddle(amendChoice-1);
                             int teamNo = 0;
-                            for(int i=0; i< Team.getTeamList().size(); i++){
-                                if(Team.getTeamList().getEntry(i).equals(amendTeam)){                         
+                            for(int i=0; i< Team.getTeamQueue().size(); i++){
+                                if(Team.getTeamQueue().peekMiddle(i).equals(amendTeam)){                         
                                    teamNo = i;
                                    break;
                                 }
@@ -143,10 +149,10 @@ public class AssTeam {
                                 String newData = assTeamUI.amendTeamInput(amendChoice2);
                                 if (newData != null){
                                     if(amendChoice2 == 1){
-                                        Team.getTeamList().getEntry(teamNo).setTeamName(newData);
+                                        Team.getTeamQueue().peekMiddle(teamNo).setTeamName(newData);
                                     }
                                     else if(amendChoice2 == 2){
-                                        Team.getTeamList().getEntry(teamNo).setSubject(newData);
+                                        Team.getTeamQueue().peekMiddle(teamNo).setSubject(newData);
                                     }
 
                                 }
@@ -158,18 +164,18 @@ public class AssTeam {
                     }
                     // merge assignment group
                     else if (choice2 == teamNum + 5){
-                        ArrayList<Integer> mergeChoice = assTeamUI.mergeTeam(search);                   
+                        ArrayQueueInterface<Integer> mergeChoice = assTeamUI.mergeTeam(search);                   
 
-                        Team mergeTeam1 = filteredTeam.getEntry((mergeChoice.getEntry(0))-1);
-                        Team mergeTeam2 = filteredTeam.getEntry((mergeChoice.getEntry(1))-1);
+                        Team mergeTeam1 = filteredTeam.peekMiddle((mergeChoice.peekMiddle(0))-1);
+                        Team mergeTeam2 = filteredTeam.peekMiddle((mergeChoice.peekMiddle(1))-1);
 
                         // check whether total num of student > 5 or not
                         int numOfStudent =0;
-                        ListInterface<Student> studentList = student.getStudentList();
+                        ArrayQueueInterface<Student> studentList = student.getStudentQueue();
                         for(int i=0; i<studentList.size(); i++){
-                            if(studentList.getEntry(i).getTeam() != null){
-                                 if(studentList.getEntry(i).getTeam().equals(mergeTeam1) ||
-                                  studentList.getEntry(i).getTeam().equals(mergeTeam2)  ){
+                            if(studentList.peekMiddle(i).getTeam() != null){
+                                 if(studentList.peekMiddle(i).getTeam().equals(mergeTeam1) ||
+                                  studentList.peekMiddle(i).getTeam().equals(mergeTeam2)  ){
                                     numOfStudent ++;
                                 }
                             }
@@ -180,9 +186,9 @@ public class AssTeam {
                         }
                         else{
                             for(int j=0; j<studentList.size(); j++){
-                                if(studentList.getEntry(j).getTeam() != null){
-                                    if(studentList.getEntry(j).getTeam().equals(mergeTeam2)){
-                                        studentList.getEntry(j).setTeam(mergeTeam1);
+                                if(studentList.peekMiddle(j).getTeam() != null){
+                                    if(studentList.peekMiddle(j).getTeam().equals(mergeTeam2)){
+                                        studentList.peekMiddle(j).setTeam(mergeTeam1);
                                     }
                                 }
                             }
@@ -194,13 +200,13 @@ public class AssTeam {
                     else if (choice2 < (teamNum+1)){
                         int choice3 = 0;
                         do{
-                            Team search2 = filteredTeam.getEntry(choice2-1);
+                            Team search2 = filteredTeam.peekMiddle(choice2-1);
                             choice3 = assTeamUI.displayStudent(search, search2);              
                             memberNum=0;
-                            for(int i=0; i< student.getStudentList().size(); i++){
-                                if(student.getStudentList().getEntry(i).getTeam() != null){
-                                    if(student.getStudentList().getEntry(i).getTutorialGroup().equals(search) &&
-                                            student.getStudentList().getEntry(i).getTeam().equals(search2) ){                                       
+                            for(int i=0; i< student.getStudentQueue().size(); i++){
+                                if(student.getStudentQueue().peekMiddle(i).getTeam() != null){
+                                    if(student.getStudentQueue().peekMiddle(i).getTutorialGroup().equals(search) &&
+                                            student.getStudentQueue().peekMiddle(i).getTeam().equals(search2) ){                                       
                                         memberNum++;
                                     }  
                                 }

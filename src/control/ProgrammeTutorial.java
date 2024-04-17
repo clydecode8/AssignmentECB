@@ -9,6 +9,7 @@ import adt.*;
 import boundary.*;
 import entity.*;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  *
@@ -138,6 +139,12 @@ public class ProgrammeTutorial  {
 
             
         }
+        
+        System.out.println("Press Enter to continue...");
+
+        // Wait for user to press Enter
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
         
 
     }

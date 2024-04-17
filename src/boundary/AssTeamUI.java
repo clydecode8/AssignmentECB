@@ -1,10 +1,11 @@
 package boundary;
 import adt.ArrayList;
+import adt.ArrayQueueInterface;
+import adt.CustomArrayQueue;
 import adt.ListInterface;
 import entity.Student;
 import entity.Team;
 import entity.TutorialGroup;
-import java.util.LinkedList;
 import java.util.Scanner;
 /**
  *
@@ -24,11 +25,11 @@ public class AssTeamUI {
         System.out.println("Assignment Team Management System");
         System.out.println("---------------------------");
         System.out.println("Choose Tutorial Group: ");
-        for(int i=0; i< tg.getTutorialGroupList().size(); i++){
-            System.out.println(i+1 + ". " + tg.getTutorialGroupList().getEntry(i).getGroup());
+        for(int i=0; i< tg.getTutorialGroupQueue().size(); i++){
+            System.out.println(i+1 + ". " + tg.getTutorialGroupQueue().peekMiddle(i).getGroup());
         }
-        System.out.println((tg.getTutorialGroupList().size()+1) +". Tutorial Group Summary Report");
-        System.out.println((tg.getTutorialGroupList().size()+2) +". Team Summary Report");
+        System.out.println((tg.getTutorialGroupQueue().size()+1) +". Tutorial Group Summary Report");
+        System.out.println((tg.getTutorialGroupQueue().size()+2) +". Team Summary Report");
 
         System.out.println("0. Quit");
         System.out.print("Enter choice: ");
@@ -44,9 +45,9 @@ public class AssTeamUI {
         System.out.println("---------------------------");
         System.out.println("Choose Team: ");
         int num=1;
-        for(int i=0; i< team.getTeamList().size(); i++){
-            if(team.getTeamList().getEntry(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamList().getEntry(i).getTeamName());              
+        for(int i=0; i< team.getTeamQueue().size(); i++){
+            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
                 num++;
             }           
         }
@@ -93,9 +94,9 @@ public class AssTeamUI {
         System.out.println("Remove Assignment Team");
         System.out.println("---------------------------");
         int num=1;
-        for(int i=0; i< team.getTeamList().size(); i++){
-            if(team.getTeamList().getEntry(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamList().getEntry(i).getTeamName());              
+        for(int i=0; i< team.getTeamQueue().size(); i++){
+            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
                 num++;
             }           
         }
@@ -120,9 +121,9 @@ public class AssTeamUI {
         System.out.println("Amend Assignment Team");
         System.out.println("---------------------------");
         int num=1;
-        for(int i=0; i< team.getTeamList().size(); i++){
-            if(team.getTeamList().getEntry(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamList().getEntry(i).getTeamName());              
+        for(int i=0; i< team.getTeamQueue().size(); i++){
+            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
                 num++;
             }           
         }
@@ -175,18 +176,18 @@ public class AssTeamUI {
         }
     }
     
-    public ArrayList<Integer> mergeTeam(TutorialGroup search){
+    public ArrayQueueInterface<Integer> mergeTeam(TutorialGroup search){
         clscr();
-        ArrayList<Integer> choices = new ArrayList<>();
+        ArrayQueueInterface<Integer> choices = new CustomArrayQueue<>();
         System.out.println("Merge Assignment Team");        
         System.out.println("[Select 2 team to merge together]");
         System.out.println("[Team name and subject will follow first team]");
         System.out.println("[maximum 5 students in one team]");
         System.out.println("---------------------------");
         int num=1;
-        for(int i=0; i< team.getTeamList().size(); i++){
-            if(team.getTeamList().getEntry(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamList().getEntry(i).getTeamName());              
+        for(int i=0; i< team.getTeamQueue().size(); i++){
+            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
                 num++;
             }           
         }
@@ -199,8 +200,8 @@ public class AssTeamUI {
         int choice1 = scanner.nextInt();
         System.out.print("Enter first team number: ");
         int choice2 = scanner.nextInt();
-        choices.add(choice1);
-        choices.add(choice2);
+        choices.enqueue(choice1);
+        choices.enqueue(choice2);
         return choices;
     }
     
@@ -225,21 +226,21 @@ public class AssTeamUI {
         System.out.println("|\tGroup\t|\t\t      Programme     \t\t|\tNumber of students\t|\tNumber of teams\t\t|");
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
 
-        ListInterface<TutorialGroup> tgList = new ArrayList<>();
-        ListInterface<Team> teamList = new ArrayList<>();
+        ArrayQueueInterface<TutorialGroup> tgList = new CustomArrayQueue<>();
+        ArrayQueueInterface<Team> teamQueue = new CustomArrayQueue<>();
         
-        tgList = tg.getTutorialGroupList();
-        teamList = team.getTeamList();
+        tgList = tg.getTutorialGroupQueue();
+        teamQueue = team.getTeamQueue();
         int num=1;
         for(int i=0; i< tgList.size(); i++){
             int teamNum =0;
-            for(int j=0; j< teamList.size(); j++){
-                if(teamList.getEntry(i).getTg().getGroup().equals(tgList.getEntry(i).getGroup())){
+            for(int j=0; j< teamQueue.size(); j++){
+                if(teamQueue.peekMiddle(i).getTg().getGroup().equals(tgList.peekMiddle(i).getGroup())){
                     teamNum++;
                 }
             }
-             System.out.println("|\t" + tgList.getEntry(i).getGroup() +"\t|\t"+ tgList.getEntry(i).getProgramme()
-            + "\t|\t\t" + tgList.getEntry(i).getQty() + "\t\t|\t\t"+ teamNum + "\t\t|");
+             System.out.println("|\t" + tgList.peekMiddle(i).getGroup() +"\t|\t"+ tgList.peekMiddle(i).getProgramme()
+            + "\t|\t\t" + tgList.peekMiddle(i).getQty() + "\t\t|\t\t"+ teamNum + "\t\t|");
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
             num++;
         }
@@ -256,26 +257,26 @@ public class AssTeamUI {
         System.out.println("|    Tutorial Group    |\t\tTeam\t\t|\t\tSubject\t\t|  Number of students  |              Student List              |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
         
-        ListInterface<Team> teamList = new ArrayList<>();
-        ListInterface<Student> studList = new ArrayList<>();
+        ArrayQueueInterface<Team> teamQueue = new CustomArrayQueue<>();
+        ArrayQueueInterface<Student> studQueue = new CustomArrayQueue<>();
         
-        teamList = team.getTeamList();
-        studList = student.getStudentList();
-        for(int j=0; j< teamList.size(); j++){
+        teamQueue = team.getTeamQueue();
+        studQueue = student.getStudentQueue();
+        for(int j=0; j< teamQueue.size(); j++){
             int studNum = 0;
-            ListInterface<String> tempName = new ArrayList<>();
-            for(int i=0; i< studList.size(); i++){
-                if(studList.getEntry(i).getTeam()!= null){
-                    if(studList.getEntry(i).getTeam().getTeamName().equals(teamList.getEntry(j).getTeamName())){
+            ArrayQueueInterface<String> tempName = new CustomArrayQueue<>();
+            for(int i=0; i< studQueue.size(); i++){
+                if(studQueue.peekMiddle(i).getTeam()!= null){
+                    if(studQueue.peekMiddle(i).getTeam().getTeamName().equals(teamQueue.peekMiddle(j).getTeamName())){
                         studNum ++;
-                        tempName.add(studList.getEntry(i).getName());
+                        tempName.enqueue(studQueue.peekMiddle(i).getName());
                     } 
                 }
                 
             }
 //             System.out.println("|\t" + teamList.getEntry(j).getTeamName() + "\t|\t" + teamList.getEntry(j).getSubject()
 //             + "\t|\t\t" + studNum + "\t\t|\t" + tempName.toString2() + "\t|");
-             System.out.printf("|%22s|%26s|%32s|%22d|%40s|", teamList.getEntry(j).getTg().getGroup(),teamList.getEntry(j).getTeamName(), teamList.getEntry(j).getSubject(),studNum, tempName.toString2() );
+             System.out.printf("|%22s|%26s|%32s|%22d|%40s|", teamQueue.peekMiddle(j).getTg().getGroup(),teamQueue.peekMiddle(j).getTeamName(), teamQueue.peekMiddle(j).getSubject(),studNum, tempName.toString2() );
         System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------");
 
         }
@@ -290,11 +291,11 @@ public class AssTeamUI {
         System.out.println("---------------------------");
         System.out.println("Team member: ");
         int num=1;
-        for(int i=0; i< student.getStudentList().size(); i++){
-            if(student.getStudentList().getEntry(i).getTeam() != null){
-                if(student.getStudentList().getEntry(i).getTutorialGroup().equals(search) &&
-                        student.getStudentList().getEntry(i).getTeam().equals(search2)){
-                    System.out.println(num + ". " + student.getStudentList().getEntry(i).getName());              
+        for(int i=0; i< student.getStudentQueue().size(); i++){
+            if(student.getStudentQueue().peekMiddle(i).getTeam() != null){
+                if(student.getStudentQueue().peekMiddle(i).getTutorialGroup().equals(search) &&
+                        student.getStudentQueue().peekMiddle(i).getTeam().equals(search2)){
+                    System.out.println(num + ". " + student.getStudentQueue().peekMiddle(i).getName());              
                     num++;
                 }    
             }
@@ -323,11 +324,11 @@ public class AssTeamUI {
         System.out.println("---------------------------");
 
         int num=1;
-        ArrayList<Student> tempList = new ArrayList<>();
-        for(int i=0; i<student.getStudentList().size(); i++){
-            Student currentStudent = student.getStudentList().getEntry(i);
+        ArrayQueueInterface<Student> tempQueue = new CustomArrayQueue<>();
+        for(int i=0; i<student.getStudentQueue().size(); i++){
+            Student currentStudent = student.getStudentQueue().peekMiddle(i);
             if(currentStudent.getTeam() == null){
-                tempList.add(student.getStudentList().getEntry(i));
+                tempQueue.enqueue(student.getStudentQueue().peekMiddle(i));
                 System.out.println(num + ". "+ currentStudent.getName());
                 num++;
             }
@@ -344,7 +345,7 @@ public class AssTeamUI {
                 System.out.println("Press any key to continue ...");
 
                 scanner.nextLine();
-                return tempList.getEntry(choice-1);
+                return tempQueue.peekMiddle(choice-1);
             }
         }
         else{
@@ -367,17 +368,17 @@ public class AssTeamUI {
     }
     
     public Student removeStudent(TutorialGroup search,Team search2){
-        ArrayList<Student> tempList = new ArrayList<>();
+        ArrayQueueInterface<Student> tempQueue = new CustomArrayQueue<>();
         clscr();
         int num =0;
         System.out.println("\nRemove student:");
         System.out.println("---------------------------");
-        for(int i=0; i< student.getStudentList().size(); i++){
-            if(student.getStudentList().getEntry(i).getTeam() != null){
-                if(student.getStudentList().getEntry(i).getTutorialGroup().equals(search) &&
-                        student.getStudentList().getEntry(i).getTeam().equals(search2)){
-                   tempList.add(student.getStudentList().getEntry(i));
-                   System.out.println((num+1) + ". "+ student.getStudentList().getEntry(i).getName());
+        for(int i=0; i< student.getStudentQueue().size(); i++){
+            if(student.getStudentQueue().peekMiddle(i).getTeam() != null){
+                if(student.getStudentQueue().peekMiddle(i).getTutorialGroup().equals(search) &&
+                        student.getStudentQueue().peekMiddle(i).getTeam().equals(search2)){
+                   tempQueue.enqueue(student.getStudentQueue().peekMiddle(i));
+                   System.out.println((num+1) + ". "+ student.getStudentQueue().peekMiddle(i).getName());
                    num++;
                 }    
             }          
@@ -391,7 +392,7 @@ public class AssTeamUI {
             System.out.println("Press any key to continue ...");
 
             scanner.nextLine();
-            return tempList.getEntry(choice-1);
+            return tempQueue.peekMiddle(choice-1);
 
         }
         else{
@@ -401,9 +402,15 @@ public class AssTeamUI {
     
     public void error(){
         System.out.println("This team already full");
+        System.out.println("Press any key to continue ...");
+
+        scanner.nextLine();
     }
     
     public void error2(){
         System.out.println("There is no student in this team");
+        System.out.println("Press any key to continue ...");
+
+        scanner.nextLine();
     }
 }
