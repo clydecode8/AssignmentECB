@@ -386,6 +386,7 @@ public class StudentTutorial {
             
             Iterator<Programme> iterator = programmeList.iterator();
             
+            GroupManagementUI.clearScreen();
             while (iterator.hasNext()) {
                 Comparable programme = iterator.next();
 
