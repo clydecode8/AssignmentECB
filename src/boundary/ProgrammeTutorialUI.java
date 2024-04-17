@@ -41,13 +41,12 @@ public class ProgrammeTutorialUI {
             System.out.println("");
             System.out.println("------------------------------------");
             System.out.println("1. Choose from existing programme.");
-            System.out.println("2. Input Programme Manually.");
-            System.out.println("3. Exit.");
+            System.out.println("2. Exit.");
             System.out.println("------------------------------------");
             System.out.print(">:    ");
             choice = scanner.nextInt();
     
-        }while(choice > 0 && choice > 3);
+        }while(choice > 0 && choice > 2);
 
         return choice;
     }
@@ -61,13 +60,12 @@ public class ProgrammeTutorialUI {
             System.out.println("");
             System.out.println("------------------------------------");
             System.out.println("1. Choose from existing programme.");
-            System.out.println("2. Input Programme Manually.");
-            System.out.println("3. Exit.");
+            System.out.println("2. Exit.");
             System.out.println("------------------------------------");
             System.out.print(">:    ");
             choice = scanner.nextInt();
     
-        }while(choice > 0 && choice > 3);
+        }while(choice > 0 && choice > 2);
 
         return choice;   
     

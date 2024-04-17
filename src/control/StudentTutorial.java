@@ -26,143 +26,190 @@ public class StudentTutorial {
     private StudentTutorialUI stdUI = new StudentTutorialUI();
     private ProgrammeTutorialUI programmeUI = new ProgrammeTutorialUI();
 
-    public void addStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList){
+    public void addStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList, ListInterface<Programme> programmeList){
         
         int choice = stdUI.chooseWhichAdd();
         
         if(choice == 1){
-            
-            //loop later
-            Iterator<TutorialGroup> iterator = pg[0].getTutorialGroupList().iterator();
+
+            Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
             while (iterator.hasNext()) {
-                Comparable tl = iterator.next();
-               
-                System.out.println(i+1 + ". " + tl.toString());
+                Comparable programme = iterator.next();
+
+                System.out.println(i+1 + ". " + programme.toString());
                 i++;
+            }
+            
+            int chosen = stdUI.chooseProgramme();
+                //loop later
+            Iterator<TutorialGroup> iterator2 = pg[chosen].getTutorialGroupList().iterator();
+            int k = 0;
+            while (iterator2.hasNext()) {
+                Comparable tl = iterator2.next();
+               
+                System.out.println(k+1 + ". " + tl.toString());
+                k++;
             }
             
             int choice2 = stdUI.inputAddIterator();
             
             String name = stdUI.inputName();
             String id = stdUI.inputID();
-            Team emptyTeam = new Team("", "Robot Development", tg[choice2]);
             
-            TutorialGroup tgs = pg[0].getTutorialGroupList().getEntry(choice2);
+            //Empty team
+            Team emptyTeam = new Team("", "", tg[choice2]);
+            
+            //Get chosen tutorial group
+            TutorialGroup tgs = pg[chosen].getTutorialGroupList().getEntry(choice2);
             
             Student stdInput = new Student(name, id, tgs, emptyTeam);
             stdInput.setName(name);
-            tgs.getStudentList().add(stdInput);
-      
-        }else if(choice == 2){
+            boolean status = tgs.getStudentList().add(stdInput);
             
+            if(status == true){
+                
+                System.out.println("Entry successfully added.");
+            }else{
+                
+                System.out.println("Entry adding is unsuccessful.");
+            }
+        }  
             
-            
-            
-        }
-        
         
     }
     
-    public void removeStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList){
+    public void removeStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList, ListInterface<Programme> programmeList){
         
         int cond = stdUI.chooseWhichRemove();
         
         
         if(cond == 1){
-        
-            Iterator<TutorialGroup> iterator = pg[0].getTutorialGroupList().iterator();
+            
+            Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
             while (iterator.hasNext()) {
-                Comparable tutorg = iterator.next();
-               
-                System.out.println(i+1 + ". " + tutorg.toString());
+                Comparable programme = iterator.next();
+
+                System.out.println(i+1 + ". " + programme.toString());
                 i++;
-            }            
+            }
+            
+            int chosen = stdUI.chooseProgramme();
+        
+            Iterator<TutorialGroup> iterator2 = pg[chosen].getTutorialGroupList().iterator();
+            int k = 0;
+            while (iterator2.hasNext()) {
+                Comparable tl = iterator2.next();
+               
+                System.out.println(k+1 + ". " + tl.toString());
+                k++;
+            }           
 
 
             int choice = stdUI.inputRemoveIterator();
-            TutorialGroup tgs = pg[0].getTutorialGroupList().getEntry(choice);
+            TutorialGroup tgs = pg[chosen].getTutorialGroupList().getEntry(choice);
             int j = 0;
-            Iterator<Student> iterator2 = tgs.getStudentList().iterator();
-            while (iterator2.hasNext()) {
-                Comparable tutorg = iterator2.next();
+            
+            Iterator<Student> iterator3 = tgs.getStudentList().iterator();
+            while (iterator3.hasNext()) {
+                Comparable tutorg = iterator3.next();
                
                 System.out.println(j+1 + ". " + tutorg.toString());
                 j++;
             }    
             
             int removal = stdUI.inputChooseName();
-            tgs.getStudentList().remove(removal);
+            Student test = tgs.getStudentList().remove(removal);
 
-        }else if(cond == 2){
-
-            
-            
+            if(test == null){
+                
+                System.out.println("Entry removal unsuccessful.");
+            }else{
+                
+                System.out.println("Entry removal successful.");
+            }
             
         }
         
     }
     
-    public void changeStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList){
+    public void changeStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList, ListInterface<Programme> programmeList){
         
         int cond = stdUI.chooseWhichChange();
         if(cond == 1){
             
-            
-            Iterator<TutorialGroup> iterator = pg[0].getTutorialGroupList().iterator();
+            Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
             while (iterator.hasNext()) {
-                Comparable tutorg = iterator.next();
-               
-                System.out.println(i+1 + ". " + tutorg.toString());
+                Comparable programme = iterator.next();
+
+                System.out.println(i+1 + ". " + programme.toString());
                 i++;
             }
             
+            int chosen = stdUI.chooseProgramme();
+            
+            //Loop first
+            Iterator<TutorialGroup> iterator2 = pg[chosen].getTutorialGroupList().iterator();
+            int k = 0;
+            while (iterator2.hasNext()) {
+                Comparable tl = iterator2.next();
+               
+                System.out.println(k+1 + ". " + tl.toString());
+                k++;
+            }    
             int choice = stdUI.inputChangeIterator();
 
-            //Get the specific tutorial group
-            TutorialGroup tgsOld = pg[0].getTutorialGroupList().getEntry(choice);
-            
+
             //Loop through the specific tutorialgroup
+            TutorialGroup tgs = pg[chosen].getTutorialGroupList().getEntry(choice);
             int j = 0;
-            Iterator<Student> iterator2 = tgsOld.getStudentList().iterator();
-            while (iterator2.hasNext()) {
-                Comparable tutorg = iterator2.next();
+            
+            
+            Iterator<Student> iterator3 = tgs.getStudentList().iterator();
+            while (iterator3.hasNext()) {
+                Comparable tutorg = iterator3.next();
                
                 System.out.println(j+1 + ". " + tutorg.toString());
                 j++;
-            } 
+            }   
             
             int chg = stdUI.chooseStudent();
             
-            //New
-            Iterator<TutorialGroup> iterator3 = pg[0].getTutorialGroupList().iterator();
-            int k = 0;
-            while (iterator3.hasNext()) {
+            //Loop second
+            Iterator<TutorialGroup> iterator4 = pg[chosen].getTutorialGroupList().iterator();
+            int l = 0;
+            while (iterator4.hasNext()) {
                 
                     
-                Comparable tutorg = iterator3.next();
+                Comparable tutorg = iterator4.next();
                 
                 if(k == choice){
                     
                     
-                    System.out.println(k+1 + ". " + tutorg.toString() + "(same)");
+                    System.out.println(l+1 + ". " + tutorg.toString() + "(same)");
                     
                 }else{
                     
-                    System.out.println(k+1 + ". " + tutorg.toString());
+                    System.out.println(l+1 + ". " + tutorg.toString());
                     
                 }
 
-                k++;
+                l++;
       
                 
             }
             
             int ans = stdUI.inputChangeIteratorFindTG();
-            TutorialGroup tgsNew = pg[0].getTutorialGroupList().getEntry(ans);
             
+            //Get new tutorial group
+            TutorialGroup tgsNew = pg[chosen].getTutorialGroupList().getEntry(ans);
+            
+            //Get the old specific tutorial group
+            TutorialGroup tgsOld = pg[chosen].getTutorialGroupList().getEntry(choice);
+            
+            //Old tutorial group declaration for stduent
             Student stdAns = tgsOld.getStudentList().getEntry(chg);
             String name = stdAns.getName();
             String id = stdAns.getID();
@@ -172,29 +219,32 @@ public class StudentTutorial {
             //Add to new tutorialgroup
             tgsNew.getStudentList().add(new Student(name, id, tgAns, team));
             
-            //Remove from old
-            tgsOld.getStudentList().remove(chg);
+            //Remove from old via .remove()
+            Student changed = tgsOld.getStudentList().remove(chg);
            
-            
+            if(changed == null){
+                
+                System.out.println("Entry changed unsuccessful.");
+            }else{
+                
+                System.out.println("Entry changed successful.");
+            }
         
-            
-        }else if(cond == 2){
-            
             
         }
         
     }
     
-    public void mergeStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList){
+    public void mergeStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList, ListInterface<Programme> programmeList){
         
         Iterator<TutorialGroup> iterator = pg[0].getTutorialGroupList().iterator();
-            int i = 0;
-            while (iterator.hasNext()) {
-                Comparable tutorg = iterator.next();
-               
-                System.out.println(i+1 + ". " + tutorg.toString());
-                i++;
-            }
+        int i = 0;
+        while (iterator.hasNext()) {
+            Comparable tutorg = iterator.next();
+
+            System.out.println(i+1 + ". " + tutorg.toString());
+            i++;
+        }
             
         int choice = stdUI.inputMergeIterator();
         TutorialGroup tgsNew = pg[0].getTutorialGroupList().getEntry(choice);
@@ -244,7 +294,7 @@ public class StudentTutorial {
 
     }
     
-    public void listStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList){
+    public void listStudentTutorial(TutorialGroup[] tg, Programme[] pg, ListInterface<TutorialGroup> tutorialList, ListInterface<Programme> programmeList){
         
         int choice = stdUI.chooseWhichShow();
         
@@ -256,17 +306,16 @@ public class StudentTutorial {
 
                 TutorialGroup tgs = pg[0].getTutorialGroupList().getEntry(i);
                 
-
-
-
                     if(tgs != null){
 
                         Iterator<Student> iterator = tgs.getStudentList().iterator();
 
                         while (iterator.hasNext()) {
-                            Comparable std = iterator.next();
+                            Student std = iterator.next();
 
-                            System.out.println(k+1 + ". " + std.toString());
+                            System.out.printf("%-5s %-15s %-20s %-15s%n", "No", "Group", "Name", "ID");
+            
+                            System.out.printf("%-5d %-15s %-20s %-15s%n", k+1, std.getTutorialGroup().getGroup(), std.getName(), std.getID());
                             k++;
                         }
                     }
@@ -279,27 +328,46 @@ public class StudentTutorial {
         }else if(choice == 2){
             
             int i = 0;
-            Iterator<TutorialGroup> iterator = pg[0].getTutorialGroupList().iterator();
-
+            int j = 0;
+            
+            Iterator<Programme> iterator = programmeList.iterator();
+            
             while (iterator.hasNext()) {
-                Comparable tgList = iterator.next();
+                Comparable programme = iterator.next();
 
-                System.out.println(i+1 + ". " + tgList.toString());
+                System.out.println(i+1 + ". " + programme.toString());
                 i++;
+            }
+            
+            int chosen = stdUI.chooseProgramme();
+            Iterator<TutorialGroup> iterator2 = pg[chosen].getTutorialGroupList().iterator();
+
+            while (iterator2.hasNext()) {
+                TutorialGroup tgList = iterator2.next();
+
+                System.out.println(j+1 + ". " + tgList.toString());
+                j++;
             }
                 
     
             
             
             int choice2 = stdUI.inputChooseIterator();
+            TutorialGroup chosenTG = pg[chosen].getTutorialGroupList().getEntry(choice2);
 
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println(tg[choice2].getStudentList().toString());
+            if(chosenTG.getStudentList().isEmpty()){
+                
+                System.out.println("There are currently no students.");
+            
+            }else{
+
+                System.out.println(chosenTG.getStudentList().toString());
+            }
 
             
         }
+        
+        GroupManagementUI.enterCont();
         
 
         

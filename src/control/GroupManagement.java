@@ -32,6 +32,8 @@ public class GroupManagement {
     private Programme[] pg;
     private TutorialGroup[] tg;
     private String[] group;
+    private String[] group2;
+    private String[] group3;
     private Student[] std;
     
     private ListInterface<Programme> programmeList;
@@ -105,27 +107,27 @@ public class GroupManagement {
                         case 1:
                             
                             GroupManagementUI.clearScreen();
-                            stdT.addStudentTutorial(tg, pg, tutorialList);
+                            stdT.addStudentTutorial(tg, pg, tutorialList, programmeList);
                             break;
                             
                         case 2:
                             GroupManagementUI.clearScreen();
-                            stdT.removeStudentTutorial(tg, pg, tutorialList);
+                            stdT.removeStudentTutorial(tg, pg, tutorialList, programmeList);
                             break;
                             
                         case 3:
                             GroupManagementUI.clearScreen();
-                            stdT.changeStudentTutorial(tg, pg, tutorialList);
+                            stdT.changeStudentTutorial(tg, pg, tutorialList, programmeList);
                             break;
                             
                         case 4:
                             GroupManagementUI.clearScreen();
-                            stdT.mergeStudentTutorial(tg, pg, tutorialList);
+                            stdT.mergeStudentTutorial(tg, pg, tutorialList, programmeList);
                             break;
                             
                         case 5:
                             GroupManagementUI.clearScreen();
-                            stdT.listStudentTutorial(tg, pg, tutorialList);
+                            stdT.listStudentTutorial(tg, pg, tutorialList, programmeList);
                             break;
                             
                             
@@ -153,7 +155,7 @@ public class GroupManagement {
         
         pg = new Programme[5];
         tg = new TutorialGroup[9];
-        group = new String[3];
+        group = new String[9];
         std = new Student[6];
         programmeList = new ArrayList<>();
         tutorialList = new ArrayList<>();
@@ -164,19 +166,19 @@ public class GroupManagement {
         pg[2] = new Programme("Accounting", "2023/09");
     
         //Group for software engineering
-        group = new String[]{"RSW01", "RSW02", "RSW03"};
+        group = new String[]{"RSW01", "RSW02", "RSW03","MG01", "MG02", "MG03", "ACC01", "ACC02", "ACC03"};
         
-        tg[0] = new TutorialGroup(group[0], 25, pg[0]);
-        tg[1] = new TutorialGroup(group[1], 18, pg[0]);
-        tg[2] = new TutorialGroup(group[2], 16, pg[0]);
+        tg[0] = new TutorialGroup(group[0], 2, pg[0]);
+        tg[1] = new TutorialGroup(group[1], 2, pg[0]);
+        tg[2] = new TutorialGroup(group[2], 2, pg[0]);
        
-        tg[3] = new TutorialGroup("MG01", 19, pg[1]);
-        tg[4] = new TutorialGroup("MG02", 22, pg[1]);
-        tg[5] = new TutorialGroup("MG03", 21, pg[1]);
+        tg[3] = new TutorialGroup(group[3], 0, pg[1]);
+        tg[4] = new TutorialGroup(group[4], 0, pg[1]);
+        tg[5] = new TutorialGroup(group[5], 0, pg[1]);
 
-        tg[6] = new TutorialGroup("ACC01", 23, pg[2]);
-        tg[7] = new TutorialGroup("ACC02", 21, pg[2]);
-        tg[8] = new TutorialGroup("ACC03", 20, pg[2]);
+        tg[6] = new TutorialGroup(group[6], 0, pg[2]);
+        tg[7] = new TutorialGroup(group[7], 0, pg[2]);
+        tg[8] = new TutorialGroup(group[8], 0, pg[2]);
         
 
         Team team[] = new Team[6];
@@ -231,10 +233,11 @@ public class GroupManagement {
                 //change this soon tq
                 tg[i].setGroup(group[i]);
             }
+            
             tutorialList.add(tg[i]); 
              
          }
-        
+    
 
                 
         for (int i = 0; i < pg.length; i++) {

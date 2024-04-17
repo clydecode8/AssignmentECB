@@ -22,9 +22,11 @@ public class ProgrammeTutorial  {
     public void addProgrammeTutorial(Programme[] pg, TutorialGroup[] tg, ListInterface<Programme> programmeList){
         
         int cond = programmeUI.chooseWhichAdd();
-        
-        
+ 
         if(cond == 1){
+            
+            
+            
         
             Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
@@ -44,11 +46,8 @@ public class ProgrammeTutorial  {
             pg[choice].getTutorialGroupList().add(inputTG);
            
             
-        }else if(cond == 2){
-        
-            //TutorialGroup userInput = programmeUI.inputProgrammeTutorial();
-            
         }
+        
         
     
     }
@@ -77,19 +76,30 @@ public class ProgrammeTutorial  {
             
             Iterator<TutorialGroup> iterator2 = pg[choice].getTutorialGroupList().iterator();
             int j = 0;
+            System.out.printf("%-5s %-12s %-15s%n", "No", "Group", "Total Students");
             while (iterator2.hasNext()) {
-                Comparable tg = iterator2.next();
+                TutorialGroup tg = iterator2.next();
                
-                System.out.println(j+1 + ". " + tg.toString());
+                System.out.printf("%-5d %-12s %-15d%n", j+1, tg.getGroup(), tg.getQty());
+
                 j++;
             }            
 
             
             int removal = programmeUI.chooseTG();
-            pg[choice].getTutorialGroupList().remove(removal-1);
+            TutorialGroup test = pg[choice].getTutorialGroupList().remove(removal-1);
              
-        }else if(cond == 2){
-
+            if(test != null){
+                
+                System.out.println("Entry successfully removed.");
+            
+            }else{
+                
+                
+                System.out.println("Entry removal unsuccessful.");
+            }
+            
+            GroupManagementUI.enterCont();
             
             
             
@@ -140,11 +150,7 @@ public class ProgrammeTutorial  {
             
         }
         
-        System.out.println("Press Enter to continue...");
-
-        // Wait for user to press Enter
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        GroupManagementUI.enterCont();
         
 
     }

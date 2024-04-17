@@ -132,6 +132,13 @@ public class StudentTutorialUI {
         
     }
     
+    public int chooseProgramme(){
+        
+        System.out.println("Choose which Programme: ");
+        int chosen = scanner.nextInt();
+        return chosen-1;
+    }
+    
     public int inputAddIterator(){
         
         System.out.println("Choose which Tutorial Group to add: ");

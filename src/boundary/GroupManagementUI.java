@@ -37,6 +37,16 @@ public class GroupManagementUI {
         }  
     }
     
+    public static void enterCont(){
+        
+        System.out.println("");
+        System.out.println("Press Enter to continue...");
+
+        // Wait for user to press Enter
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+        
+    }
 
 
     
