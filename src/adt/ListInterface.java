@@ -63,12 +63,16 @@ public interface ListInterface<T> {
    /**
     * Task: Retrieves the entry at a given position in the list.
     *
+     * @param element
     * @param indexPosition an integer that indicates the position of the desired
     * entry
     * @return a reference to the indicated entry or null, if either the list is
     * empty, indexPosition < 1, or indexPosition > getNumberOfEntries()
     */
-     public T getEntry(int indexPosition);
+    
+    public T remove(T element);
+    
+    public T getEntry(int indexPosition);
 
     /**
     * Task: Sees whether the list contains a given entry.

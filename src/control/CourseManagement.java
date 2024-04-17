@@ -57,10 +57,16 @@ public class CourseManagement {
                 break;
             }
             else if(choice ==1){
+                //display course
+                System.out.println("Choose 1 course to be added into programme");
+                System.out.println("---------------------------------------------");
                 displayCourse();
                 System.out.print("Enter choice: ");
                 int courseChoice = scanner.nextInt();
                 scanner.nextLine();
+                //display programme
+                System.out.println("Choose which programme to be added in ");
+                System.out.println("---------------------------------------------");
                 displayProgramme();
                 System.out.print("\nEnter choice: ");
                 int programmeChoice = scanner.nextInt();
@@ -73,19 +79,16 @@ public class CourseManagement {
     
     
     public void displayCourse(){
-        System.out.println("Choose 1 course to be added into programme");
-        System.out.println("---------------------------------------------");
         int num=1;
         for(int i =0;i<course.getCourseList().size();i++){
-            System.out.println(num+": " + course.getCourseList().getEntry(i).toString());
+            System.out.println(num+" " + course.getCourseList().getEntry(i).toString());
             num++;
         }
         
     }
     
     public void displayProgramme(){
-        System.out.println("Choose which programme to be added in ");
-        System.out.println("---------------------------------------------");
+        
         int num=1;
         for(int i =0;i<programme.getProgrammeList().size();i++){
             System.out.println(num+" " + programme.getProgrammeList().getEntry(i).toString());
@@ -94,10 +97,14 @@ public class CourseManagement {
         
     }
     
-
     public void addCoursetoProgramme(int courseChoice,int programmeChoice){
         programme.getProgrammeList().getEntry(programmeChoice-1).getCourseList().add(course.getCourseList().getEntry(courseChoice-1));
         //System.out.println(programme.getProgrammeList().getEntry(programmeChoice-1).getCourseList().getEntry(courseChoice-1).toString() + programme.getProgrammeList().getEntry(programmeChoice-1).toString());
+    }
+    
+    public void removeCoursefromProgramme(int courseChoice,int programmeChoice){
+        programme.getProgrammeList().getEntry(programmeChoice-1).getCourseList().remove(course.getCourseList().getEntry(courseChoice-1));
+
     }
     
     public static void main(String[] args) {

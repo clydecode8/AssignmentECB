@@ -84,6 +84,32 @@ public class CircularArrayList<T> implements ListInterface<T> {
         size--;
         return removedElement;
     }
+    
+   
+    @Override
+    public T remove(T element) {
+    int index = -1;
+    // Find the index of the element
+    for (int i = 0; i < size; i++) {
+        if (elements[i].equals(element)) {
+            index = i;
+            break;
+        }
+    }
+    // If element not found, return null
+    if (index == -1) {
+        return null;
+    }
+    // Remove the element at the found index
+    T removedElement = elements[index];
+    if (index < size - 1) {
+        System.arraycopy(elements, index + 1, elements, index, size - index - 1);
+    }
+    elements[getIndex(size - 1)] = null;
+    size--;
+    return removedElement;
+}
+
 
     @Override
     public T getEntry(int indexPosition) {
