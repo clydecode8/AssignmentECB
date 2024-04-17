@@ -5,12 +5,13 @@
         <group>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/GroupManagementUI.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/ProgrammeTutorialUI.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/adt/ListInterface.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/boundary/GroupSummaryUI.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/StudentTutorial.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/DAO/StudentInitializer.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/GroupManagement.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/Programme.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/GroupSummary.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/GroupManagement.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/control/ProgrammeTutorial.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/TutorialGroup.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/AssignmentECB/src/entity/Student.java</file>
