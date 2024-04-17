@@ -21,7 +21,7 @@ public interface ListInterface<T> {
      * Notfullyworking: getIndexOf(), sort()
     
      */
-    
+    public T remove(T element);
     
     
     /**

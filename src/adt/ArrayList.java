@@ -607,6 +607,11 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     public Iterator<T> iterator() {
         return new ArrayListIterator();
     }
+
+    @Override
+    public T remove(T element) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     private class ArrayListIterator<T extends Comparable<T>> implements Iterator<T> {
         

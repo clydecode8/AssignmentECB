@@ -36,7 +36,7 @@ public class GroupManagement {
     private String[] group3;
     private Student[] std;
     
-    private ListInterface<Programme> programmeList;
+    private ListInterface<Programme> programmeListGM;
     private ListInterface<TutorialGroup> tutorialList;
     
     
@@ -69,17 +69,17 @@ public class GroupManagement {
                         case 1:
                             
                             GroupManagementUI.clearScreen();
-                            programmeT.addProgrammeTutorial(pg, tg, programmeList);
+                            programmeT.addProgrammeTutorial(pg, tg, programmeListGM);
                             break;
                             
                         case 2:
                             GroupManagementUI.clearScreen();
-                            programmeT.removeProgrammeTutorial(pg, programmeList);
+                            programmeT.removeProgrammeTutorial(pg, programmeListGM);
                             break;
                             
                         case 3:
                             GroupManagementUI.clearScreen();
-                            programmeT.listProgrammeTutorial(pg, programmeList);
+                            programmeT.listProgrammeTutorial(pg, programmeListGM);
                             break;
                             
                         default:
@@ -107,27 +107,27 @@ public class GroupManagement {
                         case 1:
                             
                             GroupManagementUI.clearScreen();
-                            stdT.addStudentTutorial(tg, pg, tutorialList, programmeList);
+                            stdT.addStudentTutorial(tg, pg, tutorialList, programmeListGM);
                             break;
                             
                         case 2:
                             GroupManagementUI.clearScreen();
-                            stdT.removeStudentTutorial(tg, pg, tutorialList, programmeList);
+                            stdT.removeStudentTutorial(tg, pg, tutorialList, programmeListGM);
                             break;
                             
                         case 3:
                             GroupManagementUI.clearScreen();
-                            stdT.changeStudentTutorial(tg, pg, tutorialList, programmeList);
+                            stdT.changeStudentTutorial(tg, pg, tutorialList, programmeListGM);
                             break;
                             
                         case 4:
                             GroupManagementUI.clearScreen();
-                            stdT.mergeStudentTutorial(tg, pg, tutorialList, programmeList);
+                            stdT.mergeStudentTutorial(tg, pg, tutorialList, programmeListGM);
                             break;
                             
                         case 5:
                             GroupManagementUI.clearScreen();
-                            stdT.listStudentTutorial(tg, pg, tutorialList, programmeList);
+                            stdT.listStudentTutorial(tg, pg, tutorialList, programmeListGM);
                             break;
                             
                             
@@ -157,7 +157,7 @@ public class GroupManagement {
         tg = new TutorialGroup[9];
         group = new String[9];
         std = new Student[6];
-        programmeList = new ArrayList<>();
+        programmeListGM = new ArrayList<>();
         tutorialList = new ArrayList<>();
         
         
@@ -244,7 +244,7 @@ public class GroupManagement {
             
             if(pg[i] != null){
                 
-                programmeList.add(pg[i]);  
+                programmeListGM.add(pg[i]);  
                 
             }
         }  
