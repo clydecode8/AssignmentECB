@@ -10,12 +10,16 @@ import java.util.Iterator;
  *
  * @author yuanf
  */
+
 public interface LinkedListInterface<T> {
     // Adds an element to the list (could be at the beginning, end, or a specific index)
     void add(T element);
 
     // Removes an element from the list (could be by value or index)
     T remove(T element);  // Or remove(int index)
+    
+    // New remove method by position
+    T remove(int position);
 
     // Retrieves the element at a specific index
     T get(int index);

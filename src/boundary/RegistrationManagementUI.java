@@ -82,5 +82,30 @@ public class RegistrationManagementUI {
         scanner.nextLine();
         return removestufromcourse-1;
     }
-
+        
+    public int calculatefee(){
+        System.out.println("Enter a number to calculate: ");
+        int calculatefee = scanner.nextInt();
+        scanner.nextLine();
+        return calculatefee-1;
+    }
+    
+    public int filter(){
+        System.out.println("Enter a number to choose course: ");
+        int filternumber = scanner.nextInt();
+        scanner.nextLine();
+        return filternumber-1;
+    }   
+    
+    public int displaycoursetype(){
+        System.out.println("Choose CourseType to filter");
+        System.out.println("1. Main");
+        System.out.println("2. Elective");
+        System.out.println("3. Resit");
+        System.out.println("4. Repeat");
+        System.out.println("Choose the courseType: ");
+        int displaycourse = scanner.nextInt();
+        scanner.nextLine();
+        return displaycourse-1;
+    }
 }

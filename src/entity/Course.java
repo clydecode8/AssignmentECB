@@ -14,10 +14,11 @@ public class Course {
     private String courseName;
     private String courseID;
     private String courseDetails;
-    private String courseType;
+    private double courseprice;
+    private final static LinkedListInterface<String> courseType = new LinkedList<>();
     private final static CircularArrayList<Course> courseList = new CircularArrayList<>();
-    private final static LinkedList<Course> courseListlinked = new LinkedList<>();
-    private LinkedList<Student> studentList = new LinkedList<>();
+    private final static LinkedListInterface<Course> courseListlinked = new LinkedList<>();
+    private LinkedListInterface<Student> studentList = new LinkedList<>();
     
     public Course(){
         
@@ -28,11 +29,11 @@ public class Course {
         this.courseID = courseID;
         this.courseDetails = courseDetails;
     }
-    public Course(String courseName, String courseID, String courseDetails,String courseType) {
+    public Course(String courseName, String courseID, String courseDetails,double courseprice) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.courseDetails = courseDetails;
-        this.courseType = courseType;
+        this.courseprice = courseprice;
     }
 
     public String getCourseName() {
@@ -55,11 +56,15 @@ public class Course {
         return courseDetails;
     }
     
-    public String getcourseType(){
-        return courseType;
+    public LinkedListInterface<String> getcourseTypes() {
+    return courseType; // Returns a reference to the courseType list (be cautious of modifications)
+}
+    
+    public double getcourseprice(){
+        return courseprice;
     }
 
-    public LinkedList<Student> getStudentList() {
+    public LinkedListInterface<Student> getStudentList() {
         return studentList;
     }
 
@@ -84,8 +89,12 @@ public class Course {
         
     }
     
-    public void setCourseType(String courseType) {
-        this.courseType = courseType;
+    public void setCourseType(String coursetype){
+        courseType.add(coursetype);
+    }
+    
+    public void setcourseprice(double courseprice){
+        this.courseprice = courseprice;
     }
 
     public void setStudentList(LinkedList<Student> studentList) {
@@ -98,8 +107,9 @@ public class Course {
     }
     
     public String toString2() {
-        return String.format("Course Name: %-30s Course ID: %-15s Course Type: %-10s" ,courseName,courseID,courseType);
+        return String.format("Course Name: %-30s Course ID: %-15s Course price: RM %.2f Course Type: %-10s" ,courseName,courseID,courseprice,courseType);
     }
+    
 
     //@Override
     //public String toString() {
