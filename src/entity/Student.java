@@ -117,7 +117,7 @@ public Student(String name, String id) {
     }
 
     public String getNameId(){
-        return String.format("%-10s %-20s", name, id);
+        return String.format("Name: %-10s ID:%-20s", name, id);
     }
     
     @Override

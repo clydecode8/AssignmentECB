@@ -107,7 +107,7 @@ public class Course {
     }
     
     public String toString2() {
-        return String.format("Course Name: %-30s Course ID: %-15s Course price: RM %.2f Course Type: %-10s" ,courseName,courseID,courseprice,courseType);
+        return String.format("Course Name: %-30s Course ID: %-15s Course price: RM %.2f " ,courseName,courseID,courseprice);
     }
     
 
