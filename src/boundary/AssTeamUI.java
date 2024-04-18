@@ -1,8 +1,10 @@
 package boundary;
 import adt.ArrayList;
-import adt.ArrayQueueInterface;
-import adt.CustomArrayQueue;
+//import adt.SortedListInterface;
+//import adt.SortedArrayList;
 import adt.ListInterface;
+import adt.SortedArrayList;
+import adt.SortedListInterface;
 import entity.Student;
 import entity.Team;
 import entity.TutorialGroup;
@@ -25,11 +27,11 @@ public class AssTeamUI {
         System.out.println("Assignment Team Management System");
         System.out.println("---------------------------");
         System.out.println("Choose Tutorial Group: ");
-        for(int i=0; i< tg.getTutorialGroupQueue().size(); i++){
-            System.out.println(i+1 + ". " + tg.getTutorialGroupQueue().peekMiddle(i).getGroup());
+        for(int i=0; i< tg.getSortedTutorialGroup().size(); i++){
+            System.out.println(i+1 + ". " + tg.getSortedTutorialGroup().getEntry(i).getGroup());
         }
-        System.out.println((tg.getTutorialGroupQueue().size()+1) +". Tutorial Group Summary Report");
-        System.out.println((tg.getTutorialGroupQueue().size()+2) +". Team Summary Report");
+        System.out.println((tg.getSortedTutorialGroup().size()+1) +". Tutorial Group Summary Report");
+        System.out.println((tg.getSortedTutorialGroup().size()+2) +". Team Summary Report");
 
         System.out.println("0. Quit");
         System.out.print("Enter choice: ");
@@ -45,9 +47,9 @@ public class AssTeamUI {
         System.out.println("---------------------------");
         System.out.println("Choose Team: ");
         int num=1;
-        for(int i=0; i< team.getTeamQueue().size(); i++){
-            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
+        for(int i=team.getSortedTeam().size()-1; i>= 0; i--){
+            if(team.getSortedTeam().getEntry(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getSortedTeam().getEntry(i).getTeamName());              
                 num++;
             }           
         }
@@ -94,9 +96,10 @@ public class AssTeamUI {
         System.out.println("Remove Assignment Team");
         System.out.println("---------------------------");
         int num=1;
-        for(int i=0; i< team.getTeamQueue().size(); i++){
-            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
+        for(int i=team.getSortedTeam().size()-1; i>= 0; i--){
+            if(team.getSortedTeam().getEntry(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getSortedTeam().getEntry(i).getTeamName());    
+        
                 num++;
             }           
         }
@@ -121,9 +124,9 @@ public class AssTeamUI {
         System.out.println("Amend Assignment Team");
         System.out.println("---------------------------");
         int num=1;
-        for(int i=0; i< team.getTeamQueue().size(); i++){
-            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
+        for(int i=team.getSortedTeam().size()-1; i>= 0; i--){
+            if(team.getSortedTeam().getEntry(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getSortedTeam().getEntry(i).getTeamName());              
                 num++;
             }           
         }
@@ -176,18 +179,20 @@ public class AssTeamUI {
         }
     }
     
-    public ArrayQueueInterface<Integer> mergeTeam(TutorialGroup search){
+    public SortedListInterface<Integer> mergeTeam(TutorialGroup search){
         clscr();
-        ArrayQueueInterface<Integer> choices = new CustomArrayQueue<>();
+        SortedListInterface<Integer> choices = new SortedArrayList<>();
         System.out.println("Merge Assignment Team");        
         System.out.println("[Select 2 team to merge together]");
         System.out.println("[Team name and subject will follow first team]");
         System.out.println("[maximum 5 students in one team]");
         System.out.println("---------------------------");
         int num=1;
-        for(int i=0; i< team.getTeamQueue().size(); i++){
-            if(team.getTeamQueue().peekMiddle(i).getTg().equals(search)){
-                System.out.println(num + ". " + team.getTeamQueue().peekMiddle(i).getTeamName());              
+        for(int i=team.getSortedTeam().size()-1; i>= 0; i--){
+            if(team.getSortedTeam().getEntry(i).getTg().equals(search)){
+                System.out.println(num + ". " + team.getSortedTeam().getEntry(i).getTeamName()); 
+                 
+
                 num++;
             }           
         }
@@ -200,8 +205,8 @@ public class AssTeamUI {
         int choice1 = scanner.nextInt();
         System.out.print("Enter first team number: ");
         int choice2 = scanner.nextInt();
-        choices.enqueue(choice1);
-        choices.enqueue(choice2);
+        choices.add(choice1);
+        choices.add(choice2);
         return choices;
     }
     
@@ -226,21 +231,21 @@ public class AssTeamUI {
         System.out.println("|\tGroup\t|\t\t      Programme     \t\t|\tNumber of students\t|\tNumber of teams\t\t|");
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
 
-        ArrayQueueInterface<TutorialGroup> tgList = new CustomArrayQueue<>();
-        ArrayQueueInterface<Team> teamQueue = new CustomArrayQueue<>();
+        SortedListInterface<TutorialGroup> tgList = new SortedArrayList<>();
+        SortedListInterface<Team> sortedTeam = new SortedArrayList<>();
         
-        tgList = tg.getTutorialGroupQueue();
-        teamQueue = team.getTeamQueue();
+        tgList = tg.getSortedTutorialGroup();
+        sortedTeam = team.getSortedTeam();
         int num=1;
         for(int i=0; i< tgList.size(); i++){
             int teamNum =0;
-            for(int j=0; j< teamQueue.size(); j++){
-                if(teamQueue.peekMiddle(i).getTg().getGroup().equals(tgList.peekMiddle(i).getGroup())){
+            for(int j=0; j< sortedTeam.size(); j++){
+                if(sortedTeam.getEntry(i).getTg().getGroup().equals(tgList.getEntry(i).getGroup())){
                     teamNum++;
                 }
             }
-             System.out.println("|\t" + tgList.peekMiddle(i).getGroup() +"\t|\t"+ tgList.peekMiddle(i).getProgramme()
-            + "\t|\t\t" + tgList.peekMiddle(i).getQty() + "\t\t|\t\t"+ teamNum + "\t\t|");
+             System.out.println("|\t" + tgList.getEntry(i).getGroup() +"\t|\t\t"+ tgList.getEntry(i).getProgramme().getName()
+            + "\t\t|\t\t" + tgList.getEntry(i).getQty() + "\t\t|\t\t"+ teamNum + "\t\t|");
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
             num++;
         }
@@ -257,26 +262,26 @@ public class AssTeamUI {
         System.out.println("|    Tutorial Group    |\t\tTeam\t\t|\t\tSubject\t\t|  Number of students  |              Student List              |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
         
-        ArrayQueueInterface<Team> teamQueue = new CustomArrayQueue<>();
-        ArrayQueueInterface<Student> studQueue = new CustomArrayQueue<>();
+        SortedListInterface<Team> sortedTeam = new SortedArrayList<>();
+        SortedListInterface<Student> sortedStud = new SortedArrayList<>();
         
-        teamQueue = team.getTeamQueue();
-        studQueue = student.getStudentQueue();
-        for(int j=0; j< teamQueue.size(); j++){
+        sortedTeam = team.getSortedTeam();
+        sortedStud = student.getSortedStudentList();
+        for(int j=0; j< sortedTeam.size(); j++){
             int studNum = 0;
-            ArrayQueueInterface<String> tempName = new CustomArrayQueue<>();
-            for(int i=0; i< studQueue.size(); i++){
-                if(studQueue.peekMiddle(i).getTeam()!= null){
-                    if(studQueue.peekMiddle(i).getTeam().getTeamName().equals(teamQueue.peekMiddle(j).getTeamName())){
+            SortedListInterface<String> tempName = new SortedArrayList<>();
+            for(int i=0; i< sortedStud.size(); i++){
+                if(sortedStud.getEntry(i).getTeam()!= null){
+                    if(sortedStud.getEntry(i).getTeam().getTeamName().equals(sortedTeam.getEntry(j).getTeamName())){
                         studNum ++;
-                        tempName.enqueue(studQueue.peekMiddle(i).getName());
+                        tempName.add(sortedStud.getEntry(i).getName());
                     } 
                 }
                 
             }
 //             System.out.println("|\t" + teamList.getEntry(j).getTeamName() + "\t|\t" + teamList.getEntry(j).getSubject()
 //             + "\t|\t\t" + studNum + "\t\t|\t" + tempName.toString2() + "\t|");
-             System.out.printf("|%22s|%26s|%32s|%22d|%40s|", teamQueue.peekMiddle(j).getTg().getGroup(),teamQueue.peekMiddle(j).getTeamName(), teamQueue.peekMiddle(j).getSubject(),studNum, tempName.toString2() );
+             System.out.printf("|%22s|%26s|%32s|%22d|%40s|", sortedTeam.getEntry(j).getTg().getGroup(),sortedTeam.getEntry(j).getTeamName(), sortedTeam.getEntry(j).getSubject(),studNum, tempName.toString2() );
         System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------");
 
         }
@@ -291,11 +296,11 @@ public class AssTeamUI {
         System.out.println("---------------------------");
         System.out.println("Team member: ");
         int num=1;
-        for(int i=0; i< student.getStudentQueue().size(); i++){
-            if(student.getStudentQueue().peekMiddle(i).getTeam() != null){
-                if(student.getStudentQueue().peekMiddle(i).getTutorialGroup().equals(search) &&
-                        student.getStudentQueue().peekMiddle(i).getTeam().equals(search2)){
-                    System.out.println(num + ". " + student.getStudentQueue().peekMiddle(i).getName());              
+        for(int i=0; i< student.getSortedStudentList().size(); i++){
+            if(student.getSortedStudentList().getEntry(i).getTeam() != null){
+                if(student.getSortedStudentList().getEntry(i).getTutorialGroup().equals(search) &&
+                        student.getSortedStudentList().getEntry(i).getTeam().equals(search2)){
+                    System.out.println(num + ". " + student.getSortedStudentList().getEntry(i).getName());              
                     num++;
                 }    
             }
@@ -324,11 +329,11 @@ public class AssTeamUI {
         System.out.println("---------------------------");
 
         int num=1;
-        ArrayQueueInterface<Student> tempQueue = new CustomArrayQueue<>();
-        for(int i=0; i<student.getStudentQueue().size(); i++){
-            Student currentStudent = student.getStudentQueue().peekMiddle(i);
+        SortedListInterface<Student> sortedtemp = new SortedArrayList<>();
+        for(int i=0; i<student.getSortedStudentList().size(); i++){
+            Student currentStudent = student.getSortedStudentList().getEntry(i);
             if(currentStudent.getTeam() == null){
-                tempQueue.enqueue(student.getStudentQueue().peekMiddle(i));
+                sortedtemp.add(student.getSortedStudentList().getEntry(i));
                 System.out.println(num + ". "+ currentStudent.getName());
                 num++;
             }
@@ -345,7 +350,7 @@ public class AssTeamUI {
                 System.out.println("Press any key to continue ...");
 
                 scanner.nextLine();
-                return tempQueue.peekMiddle(choice-1);
+                return sortedtemp.getEntry(choice-1);
             }
         }
         else{
@@ -368,17 +373,17 @@ public class AssTeamUI {
     }
     
     public Student removeStudent(TutorialGroup search,Team search2){
-        ArrayQueueInterface<Student> tempQueue = new CustomArrayQueue<>();
+        SortedListInterface<Student> sortedTemp = new SortedArrayList<>();
         clscr();
         int num =0;
         System.out.println("\nRemove student:");
         System.out.println("---------------------------");
-        for(int i=0; i< student.getStudentQueue().size(); i++){
-            if(student.getStudentQueue().peekMiddle(i).getTeam() != null){
-                if(student.getStudentQueue().peekMiddle(i).getTutorialGroup().equals(search) &&
-                        student.getStudentQueue().peekMiddle(i).getTeam().equals(search2)){
-                   tempQueue.enqueue(student.getStudentQueue().peekMiddle(i));
-                   System.out.println((num+1) + ". "+ student.getStudentQueue().peekMiddle(i).getName());
+        for(int i=0; i< student.getSortedStudentList().size(); i++){
+            if(student.getSortedStudentList().getEntry(i).getTeam() != null){
+                if(student.getSortedStudentList().getEntry(i).getTutorialGroup().equals(search) &&
+                        student.getSortedStudentList().getEntry(i).getTeam().equals(search2)){
+                   sortedTemp.add(student.getSortedStudentList().getEntry(i));
+                   System.out.println((num+1) + ". "+ student.getSortedStudentList().getEntry(i).getName());
                    num++;
                 }    
             }          
@@ -392,7 +397,7 @@ public class AssTeamUI {
             System.out.println("Press any key to continue ...");
 
             scanner.nextLine();
-            return tempQueue.peekMiddle(choice-1);
+            return sortedTemp.getEntry(choice-1);
 
         }
         else{
@@ -401,6 +406,7 @@ public class AssTeamUI {
     } 
     
     public void error(){
+        scanner.nextLine();
         System.out.println("This team already full");
         System.out.println("Press any key to continue ...");
 

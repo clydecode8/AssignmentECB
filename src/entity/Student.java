@@ -5,11 +5,13 @@
 package entity;
 
 import adt.ArrayList;
-import adt.ArrayQueueInterface;
-import adt.CustomArrayQueue;
+//import adt.ArrayQueueInterface;
+//import adt.CustomArrayQueue;
 import adt.LinkedList;
 import adt.LinkedListInterface;
 import adt.ListInterface;
+import adt.SortedArrayList;
+import adt.SortedListInterface;
 import java.util.Objects;
 
 /**
@@ -24,7 +26,7 @@ public class Student implements Comparable<Student> {
     private TutorialGroup tutorialGroup;
     private Team team;
     private final static ListInterface<Student> studentList = new ArrayList<>();
-    private final static ArrayQueueInterface<Student> studentQueue = new CustomArrayQueue<>();
+    private final static SortedListInterface<Student> sortedStudentList = new SortedArrayList<>();
     private final static LinkedList<Student> studentListlinked = new LinkedList<>();
     private LinkedList<Course> courseListlinked = new LinkedList<>();
 
@@ -88,12 +90,12 @@ public Student(String name, String id) {
 
     public void setStudentList(Student student) {
         studentList.add(student);
-        studentQueue.enqueue(student);
+        sortedStudentList.add(student);
         studentListlinked.add(student);
     }
     
-    public static ArrayQueueInterface<Student> getStudentQueue() {
-        return studentQueue;
+    public static SortedListInterface<Student> getSortedStudentList() {
+        return sortedStudentList;
     }
     public LinkedList<Student> getStudentListlinked() {
         return studentListlinked;

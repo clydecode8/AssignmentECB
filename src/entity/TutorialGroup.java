@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entity;
 
 import adt.ArrayList;
-import adt.ArrayQueueInterface;
-import adt.CustomArrayQueue;
+//import adt.ArrayQueueInterface;
+//import adt.CustomArrayQueue;
 import adt.ListInterface;
+import adt.SortedArrayList;
+import adt.SortedListInterface;
 import java.util.Objects;
 
 /**
@@ -22,10 +20,10 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
     private Programme programme;
     private int numb;
     private final static ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();   
-    private final static ArrayQueueInterface<TutorialGroup> tutorialGroupQueue = new CustomArrayQueue<>();    
+    private final static SortedListInterface<TutorialGroup> sortedTutorialGroup = new SortedArrayList<>();    
 
     private ListInterface<Student> stdList = new ArrayList<>();
-    private ArrayQueueInterface<Student> stdQueue = new CustomArrayQueue<>();
+    private SortedListInterface<Student> stdQueue = new SortedArrayList<>();
 
     
     public TutorialGroup() {
@@ -80,26 +78,26 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
         return tutorialGroupList;
     }
    
-   public static ArrayQueueInterface<TutorialGroup> getTutorialGroupQueue() {
-        return tutorialGroupQueue;
+   public static SortedListInterface<TutorialGroup> getSortedTutorialGroup() {
+        return sortedTutorialGroup;
     }
 
     public static void setTutorialGroupList(TutorialGroup tg) {
         tutorialGroupList.add(tg);
-        tutorialGroupQueue.enqueue(tg);
+        sortedTutorialGroup.add(tg);
     }
     
     public ListInterface<Student> getStudentList() {
         return stdList;
     }
 
-    public ArrayQueueInterface<Student> getStudentQueue() {
+    public SortedListInterface<Student> getStudentQueue() {
         return stdQueue;
     }
 
     public void addStudentList(Student std) {
         stdList.add(std);
-        stdQueue.enqueue(std);
+        stdQueue.add(std);
     }
 
     @Override
