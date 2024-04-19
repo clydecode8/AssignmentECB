@@ -45,8 +45,9 @@ public class RegistrationManagement {
         Student stud5 = new Student("Max", "WPF532432", g1, t1);                
         Student stud6 = new Student("Jeremy", "WPF532323", g1, t1);
         
-        Course course1 = new Course("ACCOUNT","12345","ACCOUNT",null);
-        Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT",null);
+        Course course1 = new Course("ACCOUNT","12345","ACCOUNT",700);
+        Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT",1000);
+        Course course3 = new Course("Graphics programming","12345","FOR ENGINNER STUDENT",666);
 
         tg.setTutorialGroupList(g1);
         tg.setTutorialGroupList(g2);
@@ -67,6 +68,7 @@ public class RegistrationManagement {
         
         course.setCourseList2(course1);
         course.setCourseList2(course2);
+        course.setCourseList2(course3);
 
         int choice = 0;
         do{
@@ -94,6 +96,9 @@ public class RegistrationManagement {
                     break;
                 case 5:
                     displaystudent();
+                    System.out.println("------------------------------------------------------------------------------------------------");           
+                    System.out.println("ADD STUDENT TO COURSE");
+                    System.out.println("------------------------------------------------------------------------------------------------");  
                     int stuIndex = rmUI.getSelection("Enter number to choose student: ");
                     displayCourse();
                     int courseIndex = rmUI.getSelection("Enter number to choose course: ");
@@ -102,11 +107,26 @@ public class RegistrationManagement {
                 case 6:
                     displayCourse();
                     removeStuFromCourse();
+                    break;
+                case 7:
+                    displaystudent();
+                    calculatedfee();
+                    break;
+                case 8:
+                    displayCourse();
+                    int filtercourse = rmUI.filter();
+                    int displaycourse = rmUI.displaycoursetype();
+                    filtercoursetype(filtercourse,displaycourse);
+                    break;
+                    
             }
         }while(choice !=0);
     }
     
     private void displaystudent(){
+        System.out.println("------------------------------------------------------------------------------------------------");          
+        System.out.println("STUDENT LIST");
+        System.out.println("------------------------------------------------------------------------------------------------"); 
         int num = 1;
         for(int i=0; i<student.getStudentListlinked().size();i++){
         System.out.println(num+"."+student.getStudentListlinked().get(i).getNameId());
@@ -114,16 +134,19 @@ public class RegistrationManagement {
         }
     }
     private void displayCourse(){
+        System.out.println("------------------------------------------------------------------------------------------------");         
+        System.out.println("COURSE LIST");
+        System.out.println("------------------------------------------------------------------------------------------------");  
         int num = 1;
         for(int i=0; i<course.getCourseList2().size();i++){
         System.out.println(num+"."+course.getCourseList2().get(i).toString());
         num++;
         }
     }
+    
     public void addnewStudent(){
         Student addnewstudent = rmUI.addnewStudentUI();
         student.getStudentListlinked().add(addnewstudent);
-        System.out.println("ADD SUCCESSFULLY");
     }
     
     public void removeStudent(){
@@ -136,6 +159,7 @@ public class RegistrationManagement {
         String name = scanner.nextLine();
         System.out.println("Enter new ID: ");
         String id = scanner.nextLine();
+        System.out.println("--Amend successfully!-- ");
         student.getStudentListlinked().get(amendstudentIndex).setName(name);
         student.getStudentListlinked().get(amendstudentIndex).setID(id);
     }
@@ -143,9 +167,25 @@ public class RegistrationManagement {
     public void addToCourse(int stuIndex,int courseIndex){
         course.getCourseList2().get(courseIndex-1).getStudentList().add(student.getStudentListlinked().get(stuIndex-1));
         student.getStudentListlinked().get(stuIndex-1).getCourseList2().add(course.getCourseList2().get(courseIndex-1));
-        System.out.println("Enter course type (main,elective,resit,repeat): ");
-        String courseType = scanner.nextLine();
-        course.getCourseList2().get(courseIndex-1).setCourseType(courseType);
+        System.out.println("Course Type (main,elective,resit,repeat): ");
+        System.out.println("1. Main");
+        System.out.println("2. Elective");
+        System.out.println("3. Resit");
+        System.out.println("4. Repeat");
+        System.out.println("Choose the courseType: ");
+        int courseType = scanner.nextInt();
+        scanner.nextLine();
+        String coursetype1="";
+        if(courseType == 1){
+            coursetype1 = "Main";
+        }else if(courseType == 2){
+            coursetype1 = "Elective";
+        }else if(courseType == 3){
+            coursetype1 = "Resit";
+        }else if(courseType == 4){
+            coursetype1 = "Repeat";
+        }
+        course.getCourseList2().get(courseIndex-1).setCourseType(coursetype1);
         System.out.println("Student "+student.getStudentListlinked().get(stuIndex-1).getName()+" Already add to the course " +course.getCourseList2().get(courseIndex-1).getCourseName());
         /*for(int i =0;i < course.getCourseList2().get(courseIndex-1).getStudentList().size();i++){
         System.out.println(course.getCourseList2().get(courseIndex-1).toString() +"\t" +course.getCourseList2().get(courseIndex-1).getStudentList().get(i).getNameId());
@@ -155,7 +195,7 @@ public class RegistrationManagement {
     public void searchStudentCourse(){
         int search = rmUI.searchstudentCourse();
         for(int i= 0; i< student.getStudentListlinked().get(search).getCourseList2().size();i++){
-        System.out.println(student.getStudentListlinked().get(search).getNameId()+"\t"+student.getStudentListlinked().get(search).getCourseList2().get(i).toString2());
+        System.out.println(student.getStudentListlinked().get(search).getNameId()+"\t"+student.getStudentListlinked().get(search).getCourseList2().get(i).toString2()+"\tCourse Type:"+course.getCourseList2().get(i).getcourseTypes().get(i));
         }
     }
     
@@ -169,7 +209,23 @@ public class RegistrationManagement {
         int removestufromCourse = rmUI.removeStuFromCourse();
         course.getCourseList2().get(choosecourse).getStudentList().remove(student.getStudentListlinked().get(removestufromCourse));
         student.getStudentListlinked().get(removestufromCourse).getCourseList2().remove(course.getCourseList2().get(choosecourse));
-        System.out.println("Remove successfully!");
+        System.out.println("--Remove successfully!--");
+    }
+    
+    public void calculatedfee(){
+        int choosestu = rmUI.calculatefee();
+        double total = 0;
+        for(int i = 0;i<student.getStudentListlinked().get(choosestu).getCourseList2().size();i++){
+            System.out.println(course.getCourseList2().get(i).toString()+"RM "+ course.getCourseList2().get(i).getcourseprice());
+            total += course.getCourseList2().get(i).getcourseprice();
+        }
+        System.out.printf("The student total fee is %.2f \n" , total);
+    }
+    
+    public void filtercoursetype(int filtercourse, int displaycourse){
+        for(int i = 0; i<course.getCourseList2().get(displaycourse).getcourseTypes().size();i++){
+        System.out.println(course.getCourseList2().get(filtercourse).getStudentList().get(i).getNameId()+course.getCourseList2().get(filtercourse)+"Course: "+course.getCourseList2().get(i).getcourseTypes().get(i));
+        }
     }
     
     

@@ -1,9 +1,11 @@
 package entity;
 
 import adt.ArrayList;
-import adt.ArrayQueueInterface;
-import adt.CustomArrayQueue;
+//import adt.ArrayQueueInterface;
+//import adt.CustomArrayQueue;
 import adt.ListInterface;
+import adt.SortedArrayList;
+import adt.SortedListInterface;
 import entity.Student;
 /**
  *
@@ -14,7 +16,7 @@ public class Team implements Comparable<Team>{
     private String subject;
     private TutorialGroup tg;
     private final static ListInterface<Team> teamList = new ArrayList<>();
-    private final static ArrayQueueInterface<Team> teamQueue = new CustomArrayQueue<>();
+    private final static SortedListInterface<Team> sortedTeam = new SortedArrayList<>();
     
     public Team(){
         this.teamName ="";
@@ -58,21 +60,21 @@ public class Team implements Comparable<Team>{
 
     public static void setTeamList(Team team) {
         teamList.add(team);
-        teamQueue.enqueue(team);
+        sortedTeam.add(team);
     }
     
-    public static ArrayQueueInterface<Team> getTeamQueue() {
-        return teamQueue;
+    public static SortedListInterface<Team> getSortedTeam() {
+        return sortedTeam;
     }
     
     public static void removeTeam(int entry){
         teamList.remove(entry);
-        teamQueue.dequeueMiddle(entry);
+        sortedTeam.remove(entry);
     }
 
     @Override
     public int compareTo(Team o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 0;
     }
 
     

@@ -12,7 +12,9 @@ public class RegistrationManagementUI {
     private Student student = new Student();
     
     public int Menu(){
+        System.out.println("------------------------------------------------------------------------------------------------");       
         System.out.println("Registration Management System");
+        System.out.println("------------------------------------------------------------------------------------------------"); 
         System.out.println("1. Add new Students");
         System.out.println("2. Remove a student");
         System.out.println("3. Amend student details");
@@ -31,23 +33,32 @@ public class RegistrationManagementUI {
     }
     
     public Student addnewStudentUI(){
+        System.out.println("------------------------------------------------------------------------------------------------");          
         System.out.println("ADD NEW STUDENT");
+        System.out.println("------------------------------------------------------------------------------------------------");         
         System.out.println("Enter new student name: ");
         String name = scanner.nextLine();
         System.out.println("Enter new student ID: ");
         String ID = scanner.nextLine();
+        System.out.println("--Add successfully!--");
         return new Student(name,ID);
     }
     
     public int removestudent(){
-        System.out.println("Choose the number to remove student: ");
+        System.out.println("------------------------------------------------------------------------------------------------");          
+        System.out.println("REMOVE STUDENT");
+        System.out.println("------------------------------------------------------------------------------------------------"); 
+        System.out.println("Enter the number to remove student: ");
         int removenumber = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Remove successfully...");
+        System.out.println("--Remove successfully!--");
         return removenumber-1;
     }
     
     public int amendstudent(){
+        System.out.println("------------------------------------------------------------------------------------------------");        
+        System.out.println("AMEND STUDENT DETAILS");
+        System.out.println("------------------------------------------------------------------------------------------------");  
         System.out.println("Choose the number to amend student: ");
         int amendnumber = scanner.nextInt();
         scanner.nextLine();
@@ -55,6 +66,9 @@ public class RegistrationManagementUI {
     }
     
     public int searchstudentCourse(){
+        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("SEARCH STUDENT DETAILS");
+        System.out.println("------------------------------------------------------------------------------------------------");  
         System.out.println("Choose the number to search student registered courses: ");
         int searchnumber = scanner.nextInt();
         scanner.nextLine();
@@ -77,10 +91,44 @@ public class RegistrationManagementUI {
     }
     
         public int removeStuFromCourse(){
+        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("REMOVE STUDENT FROM COURSE");
+        System.out.println("------------------------------------------------------------------------------------------------");             
         System.out.println("Enter number to remove the student from course: ");
         int removestufromcourse = scanner.nextInt();
         scanner.nextLine();
         return removestufromcourse-1;
     }
-
+        
+    public int calculatefee(){
+        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("CALCULATE FEE");
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("Enter a number to calculate the fee of student: ");
+        int calculatefee = scanner.nextInt();
+        scanner.nextLine();
+        return calculatefee-1;
+    }
+    
+    public int filter(){
+        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("FILTER");
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("Enter a number to choose course: ");
+        int filternumber = scanner.nextInt();
+        scanner.nextLine();
+        return filternumber-1;
+    }   
+    
+    public int displaycoursetype(){
+        System.out.println("Choose CourseType to filter");
+        System.out.println("1. Main");
+        System.out.println("2. Elective");
+        System.out.println("3. Resit");
+        System.out.println("4. Repeat");
+        System.out.println("Choose the courseType: ");
+        int displaycourse = scanner.nextInt();
+        scanner.nextLine();
+        return displaycourse-1;
+    }
 }
