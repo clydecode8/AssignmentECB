@@ -176,12 +176,7 @@ public class CircularArrayList<T> implements ListInterface<T> {
         return size;
        
     }
-    
-    @Override
-    public void condSearch(String targetWord) {
-        // Implementation not provided
-    }
-
+ 
     @Override
     public boolean twoCondSearch(String targetWord, String target2, int cond) {
         // Implementation not provided
@@ -195,18 +190,21 @@ public class CircularArrayList<T> implements ListInterface<T> {
     }
 
     @Override
-    public void customIntegerContains(int targetValue) {
+    public boolean customIntegerContains(int targetValue) {
         // Implementation not provided
+        return false;
     }
 
     @Override
-    public void customDoubleContains(double targetValue) {
+    public boolean customDoubleContains(double targetValue) {
         // Implementation not provided
+        return false;
     }
 
     @Override
-    public void replaceAll(String word, String word2) {
+    public boolean replaceAll(String word, String word2) {
         // Implementation not provided
+        return false;
     }
 
     @Override
@@ -230,6 +228,11 @@ public class CircularArrayList<T> implements ListInterface<T> {
     public String toString2() {
         // Implementation not provided
         return null;
+    }
+
+    @Override
+    public boolean condSearch(String targetWord) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

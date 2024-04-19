@@ -6,6 +6,7 @@ package adt;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -350,16 +351,20 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     //Returns the entry that has that specific word
     //Duplicate words in an entry also are returned
     @Override
-    public void condSearch(String targetWord) {
-
+    public boolean condSearch(String targetWord) {
+        
+        boolean found = false;
+        Pattern pattern = Pattern.compile("\\b" + Pattern.quote(targetWord) + "\\b", Pattern.CASE_INSENSITIVE);
+        
         for (int i = 0; i < numberOfEntries; i++) {
               
-            if (array[i].toString().contains(targetWord)) {
+            if (pattern.matcher(array[i].toString()).find()) {
                 System.out.println(array[i].toString());
-                
+                found = true;
             }
         }
        
+        return found;
     }
     
     //Search method with conditions
@@ -371,6 +376,16 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     public boolean twoCondSearch(String targetWord, String targetWord2, int cond) {
 
         boolean status = false;
+        Pattern pattern = Pattern.compile("\\b" + Pattern.quote(targetWord) + "\\b", Pattern.CASE_INSENSITIVE);
+        
+        String regex = "\\b" + Pattern.quote(targetWord) + "\\b.*\\b" + Pattern.quote(targetWord2) + "\\b|\\b" + Pattern.quote(targetWord2) + "\\b.*\\b" + Pattern.quote(targetWord) + "\\b";
+        Pattern pattern2 = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        
+        String integerPattern = "\\b\\d+\\b";
+        Pattern intpattern = Pattern.compile(integerPattern);
+        
+        String doublePattern = "\\b\\d+(\\.\\d+)?\\b";
+        Pattern doublepattern = Pattern.compile(doublePattern);
         
         switch(cond){
             
@@ -380,7 +395,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                 for (int i = 0; i < numberOfEntries; i++) {
                     
                     
-                    if (array[i].toString().contains(targetWord) && array[i].toString().contains(targetWord2)) {
+                    if (pattern2.matcher(array[i].toString()).find()) {
 
                         status = true;
                         System.out.println(array[i]);
@@ -397,10 +412,14 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                 for (int i = 0; i < numberOfEntries; i++) {
                     
                     
-                    if (array[i].toString().contains(targetWord) && containsInteger(array[i], targetValue)) {
-
-                        status = true;
-                        System.out.println(array[i]);
+                    if (pattern.matcher(array[i].toString()).find()) {
+                        
+                        if(containsInteger(array[i], targetValue, intpattern)){
+                            
+                            status = true;
+                            System.out.println(array[i]);
+                            
+                        }
 
                     }
                 }
@@ -414,10 +433,15 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                 for (int i = 0; i < numberOfEntries; i++) {
                     
                     
-                    if (array[i].toString().contains(targetWord) && containsDouble(array[i], targetValue2)) {
-
-                        status = true;
-                        System.out.println(array[i]);
+                    
+                    if (pattern.matcher(array[i].toString()).find()) {
+                        
+                        if(containsDouble(array[i], targetValue2, doublepattern)){
+                            
+                            status = true;
+                            System.out.println(array[i]);
+                            
+                        }
 
                     }
                 }
@@ -438,6 +462,19 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     @Override
     public boolean threeCondSearch(String targetWord, String targetWord2, String targetWord3, int cond) {
 
+        String regex = "\\b" + Pattern.quote(targetWord) + "\\b.*\\b" + Pattern.quote(targetWord2) + "\\b.*\\b" + Pattern.quote(targetWord3) + "\\b|\\b" 
+             + Pattern.quote(targetWord2) + "\\b.*\\b" + Pattern.quote(targetWord) + "\\b.*\\b" + Pattern.quote(targetWord3) + "\\b|\\b"
+             + Pattern.quote(targetWord3) + "\\b.*\\b" + Pattern.quote(targetWord) + "\\b.*\\b" + Pattern.quote(targetWord2) + "\\b";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        
+        
+        String integerPattern = "\\b\\d+\\b";
+        Pattern intpattern = Pattern.compile(integerPattern);
+        
+        String doublePattern = "\\b\\d+(\\.\\d+)?\\b";
+        Pattern doublepattern = Pattern.compile(doublePattern);
+        
+        
         boolean status = false;
         
         switch(cond){
@@ -448,9 +485,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                 for (int i = 0; i < numberOfEntries; i++) {
                     
                     
-                    if (array[i].toString().contains(targetWord) && 
-                            array[i].toString().contains(targetWord2) &&
-                            array[i].toString().contains(targetWord3)) {
+                    if (pattern.matcher(array[i].toString()).find()) {
 
                         status = true;
                         System.out.println(array[i]);
@@ -467,12 +502,15 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                 for (int i = 0; i < numberOfEntries; i++) {
                     
                     
-                    if (array[i].toString().contains(targetWord) && 
-                            array[i].toString().contains(targetWord2) &&
-                            containsDouble(array[i], targetValue)) {
-
-                        status = true;
-                        System.out.println(array[i]);
+                    
+                    if (pattern.matcher(array[i].toString()).find()) {
+                        
+                        if(containsDouble(array[i], targetValue, doublepattern)){
+                            
+                            status = true;
+                            System.out.println(array[i]);
+                            
+                        }
 
                     }
                 }
@@ -486,17 +524,19 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                 for (int i = 0; i < numberOfEntries; i++) {
                     
                     
-                    if (array[i].toString().contains(targetWord) && 
-                            array[i].toString().contains(targetWord2) &&
-                            containsInteger(array[i], targetValue2)) {
-
-                        status = true;
-                        System.out.println(array[i]);
+                    if (pattern.matcher(array[i].toString()).find()) {
+                        
+                        if(containsInteger(array[i], targetValue2, intpattern)){
+                            
+                            status = true;
+                            System.out.println(array[i]);
+                            
+                        }
 
                     }
                 }
                 
-                break;                
+                break;              
                 
                 
 
@@ -511,33 +551,44 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     //Returns all entries
     //Returns duplicate values in an entry ("12", 12)
     @Override
-    public void customIntegerContains(int targetValue) {
+    public boolean customIntegerContains(int targetValue) {
+        
+        boolean status = false;
         for (int i = 0; i < numberOfEntries; i++) {
            
             if (containsInteger(array[i], targetValue)) {
                 System.out.println(array[i]);
+                status = true;
             }
         }
+        
+        return status;
     }
 
     //Checks whether the entry contains this double value
     //Returns all entries
     //Returns duplicate values in an entry ("12.0", 12.0)    
     @Override
-    public void customDoubleContains(double targetValue) {
+    public boolean customDoubleContains(double targetValue) {
+        
+        boolean status = false;
         for (int i = 0; i < numberOfEntries; i++) {
            
             if (containsDouble(array[i], targetValue)) {
                 System.out.println(array[i]);
+                status = true;
             }
         }
+        
+        return status;
     }
     
     //Replaces all oldValues with newValue in all entries
     //Duplicate oldValues in an entry will also be changed to newValue
     @Override
-    public void replaceAll(String oldValue, String newValue) {
+    public boolean replaceAll(String oldValue, String newValue) {
         
+        boolean found = false;
         Pattern pattern = Pattern.compile("\\b" + Pattern.quote(oldValue) + "\\b", Pattern.CASE_INSENSITIVE);
         for (int i = 0; i < numberOfEntries; i++) {
             
@@ -548,9 +599,12 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
                     
                     //Cast comparator onto newString
                     array[i] = (T) newString;
+                    found = true;
             }
                
         }
+        
+        return found;
     }
     
     //Bubble sort
@@ -719,12 +773,51 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return itemString.contains(Integer.toString(targetValue));
     }
     
+    private boolean containsInteger(T item, int targetValue, Pattern pattern) {
+        String itemString = item.toString();
+        Matcher matcher = pattern.matcher(itemString);
+        while (matcher.find()) {
+            // Extract the matched substring
+            String matchedSubstring = matcher.group();
+            // Check if the matched substring contains the integer value
+            try {
+                int intValue = Integer.parseInt(matchedSubstring);
+                if (intValue == targetValue) {
+                    return true;
+                }
+            } catch (NumberFormatException e) {
+                    // Ignore parsing errors and continue searching
+            }
+        }
+        return false; // Return false if no match is found
+
+   }
+    
         
     //Validation for customDoubleContains()
     //item is array[i], it will check whether it contains the specific value
     private boolean containsDouble(T item, double targetValue) {
         String itemString = item.toString();
         return itemString.contains(Double.toString(targetValue));
+    }
+    
+    private boolean containsDouble(T item, double targetValue, Pattern pattern) {
+        String itemString = item.toString();
+        Matcher matcher = pattern.matcher(itemString);
+        while (matcher.find()) {
+            // Extract the matched substring
+            String matchedSubstring = matcher.group();
+            // Check if the matched substring represents a double value
+            try {
+                double doubleValue = Double.parseDouble(matchedSubstring);
+                if (Double.compare(doubleValue, targetValue) == 0) {
+                    return true;
+                }
+            } catch (NumberFormatException e) {
+                // Ignore parsing errors and continue searching
+            }
+        }
+        return false; // Return false if no match is found
     }
     
 

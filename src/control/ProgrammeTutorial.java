@@ -24,10 +24,9 @@ public class ProgrammeTutorial  {
         int cond = programmeUI.chooseWhichAdd();
  
         if(cond == 1){
+
+            pg[0].getTutorialGroupList().twoCondSearch("Software Engineering", "1", 2);
             
-            
-            
-        
             Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
             while (iterator.hasNext()) {

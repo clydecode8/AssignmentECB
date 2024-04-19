@@ -141,7 +141,7 @@ public interface ListInterface<T> {
    * 
    * @return 
    */    
-    public void condSearch(String targetWord);
+    public boolean condSearch(String targetWord);
     
     /** "change"
    * Task: Gets the size of entries in the list.
@@ -166,7 +166,7 @@ public interface ListInterface<T> {
    * 
    * @return 
    */
-    public void customIntegerContains(int targetValue);
+    public boolean customIntegerContains(int targetValue);
    
     /** "change"
    * Task: Gets the size of entries in the list.
@@ -174,7 +174,7 @@ public interface ListInterface<T> {
    * 
    * @return 
    */
-    public void customDoubleContains(double targetValue);
+    public boolean customDoubleContains(double targetValue);
     
     /** "change"
    * Task: Gets the size of entries in the list.
@@ -182,7 +182,7 @@ public interface ListInterface<T> {
    * 
    * @return 
    */
-    public void replaceAll(String word, String word2);
+    public boolean replaceAll(String word, String word2);
     
     /** "change"
    * Task: Gets the size of entries in the list.
