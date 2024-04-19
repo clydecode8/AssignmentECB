@@ -41,13 +41,12 @@ public class StudentTutorialUI {
             System.out.println("");
             System.out.println("------------------------------------");
             System.out.println("1. Choose from existing Tutorial Group.");
-            System.out.println("2. Input Programme Manually.");
-            System.out.println("3. Exit.");
+            System.out.println("2. Exit.");
             System.out.println("------------------------------------");
             System.out.print(">:    ");
             choice = scanner.nextInt();
     
-        }while(choice > 0 && choice > 3);
+        }while(choice > 0 && choice > 2);
 
         return choice;
     }
@@ -82,13 +81,12 @@ public class StudentTutorialUI {
             System.out.println("");
             System.out.println("------------------------------------");
             System.out.println("1. Choose from existing Tutorial Group.");
-            System.out.println("2. Input Tutorial Group Manually.");
-            System.out.println("3. Exit.");
+            System.out.println("2. Exit.");
             System.out.println("------------------------------------");
             System.out.print(">:    ");
             choice = scanner.nextInt();
     
-        }while(choice > 0 && choice > 3);
+        }while(choice > 0 && choice > 2);
 
         return choice;   
     
@@ -103,16 +101,36 @@ public class StudentTutorialUI {
             System.out.println("");
             System.out.println("------------------------------------");
             System.out.println("1. Choose from existing Tutorial Group.");
-            System.out.println("2. Input Tutorial Group Manually.");
-            System.out.println("3. Exit.");
+            System.out.println("2. Exit.");
             System.out.println("------------------------------------");
             System.out.print(">:    ");
             choice = scanner.nextInt();
     
-        }while(choice > 0 && choice > 3);
+        }while(choice > 0 && choice > 2);
 
         return choice;   
     
+    }
+    
+    public int chooseWhichMerge(){
+        
+        int choice = 0;
+        do {
+            
+            System.out.println("");
+            System.out.println("");
+            System.out.println("------------------------------------");
+            System.out.println("1. Choose from existing Tutorial Group.");
+            System.out.println("2. Exit.");
+            System.out.println("------------------------------------");
+            System.out.print(">:    ");
+            choice = scanner.nextInt();
+    
+        }while(choice > 0 && choice > 2);
+
+        return choice;   
+           
+        
     }
     
     public int chooseStudent(){
@@ -134,7 +152,7 @@ public class StudentTutorialUI {
     
     public int chooseProgramme(){
         
-        System.out.println("Choose which Programme: ");
+        System.out.print("Choose which Programme: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }

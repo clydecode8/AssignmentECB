@@ -169,7 +169,7 @@ public class GroupManagement {
         group = new String[]{"RSW01", "RSW02", "RSW03","MG01", "MG02", "MG03", "ACC01", "ACC02", "ACC03"};
         
         tg[0] = new TutorialGroup(group[0], 2, pg[0]);
-        tg[1] = new TutorialGroup(group[1], 2, pg[0]);
+        tg[1] = new TutorialGroup(group[1], 1, pg[0]);
         tg[2] = new TutorialGroup(group[2], 2, pg[0]);
        
         tg[3] = new TutorialGroup(group[3], 0, pg[1]);

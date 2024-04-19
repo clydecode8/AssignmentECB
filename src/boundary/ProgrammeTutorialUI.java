@@ -18,11 +18,13 @@ public class ProgrammeTutorialUI {
     
     public int getMenuChoice() {
         
-        System.out.println("Tutorial Group Management System");
-        System.out.println("\n---------------------------");
+        System.out.println("===============================================");
+        System.out.println("       Tutorial Group Management System");
+        System.out.println("===============================================");
         System.out.println("1. Add Tutorial Group to Programme ");
         System.out.println("2. Remove Tutorial Group from Programme");
         System.out.println("3. List Tutorial Group for a programme");
+        System.out.println("===============================================");
         System.out.println("0. Quit");
         System.out.print("Enter choice: ");
         int choice = scanner.nextInt();

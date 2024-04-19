@@ -129,6 +129,8 @@ public class ProgrammeTutorial  {
                 
             }
             
+            GroupManagementUI.enterCont();
+            
         }else if(choice == 2){
             
             Iterator<Programme> iterator = programmeList.iterator();
@@ -147,10 +149,10 @@ public class ProgrammeTutorial  {
             System.out.println("");
             System.out.println(pg[choice2].getTutorialGroupList().toString());
 
-            
+            GroupManagementUI.enterCont();
         }
         
-        GroupManagementUI.enterCont();
+        
         
 
     }
