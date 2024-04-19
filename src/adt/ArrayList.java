@@ -661,7 +661,8 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     public Iterator<T> iterator() {
         return new ArrayListIterator();
     }
-
+    
+    
     @Override
     public T remove(T element) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -690,6 +691,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
     //Extra methods for implementation
 //------------------------------------------------------
     
+    //Declaration for Nodes
     private class Node {
         
         private Node next;
@@ -773,6 +775,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return itemString.contains(Integer.toString(targetValue));
     }
     
+    //Method overloading for extra parameter PATTERN
     private boolean containsInteger(T item, int targetValue, Pattern pattern) {
         String itemString = item.toString();
         Matcher matcher = pattern.matcher(itemString);
@@ -801,6 +804,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return itemString.contains(Double.toString(targetValue));
     }
     
+    //Method overloading for extra parameter PATTERN
     private boolean containsDouble(T item, double targetValue, Pattern pattern) {
         String itemString = item.toString();
         Matcher matcher = pattern.matcher(itemString);
