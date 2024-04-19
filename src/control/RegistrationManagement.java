@@ -118,6 +118,8 @@ public class RegistrationManagement {
                     int displaycourse = rmUI.displaycoursetype();
                     filtercoursetype(filtercourse,displaycourse);
                     break;
+                case 9:
+                    report1();
                     
             }
         }while(choice !=0);
@@ -144,16 +146,19 @@ public class RegistrationManagement {
         }
     }
     
+    //Function 1 add new students
     public void addnewStudent(){
         Student addnewstudent = rmUI.addnewStudentUI();
         student.getStudentListlinked().add(addnewstudent);
     }
     
+    //Function 2 remove a student
     public void removeStudent(){
         int removestudent = rmUI.removestudent();
         student.getStudentListlinked().remove(removestudent);
     }
     
+    //Function 3 Amend student details
     public void amendStudent(int amendstudentIndex){
         System.out.println("Enter new name: ");
         String name = scanner.nextLine();
@@ -164,6 +169,15 @@ public class RegistrationManagement {
         student.getStudentListlinked().get(amendstudentIndex).setID(id);
     }
     
+    //Function 4 Search students for registered course
+    public void searchStudentCourse(){
+        int search = rmUI.searchstudentCourse();
+        for(int i= 0; i< student.getStudentListlinked().get(search).getCourseList2().size();i++){
+        System.out.println(student.getStudentListlinked().get(search).getNameId()+"\t"+student.getStudentListlinked().get(search).getCourseList2().get(i).toString2()+"\tCourse Type:"+course.getCourseList2().get(i).getcourseTypes().get(i));
+        }
+    }
+    
+    //Function 5 Add students to a few course(main,elective,resit,repeat)
     public void addToCourse(int stuIndex,int courseIndex){
         course.getCourseList2().get(courseIndex-1).getStudentList().add(student.getStudentListlinked().get(stuIndex-1));
         student.getStudentListlinked().get(stuIndex-1).getCourseList2().add(course.getCourseList2().get(courseIndex-1));
@@ -190,15 +204,9 @@ public class RegistrationManagement {
         /*for(int i =0;i < course.getCourseList2().get(courseIndex-1).getStudentList().size();i++){
         System.out.println(course.getCourseList2().get(courseIndex-1).toString() +"\t" +course.getCourseList2().get(courseIndex-1).getStudentList().get(i).getNameId());
         }*/
-    }
+    }    
     
-    public void searchStudentCourse(){
-        int search = rmUI.searchstudentCourse();
-        for(int i= 0; i< student.getStudentListlinked().get(search).getCourseList2().size();i++){
-        System.out.println(student.getStudentListlinked().get(search).getNameId()+"\t"+student.getStudentListlinked().get(search).getCourseList2().get(i).toString2()+"\tCourse Type:"+course.getCourseList2().get(i).getcourseTypes().get(i));
-        }
-    }
-    
+    //Function 6 Remove a student from a course registration
     public void removeStuFromCourse(){
         int choosecourse = rmUI.chooseCourse();
         int num = 1;
@@ -212,6 +220,7 @@ public class RegistrationManagement {
         System.out.println("--Remove successfully!--");
     }
     
+    //Functino 7 Calculate fee paid for registered courses
     public void calculatedfee(){
         int choosestu = rmUI.calculatefee();
         double total = 0;
@@ -219,12 +228,62 @@ public class RegistrationManagement {
             System.out.println(course.getCourseList2().get(i).toString()+"RM "+ course.getCourseList2().get(i).getcourseprice());
             total += course.getCourseList2().get(i).getcourseprice();
         }
-        System.out.printf("The student total fee is %.2f \n" , total);
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.printf("The student total fee is RM %.2f \n" , total);
     }
     
+    //Function 8 Filters students for courses based on criteria
     public void filtercoursetype(int filtercourse, int displaycourse){
         for(int i = 0; i<course.getCourseList2().get(displaycourse).getcourseTypes().size();i++){
         System.out.println(course.getCourseList2().get(filtercourse).getStudentList().get(i).getNameId()+course.getCourseList2().get(filtercourse)+"Course: "+course.getCourseList2().get(i).getcourseTypes().get(i));
+        }
+    }
+    
+    //Function 9 Geneate Summary reports (>=2)
+    public void displayreport1(){
+        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("Enter a number to calculate the fee of student: ");
+        int choosestu = scanner.nextInt();
+        scanner.nextLine();
+        double total = 0;
+        System.out.println("================================================================================================"); 
+        System.out.println("\t\t\t\tReport:Student Bill");
+        System.out.println("Name :"+student.getStudentListlinked().get(choosestu-1).getName()+"\t\t\t\t\t\t\t\t\tID :"+student.getStudentListlinked().get(choosestu-1).getID());
+        System.out.println("================================================================================================"); 
+        for(int i = 0;i<student.getStudentListlinked().get(choosestu-1).getCourseList2().size();i++){
+            System.out.println(course.getCourseList2().get(i).toString()+"RM "+ course.getCourseList2().get(i).getcourseprice());
+            total += course.getCourseList2().get(i).getcourseprice();
+        }
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.printf("The student total fee:\t\t\t\t\t\t\t   RM %.2f \n" , total);
+    }
+    
+    public void displayreport2(){
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("Enter a number to calculate the student for a course: ");
+        int choosecourse = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("================================================================================================"); 
+        System.out.println("\t\t\t\tReport: Number of student for course");
+        System.out.println("Course :"+ course.getCourseList2().get(choosecourse-1).getCourseName()+"\t\t\t\t\t\t\t\t\tID :"+course.getCourseList2().get(choosecourse).getCourseID());
+        System.out.println("================================================================================================"); 
+        int num =0;
+        for(int i =0;i < course.getCourseList2().get(choosecourse-1).getStudentList().size();i++){
+            System.out.println(course.getCourseList2().get(choosecourse-1).toString() +"\t" +course.getCourseList2().get(choosecourse-1).getStudentList().get(i).getNameId());
+            num++;
+        }
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("The Total student for course "+course.getCourseList2().get(choosecourse-1).getCourseName().toUpperCase()+" :\t\t\t\t\t\t"+num+ " Students");
+    }
+    
+    public void report1(){
+        int choosereport = rmUI.reportchoose();
+        if (choosereport == 1){
+            displaystudent();
+            displayreport1();
+        }else if(choosereport ==2){
+            displayCourse();
+            displayreport2();
         }
     }
     
