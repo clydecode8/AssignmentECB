@@ -24,7 +24,7 @@ public class AssTeam {
     private TutorialGroup tg = new TutorialGroup();
     private Team team = new Team();
     private AssTeamUI assTeamUI = new AssTeamUI();
-    public void AssTeam(){
+    public void runAssTeam(){
         Programme p1 = new Programme("Software Engineering", "FOCS");
         TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
         TutorialGroup g2 = new TutorialGroup("Group 2", 24, p1);
@@ -267,7 +267,7 @@ public class AssTeam {
 
     public static void main(String[] args) {
         AssTeam assTeam = new AssTeam();
-        assTeam.AssTeam();
+        assTeam.runAssTeam();
     }
     
 }
