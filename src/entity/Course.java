@@ -19,6 +19,7 @@ public class Course {
     private final static CircularArrayList<Course> courseList = new CircularArrayList<>();
     private final static LinkedListInterface<Course> courseListlinked = new LinkedList<>();
     private LinkedListInterface<Student> studentList = new LinkedList<>();
+    private ListInterface<Programme> programmeList = new ArrayList<>();
     
     public Course(){
         

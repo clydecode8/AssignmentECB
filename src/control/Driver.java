@@ -72,6 +72,11 @@ public class Driver {
         
     }
     
+    public void initialiser(){
+        
+        
+        
+    }
     
     
     public static void main(String[] args){
