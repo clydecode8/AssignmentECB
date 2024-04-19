@@ -5,12 +5,14 @@ import adt.CircularArrayList;
 import adt.LinkedList;
 import adt.LinkedListInterface;
 import adt.ListInterface;
+import adt.SortedLinkedList;
+import adt.SortedLinkedListInterface;
 
 /**
  *
  * @author limws
  */
-public class Course {
+public class Course implements Comparable<Course>{
     private String courseName;
     private String courseID;
     private String courseDetails;
@@ -19,6 +21,8 @@ public class Course {
     private final static CircularArrayList<Course> courseList = new CircularArrayList<>();
     private final static LinkedListInterface<Course> courseListlinked = new LinkedList<>();
     private LinkedListInterface<Student> studentList = new LinkedList<>();
+    private SortedLinkedListInterface<Tutor> tutorList = new SortedLinkedList<>();
+
     
     public Course(){
         
@@ -110,10 +114,38 @@ public class Course {
         return String.format("Course Name: %-30s Course ID: %-15s Course price: RM %.2f " ,courseName,courseID,courseprice);
     }
     
+    @Override
+    public int compareTo(Course other) {
+        
+        String thisName = this.getCourseName();
+        String otherName = other.getCourseName();
+
+        // Handle null values
+        if (thisName == null && otherName == null) {
+            
+            return 0; // Both names are null, consider them equal
+        
+        }else if (thisName == null) {
+            
+            return -1; // This name is null, consider it less than the other name
+        
+        } else if (otherName == null) {
+            
+            return 1; // Other name is null, consider it greater than this name
+        }
+
+        // Compare based on the names
+        return thisName.compareTo(otherName); 
+    }
 
     //@Override
     //public String toString() {
     //    return String.format("Course Name: %-30s Course ID: %-15s Course Details: %-1000s" ,courseName,courseID,courseDetails);
    // }
+    public boolean addTutor(Tutor newTutor){
+        this.tutorList.add(newTutor);
+        
+        return true;
+    }
     
 }
