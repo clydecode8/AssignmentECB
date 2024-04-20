@@ -2,7 +2,7 @@ package adt;
 
 /**
  *
- * @author jie
+ * @author Liew Yee Jie
  */
 public class SortedArrayList<T extends Comparable<? super T>> implements SortedListInterface<T> {
 
