@@ -52,6 +52,14 @@ public class Course implements Comparable<Course>{
     public LinkedListInterface<Course> getCourseList2() {
             return courseListlinked;
         }
+
+    public SortedLinkedListInterface<Tutor> getTutorList() {
+        return tutorList;
+    }
+
+    public void setTutorList(SortedLinkedListInterface<Tutor> tutorList) {
+        this.tutorList = tutorList;
+    }
     
     public String getCourseID() {   
         return courseID;

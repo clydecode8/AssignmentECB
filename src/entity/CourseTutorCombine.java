@@ -19,12 +19,21 @@ public class CourseTutorCombine implements Comparable<CourseTutorCombine>{
     private char type;
     private static SortedLinkedListInterface<CourseTutorCombine> courseTutorCombineList = new SortedLinkedList<>();
 
+    public CourseTutorCombine() {
+        
+        this.tutor = null;
+        this.course = null;
+        this.tutorialgroup = tutorialgroup;
+        this.type = type;
+    
+    }
     public CourseTutorCombine(Tutor tutor, Course course, TutorialGroup tutorialgroup,char type) {
         this.tutor = tutor;
         this.course = course;
         this.tutorialgroup = tutorialgroup;
         this.type = type;
     }
+
 
     public TutorialGroup getTutorialgroup() {
         return tutorialgroup;
@@ -58,12 +67,17 @@ public class CourseTutorCombine implements Comparable<CourseTutorCombine>{
         this.type = type;
     }
 
-    public static SortedLinkedListInterface<CourseTutorCombine> getCourseTutorCombineList() {
+    public SortedLinkedListInterface<CourseTutorCombine> getCourseTutorCombineList() {
         return courseTutorCombineList;
     }
 
-    public static void setCourseTutorCombineList(CourseTutorCombine coursetutor) {
+    public void setCourseTutorCombineList(CourseTutorCombine coursetutor) {
         courseTutorCombineList.add(coursetutor);
+    }
+    
+        
+    public void addTutorCombine(CourseTutorCombine newEntry){
+        courseTutorCombineList.add(newEntry);
     }
     @Override
     public int compareTo(CourseTutorCombine other) {
@@ -103,6 +117,7 @@ public class CourseTutorCombine implements Comparable<CourseTutorCombine>{
     public int hashCode() {
         return Objects.hash(tutor, course, type);
     }
+
 
     
 }

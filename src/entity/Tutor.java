@@ -10,7 +10,7 @@ public class Tutor implements Comparable<Tutor> {
     private String gender;
     private int age;
     private static SortedLinkedListInterface<Tutor> tutorList = new SortedLinkedList<>();
-
+   
     public Tutor(){
         
     }
@@ -63,6 +63,9 @@ public class Tutor implements Comparable<Tutor> {
     public void setTutorList(Tutor tutor) {
         tutorList.add(tutor);
     }
+
+    
+    
     
 
     

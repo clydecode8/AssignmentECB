@@ -5,6 +5,8 @@ import adt.ArrayList;
 //import adt.CustomArrayQueue;
 import adt.ListInterface;
 import adt.SortedArrayList;
+import adt.SortedLinkedList;
+import adt.SortedLinkedListInterface;
 import adt.SortedListInterface;
 import java.util.Objects;
 
@@ -19,20 +21,22 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
     private int qty;
     private Programme programme;
     private int numb;
+    private Tutor tutor;
     private final static ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();   
     private final static SortedListInterface<TutorialGroup> sortedTutorialGroup = new SortedArrayList<>();    
 
     private ListInterface<Student> stdList = new ArrayList<>();
     private SortedListInterface<Student> stdQueue = new SortedArrayList<>();
-
+    private SortedLinkedListInterface<TutorialGroup> tutorGrpList = new SortedLinkedList<>();
     
     public TutorialGroup() {
         
         this.group = "";
         this.qty = 0;
         this.programme = null;
-  
+        
     }
+    
 
     public TutorialGroup(String group, int qty, Programme programme) {
 
@@ -82,6 +86,15 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
         return sortedTutorialGroup;
     }
 
+    public SortedLinkedListInterface<TutorialGroup> getTutorGrpList() {
+        return tutorGrpList;
+    }
+
+    public void setTutorGrpList(SortedLinkedListInterface<TutorialGroup> tutorGrpList) {
+        this.tutorGrpList = tutorGrpList;
+    }
+
+   
     public static void setTutorialGroupList(TutorialGroup tg) {
         tutorialGroupList.add(tg);
         sortedTutorialGroup.add(tg);
