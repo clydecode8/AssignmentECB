@@ -32,6 +32,7 @@ public class RegistrationManagementUI {
         return choice;
     }
     
+    //Function 1 add new students
     public Student addnewStudentUI(){
         System.out.println("------------------------------------------------------------------------------------------------");          
         System.out.println("ADD NEW STUDENT");
@@ -44,6 +45,7 @@ public class RegistrationManagementUI {
         return new Student(name,ID);
     }
     
+    //Function 2 remove a student
     public int removestudent(){
         System.out.println("------------------------------------------------------------------------------------------------");          
         System.out.println("REMOVE STUDENT");
@@ -55,6 +57,7 @@ public class RegistrationManagementUI {
         return removenumber-1;
     }
     
+    //Function 3 Amend student details
     public int amendstudent(){
         System.out.println("------------------------------------------------------------------------------------------------");        
         System.out.println("AMEND STUDENT DETAILS");
@@ -65,6 +68,7 @@ public class RegistrationManagementUI {
         return amendnumber-1;
     }
     
+    //Function 4 Search students for registered course
     public int searchstudentCourse(){
         System.out.println("------------------------------------------------------------------------------------------------");           
         System.out.println("SEARCH STUDENT DETAILS");
@@ -75,6 +79,7 @@ public class RegistrationManagementUI {
         return searchnumber-1;
     }
     
+    //Function 5 Add students to a few course(main,elective,resit,repeat)
     public int getSelection(String hint){
         //System.out.println("ADD Student to Course");
         System.out.println(hint);
@@ -83,6 +88,7 @@ public class RegistrationManagementUI {
         return addtocourse;
     }
     
+    //Function 6 Remove a student from a course registration
     public int chooseCourse(){
         System.out.println("Enter number to choose course: ");
         int choosecourse = scanner.nextInt();
@@ -99,7 +105,8 @@ public class RegistrationManagementUI {
         scanner.nextLine();
         return removestufromcourse-1;
     }
-        
+    
+    //Functino 7 Calculate fee paid for registered courses
     public int calculatefee(){
         System.out.println("------------------------------------------------------------------------------------------------");           
         System.out.println("CALCULATE FEE");
@@ -110,6 +117,7 @@ public class RegistrationManagementUI {
         return calculatefee-1;
     }
     
+    //Function 8 Filters students for courses based on criteria
     public int filter(){
         System.out.println("------------------------------------------------------------------------------------------------");           
         System.out.println("FILTER");
@@ -120,6 +128,7 @@ public class RegistrationManagementUI {
         return filternumber-1;
     }   
     
+    //Function 9 Geneate Summary reports (>=2)
     public int displaycoursetype(){
         System.out.println("Choose CourseType to filter");
         System.out.println("1. Main");
@@ -131,4 +140,15 @@ public class RegistrationManagementUI {
         scanner.nextLine();
         return displaycourse-1;
     }
+    public int reportchoose(){
+        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("Report");
+        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("1. Report of Calculated Total Fee for a student");
+        System.out.println("2. Report of Calculated number of Student in a Course");
+        System.out.println("Choose number to view report: ");
+        int reportchoose = scanner.nextInt();
+        scanner.nextLine();
+        return reportchoose;
+    }    
 }
