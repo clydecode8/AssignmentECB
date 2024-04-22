@@ -12,9 +12,9 @@ public class RegistrationManagementUI {
     private Student student = new Student();
     
     public int Menu(){
-        System.out.println("------------------------------------------------------------------------------------------------");       
+        System.out.println("-----------------------------------------------------------------------------------------------------");       
         System.out.println("Registration Management System");
-        System.out.println("------------------------------------------------------------------------------------------------"); 
+        System.out.println("-----------------------------------------------------------------------------------------------------"); 
         System.out.println("1. Add new Students");
         System.out.println("2. Remove a student");
         System.out.println("3. Amend student details");
@@ -34,9 +34,9 @@ public class RegistrationManagementUI {
     
     //Function 1 add new students
     public Student addnewStudentUI(){
-        System.out.println("------------------------------------------------------------------------------------------------");          
+        System.out.println("-----------------------------------------------------------------------------------------------------");          
         System.out.println("ADD NEW STUDENT");
-        System.out.println("------------------------------------------------------------------------------------------------");         
+        System.out.println("-----------------------------------------------------------------------------------------------------");         
         System.out.println("Enter new student name: ");
         String name = scanner.nextLine();
         System.out.println("Enter new student ID: ");
@@ -47,9 +47,9 @@ public class RegistrationManagementUI {
     
     //Function 2 remove a student
     public int removestudent(){
-        System.out.println("------------------------------------------------------------------------------------------------");          
+        System.out.println("-----------------------------------------------------------------------------------------------------");          
         System.out.println("REMOVE STUDENT");
-        System.out.println("------------------------------------------------------------------------------------------------"); 
+        System.out.println("-----------------------------------------------------------------------------------------------------"); 
         System.out.println("Enter the number to remove student: ");
         int removenumber = scanner.nextInt();
         scanner.nextLine();
@@ -59,9 +59,9 @@ public class RegistrationManagementUI {
     
     //Function 3 Amend student details
     public int amendstudent(){
-        System.out.println("------------------------------------------------------------------------------------------------");        
+        System.out.println("-----------------------------------------------------------------------------------------------------");        
         System.out.println("AMEND STUDENT DETAILS");
-        System.out.println("------------------------------------------------------------------------------------------------");  
+        System.out.println("-----------------------------------------------------------------------------------------------------");  
         System.out.println("Choose the number to amend student: ");
         int amendnumber = scanner.nextInt();
         scanner.nextLine();
@@ -70,9 +70,9 @@ public class RegistrationManagementUI {
     
     //Function 4 Search students for registered course
     public int searchstudentCourse(){
-        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
         System.out.println("SEARCH STUDENT DETAILS");
-        System.out.println("------------------------------------------------------------------------------------------------");  
+        System.out.println("-----------------------------------------------------------------------------------------------------");  
         System.out.println("Choose the number to search student registered courses: ");
         int searchnumber = scanner.nextInt();
         scanner.nextLine();
@@ -97,9 +97,9 @@ public class RegistrationManagementUI {
     }
     
         public int removeStuFromCourse(){
-        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
         System.out.println("REMOVE STUDENT FROM COURSE");
-        System.out.println("------------------------------------------------------------------------------------------------");             
+        System.out.println("-----------------------------------------------------------------------------------------------------");             
         System.out.println("Enter number to remove the student from course: ");
         int removestufromcourse = scanner.nextInt();
         scanner.nextLine();
@@ -108,9 +108,9 @@ public class RegistrationManagementUI {
     
     //Functino 7 Calculate fee paid for registered courses
     public int calculatefee(){
-        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
         System.out.println("CALCULATE FEE");
-        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("Enter a number to calculate the fee of student: ");
         int calculatefee = scanner.nextInt();
         scanner.nextLine();
@@ -119,9 +119,9 @@ public class RegistrationManagementUI {
     
     //Function 8 Filters students for courses based on criteria
     public int filter(){
-        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
         System.out.println("FILTER");
-        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("Enter a number to choose course: ");
         int filternumber = scanner.nextInt();
         scanner.nextLine();
@@ -141,9 +141,9 @@ public class RegistrationManagementUI {
         return displaycourse-1;
     }
     public int reportchoose(){
-        System.out.println("------------------------------------------------------------------------------------------------");           
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
         System.out.println("Report");
-        System.out.println("------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("1. Report of Calculated Total Fee for a student");
         System.out.println("2. Report of Calculated number of Student in a Course");
         System.out.println("Choose number to view report: ");
