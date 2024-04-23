@@ -21,27 +21,29 @@ public class ProgrammeTutorial  {
 
     public void addProgrammeTutorial(Programme[] pg, TutorialGroup[] tg, ListInterface<Programme> programmeList){
         
+        
         int cond = programmeUI.chooseWhichAdd();
  
         if(cond == 1){
 
-            pg[0].getTutorialGroupList().twoCondSearch("Software Engineering", "1", 2);
-            
+            GroupManagementUI.clearScreen();
+            System.out.println("====================================================================");
             Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
+            System.out.printf("%-5s %-25s %-15s%n", "No", "Programme Name", "Year of Intake");
             while (iterator.hasNext()) {
-                Comparable programme = iterator.next();
+                Programme programme = iterator.next();
                
-                System.out.println(i+1 + ". " + programme.toString());
+                System.out.printf("%-5d %-25s %-25s%n", i+1, programme.getName(), programme.getYearIntake());
                 i++;
             }
-            
+
+            System.out.println("====================================================================");
             int choice = programmeUI.inputAddIterator();
             
             String tgroup = programmeUI.inputTutorialGroup();
-            int tgroupStudents = programmeUI.inputNoStudents();
             
-            TutorialGroup inputTG = new TutorialGroup(tgroup, tgroupStudents, pg[choice]);
+            TutorialGroup inputTG = new TutorialGroup(tgroup, 0, pg[choice]);
             pg[choice].getTutorialGroupList().add(inputTG);
            
             
@@ -69,9 +71,7 @@ public class ProgrammeTutorial  {
             
             int choice = programmeUI.inputRemoveIterator();
 
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            GroupManagementUI.clearScreen();
             
             Iterator<TutorialGroup> iterator2 = pg[choice].getTutorialGroupList().iterator();
             int j = 0;

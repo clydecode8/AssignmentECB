@@ -12,7 +12,7 @@ import utility.MessageUI;
 
 /**
  *
- * @author User
+ * @author Kok Ming Han
  */
 public class GroupManagement {
     
@@ -28,7 +28,6 @@ public class GroupManagement {
     private StudentTutorial stdT = new StudentTutorial();
     private GroupSummary groupsummary = new GroupSummary();
     private GroupSummaryUI gsUI = new GroupSummaryUI();
-    private Course course = new Course();
     
     private Programme[] pg;
     private TutorialGroup[] tg;
@@ -170,7 +169,7 @@ public class GroupManagement {
         group = new String[]{"RSW01", "RSW02", "RSW03","MG01", "MG02", "MG03", "ACC01", "ACC02", "ACC03"};
         
         tg[0] = new TutorialGroup(group[0], 2, pg[0]);
-        tg[1] = new TutorialGroup(group[1], 1, pg[0]);
+        tg[1] = new TutorialGroup(group[1], 2, pg[0]);
         tg[2] = new TutorialGroup(group[2], 2, pg[0]);
        
         tg[3] = new TutorialGroup(group[3], 0, pg[1]);

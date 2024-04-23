@@ -148,6 +148,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return result;
     }
     
+    //Removes the entry that has the containing word.
     @Override
     public boolean customRemove(String word){
         

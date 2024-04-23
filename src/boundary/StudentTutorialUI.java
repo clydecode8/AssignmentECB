@@ -142,10 +142,22 @@ public class StudentTutorialUI {
         return std-1;
     }
 
-    public int inputChangeIteratorFindTG(){
+    public int inputChangeIteratorFindTG(int max, int cannotChoice){
         
         System.out.println("Which tutorial group you would like to change?: ");
         int ans = scanner.nextInt();
+        System.out.println(max);
+        while(ans > max) {
+            
+            System.out.println("");
+            System.out.println("");
+            System.out.print("Please choose again: ");
+            ans = scanner.nextInt();
+  
+        }
+
+        
+        
         return ans-1;
         
     }
@@ -157,10 +169,16 @@ public class StudentTutorialUI {
         return chosen-1;
     }
     
-    public int inputAddIterator(){
+    public int inputAddIterator(int max){
         
-        System.out.println("Choose which Tutorial Group to add: ");
+        System.out.print("Choose which Tutorial Group to add: ");
         int chosen = scanner.nextInt();
+        while(chosen > max){
+            
+            System.out.println("Input again: ");
+            chosen = scanner.nextInt();
+            
+        }
         return chosen-1;
     }
     
@@ -173,27 +191,27 @@ public class StudentTutorialUI {
     
     public int inputChangeIterator(){
         
-        System.out.println("Choose which Tutorial Group to change: ");
+        System.out.print("Choose which Tutorial Group to change: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }
     
     public int inputMergeIterator(){
         
-        System.out.println("Choose the first Tutorial Group: ");
+        System.out.print("Choose the first Tutorial Group: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }
     public int inputMergeIterator2(){
         
-        System.out.println("Choose the second Tutorial Group to merge to first: ");
+        System.out.print("Choose the second Tutorial Group to merge to first: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }
     
     public int inputChooseIterator(){
      
-        System.out.println("Choose which Tutorial Group to see: ");
+        System.out.print("Choose which Tutorial Group to see: ");
     
         int chosen = scanner.nextInt();
         return chosen-1;    
@@ -201,7 +219,7 @@ public class StudentTutorialUI {
     
     public int inputChooseName(){
         
-        System.out.println("Choose which Student to be removed: ");
+        System.out.print("Choose which Student to be removed: ");
         
         int chosen = scanner.nextInt();
         return chosen-1;
@@ -209,14 +227,14 @@ public class StudentTutorialUI {
     
     public String inputName(){
         
-        System.out.println("Input the name: ");
+        System.out.print("Input the name: ");
         String name = scanner.next();
         return name;
     }
     
     public String inputID(){
         
-        System.out.println("Input the ID");
+        System.out.print("Input the ID");
         String id = scanner.next();
         return id;
     }

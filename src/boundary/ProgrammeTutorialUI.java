@@ -113,7 +113,7 @@ public class ProgrammeTutorialUI {
     
     public int inputAddIterator(){
         
-        System.out.println("Choose which programme to add: ");
+        System.out.print("Choose which programme to add: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }
@@ -131,42 +131,42 @@ public class ProgrammeTutorialUI {
         String date = inputProgrammeDate();
         
         String tg = inputTutorialGroup();
-        int numb = inputNoStudents();
         
         
-        return new TutorialGroup(tg, numb, new Programme(name, date));
+        
+        return new TutorialGroup(tg, 0, new Programme(name, date));
 
     } 
     
     public String inputProgrammeName(){
         
-        System.out.println("Input Programme Name: ");
+        System.out.print("Input Programme Name: ");
         String inputProgramme = scanner.nextLine();
         return inputProgramme;
     }
     
     public String inputProgrammeDate(){
         
-        System.out.println("Input Programme Intake (Year/Month) (2023/09): ");
+        System.out.print("Input Programme Intake (Year/Month) (2023/09): ");
         String inputProgrammeDate = scanner.nextLine();
         return inputProgrammeDate;
     }
     
     public String inputTutorialGroup(){
         
-        System.out.println("Input Tutorial Group (CodeNumb) (ACC03): ");
+        System.out.print("Input Tutorial Group (CodeNumb) (ACC03): ");
         String tutorialgroup = scanner.next();
         return tutorialgroup;
     }
     
-    public int inputNoStudents(){
-        
-        
-        System.out.println("Input number of students: ");
-        int numb = scanner.nextInt();
-        return numb;
-    }
-    
+//    public int inputNoStudents(){
+//        
+//        
+//        System.out.print("Input number of students: ");
+//        int numb = scanner.nextInt();
+//        return numb;
+//    }
+//    
     
 
 }
