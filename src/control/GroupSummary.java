@@ -254,7 +254,7 @@ public class GroupSummary {
                                    pg[i].getName(), 
                                    pg[i].getYearIntake());
                 System.out.println("=====================================================================================================");
-                System.out.printf("%-20s | %-10s | %-10s |%n", 
+                System.out.printf("%-20s | %-15s | %-10s |%n", 
                                    "Group",
                                     "Student Name", 
                                    "ID"
@@ -276,7 +276,7 @@ public class GroupSummary {
 
 
 
-                        System.out.printf("%-20s | %-10s | %-10s |%n", 
+                        System.out.printf("%-20s | %-15s | %-10s |%n", 
                                 std.getTutorialGroup().getGroup(),           
                                 std.getName(), 
                                            std.getID()

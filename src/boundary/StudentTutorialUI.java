@@ -137,7 +137,6 @@ public class StudentTutorialUI {
     
     public int chooseStudent(){
         
-        System.out.println("---------------------------");
         System.out.print("Choose a number: > ");
         int std = scanner.nextInt();
         
@@ -146,7 +145,7 @@ public class StudentTutorialUI {
 
     public int inputChangeIteratorFindTG(int max, int cannotChoice){
         
-        System.out.println("Which tutorial group you would like to change?: ");
+        System.out.print("Which tutorial group you would like to change?: ");
         int ans = scanner.nextInt();
         System.out.println(max);
         while(ans > max) {
@@ -177,7 +176,7 @@ public class StudentTutorialUI {
         int chosen = scanner.nextInt();
         while(chosen > max){
             
-            System.out.println("Input again: ");
+            System.out.print("Input again: ");
             chosen = scanner.nextInt();
             
         }

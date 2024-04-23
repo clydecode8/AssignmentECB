@@ -105,7 +105,7 @@ public class ProgrammeTutorialUI {
     
     public int chooseWhichProgramme(){
         
-        System.out.print("Choose which programme to see: ");
+        System.out.print("Choose which programme to display: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }

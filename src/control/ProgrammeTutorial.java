@@ -167,12 +167,20 @@ public class ProgrammeTutorial  {
             System.out.println("===============================================================================");
             
             int choice2 = programmeUI.chooseWhichProgramme();
-            TutorialGroup tg = pg[choice2].getTutorialGroupList().getEntry(choice2);
             
+            //Display the specific programme
             GroupManagementUI.clearScreen();
+            Iterator<TutorialGroup> iterator2 = pg[choice2].getTutorialGroupList().iterator();
             System.out.println("===============================================================================");
-            System.out.printf("%-25s %-25s%n", "Tutorial Group", "Number of Students");
-            System.out.printf("%-25s %-25s%n", tg.getGroup(), tg.getQty());
+            System.out.printf("%-5s %-25s %-25s%n", "No", "Tutorial Group", "Number of Students");
+            System.out.println("===============================================================================");
+            int j =0;
+            while (iterator2.hasNext()){
+                
+                TutorialGroup tg = iterator2.next();
+                System.out.printf("%-5s %-25s %-25s%n", j+1, tg.getGroup(), tg.getQty());
+                j++;
+            }
             System.out.println("===============================================================================");
 
             GroupManagementUI.enterCont();

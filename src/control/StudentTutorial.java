@@ -154,7 +154,7 @@ public class StudentTutorial {
                 while (iterator3.hasNext()) {
                     Student studentOutput = iterator3.next();
 
-                    System.out.printf("%-5d %-20s %-20s%n", j++, studentOutput.getName(), studentOutput.getID());
+                    System.out.printf("%-5d %-20s %-20s%n", j+1, studentOutput.getName(), studentOutput.getID());
                     j++;
                 }    
                 System.out.println("====================================================================");
