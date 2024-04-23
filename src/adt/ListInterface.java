@@ -12,16 +12,7 @@ import java.util.Iterator;
  * @param <T>
  */
 public interface ListInterface<T> {
-    
-    /**....
-     
-     * 2 add(), remove(), getEntry(), clear(), isempty()
-     * contains(), replace(), isFull(), getNumberofentries()
-     * size(), getIndexOf()
-     * Notfullyworking: getIndexOf(), sort()
-    
-     */
-    public T remove(T element);
+
     
     
     /**
@@ -135,80 +126,108 @@ public interface ListInterface<T> {
    */ 
     public int size();
   
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */    
+    /**
+     * Task: Searches for a target word within the array.
+     * 
+     * @param targetWord the word to be searched for
+     * @return true if the target word is found in the array, false otherwise
+     */  
     public boolean condSearch(String targetWord);
     
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
-    public boolean twoCondSearch(String targetWord, String target2, int cond);
+    /**
+     * Task: Performs a conditional search based on the given target words and condition.
+     * 
+     * @param targetWord the first word to search for
+     * @param targetWord2 the second word to search for
+     * @param cond the condition specifying the type of search:
+     *             - 1 for searching two strings
+     *             - 2 for searching a string and an integer
+     *             - 3 for searching a string and a double
+     * @return true if the search condition is met, false otherwise
+     */
+    public boolean twoCondSearch(String targetWord, String targetWord2, int cond);
    
     
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
-    public boolean threeCondSearch(String targetWord, String target2, String target3, int cond);
+    /**
+     * Task: Performs a conditional search based on the given target words and condition.
+     * 
+     * @param targetWord the first word to search for
+     * @param targetWord2 the second word to search for
+     * @param targetWord3 the third word to search for
+     * @param cond the condition specifying the type of search:
+     *             - 1 for searching three strings
+     *             - 2 for searching a string, a string, and a double
+     *             - 3 for searching a string, a string, and an integer
+     * @return true if the search condition is met, false otherwise
+     */
+
+    public boolean threeCondSearch(String targetWord, String targetWord2, String targetWord3, int cond);
    
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
+    /**
+     * Task: Checks whether the entries contain the specified integer value.
+     * 
+     * @param targetValue the integer value to search for
+     * @return true if any entry contains the target integer value, false otherwise
+     *         Returns all entries containing the target value, including duplicates (e.g., "12" and 12)
+     */
     public boolean customIntegerContains(int targetValue);
    
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
+    /**
+     * Task: Checks whether the entries contain the specified double value.
+     * 
+     * @param targetValue the double value to search for
+     * @return true if any entry contains the target double value, false otherwise
+     *         Returns all entries containing the target value, including duplicates (e.g., "12.0" and 12.0)
+     */
     public boolean customDoubleContains(double targetValue);
     
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
-    public boolean replaceAll(String word, String word2);
+    /**
+     * Task: Replaces all occurrences of oldValue with newValue in all entries.
+     * 
+     * @param oldValue the value to be replaced
+     * @param newValue the new value to replace oldValue
+     * @return true if any occurrence of oldValue is found and replaced, false otherwise
+     *         Duplicate occurrences of oldValue in an entry will also be changed to newValue
+     */
+
+    public boolean replaceAll(String oldValue, String newValue);
     
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
+    /**
+     * Task: Removes the entry that contains the specified word.
+     * 
+     * @param word the word to be searched for and removed from the array
+     * @return true if any entry containing the word is found and removed, false otherwise
+     */
     public boolean customRemove(String word);
     
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
+    /**
+     * Task: Performs bubble sort on the array according to each entity's criteria.
+     * 
+     * @param cond specifies the sorting order:
+     *             - 0 for ascending order
+     *             - 1 for descending order
+     */
     public void sort(int cond);
     
-    /** "change"
-   * Task: Gets the size of entries in the list.
-   *
-   * 
-   * @return 
-   */
+    /**
+     * Task: Provides an iterator for traversing the elements of the array.
+     * 
+     * <p>It serves as a substitute for a for loop.
+     * <p>The hasNext() method checks for the size of the array to determine if there are more elements to iterate over.
+     * <p>It is required that elements in the array are comparable when calling the method.
+     * <p>Example usage: Comparable tutorialGroup = iterator.next();
+     * 
+     * @return an iterator for the elements of the array
+     */
     public Iterator<T> iterator();
    
-    public String toString2();
+    /**
+    * Task: Removes the specified element from the array.
+    * 
+    * @param element the element to be removed
+    * @return the removed element, or null if the element is not found in the array
+    */
+    public T remove(T element);
     
     
 }

@@ -225,12 +225,6 @@ public class CircularArrayList<T> implements ListInterface<T> {
     }
 
     @Override
-    public String toString2() {
-        // Implementation not provided
-        return null;
-    }
-
-    @Override
     public boolean condSearch(String targetWord) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

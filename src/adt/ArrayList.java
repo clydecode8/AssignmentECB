@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * 
  */
 
-public class ArrayList<T extends Comparable<? super T>> implements ListInterface<T> {
+public class ArrayList<T extends Comparable<T>> implements ListInterface<T> {
 
     
     private T[] array;
@@ -663,11 +663,7 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         return new ArrayListIterator();
     }
     
-    
-    @Override
-    public T remove(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
     
     private class ArrayListIterator<T extends Comparable<T>> implements Iterator<T> {
         
@@ -711,6 +707,25 @@ public class ArrayList<T extends Comparable<? super T>> implements ListInterface
         }
     }
     
+    //Extra function for circular array
+    @Override
+    public T remove(T element) {
+        
+        T temp = null;
+        for (int i = 0; i < numberOfEntries; i++) {
+            
+            temp = array[i];
+            
+            
+            if(contains(element)){
+                
+                temp = element;
+            }
+            
+        }
+    
+        return temp;
+    }
     
     //Check whether the array is full
     private boolean isArrayFull(){

@@ -82,32 +82,55 @@ public class GroupSummary {
                             leastGroup[i] = tgLoop.getGroup();
                             leastIntake[i] = tgLoop.getProgramme().getYearIntake();
                         
-                            if(i+1 == 1 && leastGroup1[0] != null && leastAmount[i] <= tgLoop.getQty()){
+                            if(i+1 == 1 && leastGroup1[0] != null){
                                
-                                System.out.println("test");
-                                for (int l = 0; l < leastGroup1.length; l++) {
+                               
+                                if(leastAmount[i] <= tgLoop.getQty()){
+                                    
+                                    for (int l = 0; l < leastGroup1.length; l++) {
 
-                                    if(leastGroup1[l] != null){
+                                        if(leastGroup1[l] != null){
 
-                                        group1[k] = 0;
-                                        leastGroup1[l] = null;
-                                    }
+                                            group1[l] = 0;
+                                            leastGroup1[l] = null;
+                                        }
 
-                                } 
+                                    } 
+                                    
+                                }
  
-                            }else if(i+1 == 2){
+                            }else if(i+1 == 2 && leastGroup2[0] != null){
                                 
+                                if(leastAmount[i] <= tgLoop.getQty()){
+                                    
+                                    for (int l = 0; l < leastGroup2.length; l++) {
+
+                                        if(leastGroup2[l] != null){
+
+                                            group2[l] = 0;
+                                            leastGroup2[l] = null;
+                                        }
+
+                                    } 
+                                    
+                                }
+
+                            }else if(i+1 == 3 && leastGroup3[0] != null){
                                 
-                                group2[k] = tgLoop.getQty();
-                                leastGroup2[k] = tgLoop.getGroup();
-                                k++;
-                               
-                                
-                            }else if(i+1 == 3){
-                                
-                                group3[k] = tgLoop.getQty();
-                                leastGroup3[k] = tgLoop.getGroup();
-                                k++;
+                                if(leastAmount[i] <= tgLoop.getQty()){
+                                    
+                                    for (int l = 0; l < leastGroup3.length; l++) {
+
+                                        if(leastGroup3[l] != null){
+
+                                            group3[l] = 0;
+                                            leastGroup3[l] = null;
+                                        }
+
+                                    } 
+                                    
+                                }
+
                             }
                             
                         }else if(tgLoop.getQty() == leastAmount[i]){
@@ -121,12 +144,10 @@ public class GroupSummary {
  
                             }else if(i+1 == 2){
                                 
-                                
                                 group2[k] = tgLoop.getQty();
                                 leastGroup2[k] = tgLoop.getGroup();
                                 k++;
-                               
-                                
+                                                    
                             }else if(i+1 == 3){
                                 
                                 group3[k] = tgLoop.getQty();
@@ -151,7 +172,7 @@ public class GroupSummary {
                     
                     case 1:
                        if(leastGroup1[0] == null){
-                           System.out.println(leastGroup1[0]);
+                           
                            status = true;
                        } 
                        
@@ -180,7 +201,23 @@ public class GroupSummary {
                 }
                 
                 System.out.println("Info: ");
-                pg[i].getTutorialGroupList().twoCondSearch(leastGroup[i], String.valueOf(group1[i]), 2);
+                
+                switch(i+1){
+                    
+                    case 1:
+                        pg[i].getTutorialGroupList().twoCondSearch(leastGroup[0], String.valueOf(group1[i]), 2);
+                       
+                    case 2:
+                        pg[i].getTutorialGroupList().twoCondSearch(leastGroup[1], String.valueOf(group2[i]), 2);
+                        
+                    case 3:
+                        pg[i].getTutorialGroupList().twoCondSearch(leastGroup[2], String.valueOf(group3[i]), 2);
+                        
+                        
+                }
+                
+                
+                //Duplicates
                 if(i+1 == 1 && leastGroup1[0] != null){
                     
                     for (int k = 0; k < leastGroup1.length; k++) {
@@ -197,6 +234,7 @@ public class GroupSummary {
                     for (int k = 0; k < leastGroup2.length; k++) {
                     
                         if(leastGroup2[k] != null){
+                            
                             
                             pg[i].getTutorialGroupList().twoCondSearch(leastGroup2[k], String.valueOf(group2[k]), 2);
                         }
@@ -369,7 +407,7 @@ public class GroupSummary {
 */
         }else if (choice == 3){
             
-            int chooseSort = gsUI.chooseSort();
+            
             int[] totalStudents = new int[3];
             int[] totalGroups = new int[3];
             String leastGroup[] = new String[3];
@@ -383,11 +421,10 @@ public class GroupSummary {
             System.out.printf("%61s%n", "[----------------------------------]");
             System.out.printf("%54s%n", "TUTORIAL GROUP REPORT");
             System.out.printf("%61s%n", "[----------------------------------]");
-
+            
             for(int i = 0; i < 3; i++){
                 
                 
-                pg[i].getTutorialGroupList().sort(chooseSort-1);
                 Iterator<TutorialGroup> iterator = pg[i].getTutorialGroupList().iterator(); 
                 
                 System.out.println("");
@@ -429,6 +466,12 @@ public class GroupSummary {
         }
 
 
-
+        for (int i = 0; i < 3; i++) {
+            
+            pg[i].getTutorialGroupList().sort(0);
+            
+        }
+        
+        
     }
 }

@@ -40,6 +40,7 @@ public class GroupSummaryUI {
     
     public int chooseSort(){
         
+        GroupManagementUI.clearScreen();
         int choice = 0;
         do {
             

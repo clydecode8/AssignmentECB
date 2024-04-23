@@ -35,7 +35,7 @@ public class Driver {
 
                 //Student Registration (yuan feng)
                 case 1:
-                    rm.RegistrationManagement();
+                    rm.main(new String[]{});
                     break;
                     
                 //Course Management (wei sheng)
