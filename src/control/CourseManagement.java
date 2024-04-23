@@ -11,7 +11,13 @@ import entity.Programme;
 import entity.Semester;
 import entity.Student;
 import utility.MessageUI;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -487,32 +493,138 @@ public class CourseManagement {
         }
 
        public void report1(){
+            // Get the current date and time
+            LocalDateTime currentDateTime = LocalDateTime.now();
+
+            // Define a format for the date and time
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            // Format the current date and time using the defined format
+            String formattedDateTime = currentDateTime.format(formatter);
+            
            System.out.println("***********************************************************************************************************\n");
            System.out.println("\t\t\t\tCourse Management Summary Report\t\t\t\t");
            System.out.println("\t\t\t\t\t#PROGRAMME REPORT#\t\t\t\t\t\n");
            System.out.println("***********************************************************************************************************\n");
+           System.out.println("Report generated on: " + formattedDateTime);
+           System.out.println("--------------------\n");
            System.out.println("Programme Details:");
-           System.out.println("------------------\n");
-           System.out.println("|No|\t      Programme Name     \t\t|\tFaculty\t|\tNumber of courses handeled\t\t|");
+           System.out.println("------------------");
+           System.out.printf("%-4s\t%-40s\t%-8s\t%-4s\n", "|No.|", "|Programme Name|", "|Faculty|", "|Number of courses handeled|");
            
-           
-            Scanner scanner = new Scanner(System.in);
-            ListInterface<CourseProgramme> courseProgrammeList= new CircularArrayList<>();
-            courseProgrammeList = courseprogramme.getCourseProgrammeList();
-            int num=1;
-            int totalCourse=0;
-            for(int i =0;i<programme.getProgrammeList().size();i++){
-                
-                System.out.println(" "+num+"\t" +programme.getProgrammeList().getEntry(i).getName()+"\t\t\t"+programme.getProgrammeList().getEntry(i).getFaculty()
-                +"\t\t"+totalCourse);
-                num++;
-            }    
+           ListInterface<CourseProgramme> courseProgrammeList= new CircularArrayList<>();
+           courseProgrammeList = courseprogramme.getCourseProgrammeList();
+           for (int i = 0; i < programme.getProgrammeList().size(); i++) {
+                Programme p = programme.getProgrammeList().getEntry(i);
+                int courseCount = 0;
+
+        // Count the number of courses for the current programme
+                for (int j = 0; j < courseProgrammeList.size(); j++) {
+                    CourseProgramme cp = courseProgrammeList.getEntry(j);
+                    if (cp.getProgramme().equals(p)) {
+                        courseCount++;
+                    }
+                }
+
+        // Display programme details including number of courses
+            System.out.printf(" %-4d\t %-40s\t %-8s\t %-4d\n",i+1,  p.getName() ,p.getFaculty(),courseCount);
+           }
+            System.out.println("\n\t\t\t\tEND OF THE COURSE SUMMARY REPORT\t\t\t\t");
+            System.out.println("***********************************************************************************************************\n");
        }
        
-       public void report2(){
-           System.out.println("diam");
-       }
        
+
+
+
+
+        public void report2() {
+            ListInterface<CourseProgramme> courseProgrammeList = courseprogramme.getCourseProgrammeList();
+
+            // Get the current date and time
+            LocalDateTime currentDateTime = LocalDateTime.now();
+
+            // Define a format for the date and time
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            // Format the current date and time using the defined format
+            String formattedDateTime = currentDateTime.format(formatter);
+
+            // Print the report header with the current date and time
+            System.out.println("***********************************************************************************************************");
+            System.out.println("\t\t\t\tCourse Details Report");
+            System.out.println("Report generated on: " + formattedDateTime);
+            System.out.println("***********************************************************************************************************\n");
+
+            // Course Details
+            System.out.println("Course Details:");
+            System.out.println("--------------------------\n");
+
+            // Initialize variables to track min and max number of programs taken
+            int minPrograms = Integer.MAX_VALUE;
+            int maxPrograms = Integer.MIN_VALUE;
+            String courseWithMinPrograms = "";
+            String courseWithMaxPrograms = "";
+
+            // Set to track encountered course names
+            Set<String> encounteredCourses = new HashSet<>();
+
+            // Iterate over each courseProgramme
+            for (int i = 0; i < courseProgrammeList.size(); i++) {
+                CourseProgramme cp = courseProgrammeList.getEntry(i);
+                Course course = cp.getCourse();
+                String courseName = course.getCourseName();
+
+                // If the course has been encountered before, skip it
+                if (encounteredCourses.contains(courseName)) {
+                    continue;
+                }
+
+                // Count the number of programs that have taken the course
+                int numPrograms = countProgramsTakingCourse(courseProgrammeList, course);
+
+                // Update min and max number of programs and corresponding course names
+                if (numPrograms < minPrograms) {
+                    minPrograms = numPrograms;
+                    courseWithMinPrograms = courseName;
+                }
+                if (numPrograms > maxPrograms) {
+                    maxPrograms = numPrograms;
+                    courseWithMaxPrograms = courseName;
+                }
+
+                // Print course details
+                System.out.println("Course Name: " + courseName);
+                System.out.println("Number of Programs Taking the Course: " + numPrograms);
+                System.out.println();
+
+                // Add the course name to the set of encountered courses
+                encounteredCourses.add(courseName);
+            }
+
+            // Print course with the least and most programs taken
+            System.out.println("Course with the Least Programs Taken: " + courseWithMinPrograms);
+            System.out.println("Course with the Most Programs Taken: " + courseWithMaxPrograms);
+        }
+
+        // Helper method to count the number of programs that have taken a course
+            private int countProgramsTakingCourse(ListInterface<CourseProgramme> courseProgrammeList, Course course) {
+                int count = 0;
+                for (int i = 0; i < courseProgrammeList.size(); i++) {
+                    CourseProgramme cp = courseProgrammeList.getEntry(i);
+                    if (cp.getCourse().equals(course)) {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+
+
+
+
+        
+
        public void reportChoose(){
         System.out.println("-----------------------------------------------------------------------------------------------------");           
         System.out.println("Choose to generate any report");
