@@ -18,9 +18,10 @@ public class Programme implements Comparable<Programme>{
  
     private String name;
     private String yearIntake;
+    private String faculty;
     private ListInterface<TutorialGroup> tgList = new ArrayList<>();
     private ListInterface<Course> courseList =new CircularArrayList<>();
-    private final static CircularArrayList<Programme> programmeList = new CircularArrayList<>();
+    private  ListInterface<Programme> programmeList =new CircularArrayList<>();
 
     
     public ListInterface<Course> getCourseList() {
@@ -37,10 +38,33 @@ public class Programme implements Comparable<Programme>{
         yearIntake = "";
     }
     
+    public Programme(String name, String yearIntake,String faculty) {
+        this.name = name;
+        this.yearIntake = yearIntake;
+        this.faculty=faculty;
+    }
+    
     public Programme(String name, String yearIntake) {
         this.name = name;
         this.yearIntake = yearIntake;
     }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public ListInterface<TutorialGroup> getTgList() {
+        return tgList;
+    }
+
+    public void setTgList(ListInterface<TutorialGroup> tgList) {
+        this.tgList = tgList;
+    }
+    
     
     public String getName() {
         return name;

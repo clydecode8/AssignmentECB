@@ -17,6 +17,8 @@ public class Driver {
     GroupManagement gm = new GroupManagement();
     AssTeam assTeam = new AssTeam();
     RegistrationManagement rm = new RegistrationManagement();
+    CourseManagement courseManagement = new CourseManagement();
+        
     
     DriverUI driverUI = new DriverUI();
     MessageUI msg = new MessageUI();
@@ -38,7 +40,7 @@ public class Driver {
                     
                 //Course Management (wei sheng)
                 case 2:
-
+                    courseManagement.CourseManagement();
                     break;
 
                 //Tutorial Group Management (ming han)

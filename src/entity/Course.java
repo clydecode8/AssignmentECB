@@ -17,23 +17,34 @@ public class Course implements Comparable<Course>{
     private String courseID;
     private String courseDetails;
     private double courseprice;
+    private String semester;
     private final static LinkedListInterface<String> courseType = new LinkedList<>();
-    private final static CircularArrayList<Course> courseList = new CircularArrayList<>();
+    private static ListInterface<Programme> programmeList =new CircularArrayList<>();
+    private static ListInterface<Course> courseList = new CircularArrayList<>();
     private final static LinkedListInterface<Course> courseListlinked = new LinkedList<>();
     private LinkedListInterface<Student> studentList = new LinkedList<>();
-    private ListInterface<Programme> programmeList = new ArrayList<>();
     private SortedLinkedListInterface<Tutor> tutorList = new SortedLinkedList<>();
+
 
     
     public Course(){
         
     }
     
+    public Course(String courseName, String courseID, String courseDetails,String semester) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.courseDetails = courseDetails;
+        this.semester=semester;
+    }
+    
     public Course(String courseName, String courseID, String courseDetails) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.courseDetails = courseDetails;
+       
     }
+    
     public Course(String courseName, String courseID, String courseDetails,double courseprice) {
         this.courseName = courseName;
         this.courseID = courseID;
@@ -72,6 +83,23 @@ public class Course implements Comparable<Course>{
     public LinkedListInterface<String> getcourseTypes() {
     return courseType; // Returns a reference to the courseType list (be cautious of modifications)
 }
+    
+        public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public static ListInterface<Programme> getProgrammeList() {
+        return programmeList;
+    }
+
+    public static void setProgrammeList(ListInterface<Programme> programmeList) {
+        Course.programmeList = programmeList;
+    }
+    
     
     public double getcourseprice(){
         return courseprice;
@@ -116,7 +144,11 @@ public class Course implements Comparable<Course>{
     
     @Override
     public String toString() {
-        return String.format("Course Name: %-30s Course ID: %-15s " ,courseName,courseID);
+        return String.format("Course Name: %-30s Course ID: %-15s Course Details: %-15s " ,courseName,courseID,courseDetails);
+    }
+    
+    public String toStringSem() {
+        return String.format("Course Name: %-30s Course ID: %-15s Sem offered: %-15s " ,courseName,courseID,semester);
     }
     
     public String toString2() {
