@@ -44,8 +44,19 @@ public class ProgrammeTutorial  {
             String tgroup = programmeUI.inputTutorialGroup();
             
             TutorialGroup inputTG = new TutorialGroup(tgroup, 0, pg[choice]);
-            pg[choice].getTutorialGroupList().add(inputTG);
+            boolean status = pg[choice].getTutorialGroupList().add(inputTG);
            
+            
+            if(status == true){
+                
+                System.out.println("Entry is successfully added");
+                GroupManagementUI.enterCont();
+                GroupManagementUI.clearScreen();
+            
+            }else{
+                
+                System.out.println("Entry not successfully added");
+            }
             
         }
         
@@ -60,21 +71,26 @@ public class ProgrammeTutorial  {
         
         if(cond == 1){
         
+            GroupManagementUI.clearScreen();
+            System.out.println("====================================================================");
             Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
+            System.out.printf("%-5s %-25s %-15s%n", "No", "Programme Name", "Year of Intake");
             while (iterator.hasNext()) {
-                Comparable programme = iterator.next();
+                Programme programme = iterator.next();
                
-                System.out.println(i+1 + ". " + programme.toString());
+                System.out.printf("%-5d %-25s %-25s%n", i+1, programme.getName(), programme.getYearIntake());
                 i++;
             }
-            
+
+            System.out.println("====================================================================");
             int choice = programmeUI.inputRemoveIterator();
 
             GroupManagementUI.clearScreen();
             
             Iterator<TutorialGroup> iterator2 = pg[choice].getTutorialGroupList().iterator();
             int j = 0;
+            System.out.println("====================================================================");
             System.out.printf("%-5s %-12s %-15s%n", "No", "Group", "Total Students");
             while (iterator2.hasNext()) {
                 TutorialGroup tg = iterator2.next();
@@ -83,6 +99,7 @@ public class ProgrammeTutorial  {
 
                 j++;
             }            
+            System.out.println("====================================================================");
 
             
             int removal = programmeUI.chooseTG();
@@ -91,16 +108,15 @@ public class ProgrammeTutorial  {
             if(test != null){
                 
                 System.out.println("Entry successfully removed.");
-            
+                GroupManagementUI.enterCont();
+                GroupManagementUI.clearScreen();
+                
             }else{
                 
                 
                 System.out.println("Entry removal unsuccessful.");
             }
-            
-            GroupManagementUI.enterCont();
-            
-            
+    
             
         }
         
@@ -114,16 +130,21 @@ public class ProgrammeTutorial  {
         
         if(choice == 1){
             
-            
+            GroupManagementUI.clearScreen();
+            System.out.printf("%-5s %-25s %-25s%n", "No", "Programme Name", "Intake Year");
             for(int i = 0; i < 3; i++){
                 
+                System.out.println("===============================================================");
+                System.out.printf("%-5s %-25s %-25s%n", i+1, pg[i].getName(), pg[i].getYearIntake());
+                System.out.println("===============================================================");
+                System.out.printf("%-5s %-25s %-25s%n", "No", "Tutorial Group", "No of Students");
                 Iterator<TutorialGroup> iterator = pg[i].getTutorialGroupList().iterator();
-                    int j = 0;
-                    while (iterator.hasNext()) {
-                        Comparable tg = iterator.next();
+                int j = 0;
+                while (iterator.hasNext()) {
+                    TutorialGroup tg = iterator.next();
 
-                        System.out.println(i+1 + ". " + tg.toString());
-                        j++;
+                    System.out.printf("%-5s %-25s %-25s%n", j+1, tg.getGroup(), tg.getQty());
+                    j++;
                 }
                 
             }
@@ -132,21 +153,27 @@ public class ProgrammeTutorial  {
             
         }else if(choice == 2){
             
+            GroupManagementUI.clearScreen();
+            System.out.println("===============================================================================");
+            System.out.printf("%-5s %-25s %-25s%n", "No", "Programme Name", "Intake Year");
             Iterator<Programme> iterator = programmeList.iterator();
             int i = 0;
             while (iterator.hasNext()) {
-                Comparable programme = iterator.next();
+                Programme programme = iterator.next();
                
-                System.out.println(i+1 + ". " + programme.toString());
+                System.out.printf("%-5s %-25s %-25s%n", i+1, programme.getName(), programme.getYearIntake());
                 i++;
             }
+            System.out.println("===============================================================================");
             
             int choice2 = programmeUI.chooseWhichProgramme();
-
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println(pg[choice2].getTutorialGroupList().toString());
+            TutorialGroup tg = pg[choice2].getTutorialGroupList().getEntry(choice2);
+            
+            GroupManagementUI.clearScreen();
+            System.out.println("===============================================================================");
+            System.out.printf("%-25s %-25s%n", "Tutorial Group", "Number of Students");
+            System.out.printf("%-25s %-25s%n", tg.getGroup(), tg.getQty());
+            System.out.println("===============================================================================");
 
             GroupManagementUI.enterCont();
         }

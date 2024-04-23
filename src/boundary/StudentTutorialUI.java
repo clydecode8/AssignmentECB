@@ -16,13 +16,15 @@ public class StudentTutorialUI {
     
     public int getMenuChoice() {
         
-        System.out.println("Tutorial Group Management System");
-        System.out.println("\n---------------------------");
+        System.out.println("===============================================");
+        System.out.println("       Tutorial Group Management System");
+        System.out.println("===============================================");
         System.out.println("1. Add Student to Tutorial Group");
         System.out.println("2. Remove Student from Tutorial Group");
         System.out.println("3. Change Tutorial Group for a Student");
         System.out.println("4. Merge Tutorial Groups");
         System.out.println("5. List all Tutorial Groups");
+        System.out.println("===============================================");
         System.out.println("0. Quit");
         System.out.print("Enter choice: ");
         int choice = scanner.nextInt();
@@ -184,7 +186,7 @@ public class StudentTutorialUI {
     
     public int inputRemoveIterator(){
         
-        System.out.println("Choose which Tutorial Group to remove: ");
+        System.out.print("Choose which Tutorial Group to remove: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }
@@ -234,7 +236,7 @@ public class StudentTutorialUI {
     
     public String inputID(){
         
-        System.out.print("Input the ID");
+        System.out.print("Input the ID: ");
         String id = scanner.next();
         return id;
     }

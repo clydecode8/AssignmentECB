@@ -75,7 +75,7 @@ public class ProgrammeTutorialUI {
     
     public int chooseTG(){
         
-        System.out.println("---------------------------");
+   
         System.out.print("Choose a number: > ");
         int tg = scanner.nextInt();
         
@@ -105,7 +105,7 @@ public class ProgrammeTutorialUI {
     
     public int chooseWhichProgramme(){
         
-        System.out.println("Choose which programme to see: ");
+        System.out.print("Choose which programme to see: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }
@@ -120,7 +120,7 @@ public class ProgrammeTutorialUI {
     
     public int inputRemoveIterator(){
         
-        System.out.println("Choose which programme to remove: ");
+        System.out.print("Choose which programme to remove: ");
         int chosen = scanner.nextInt();
         return chosen-1;
     }

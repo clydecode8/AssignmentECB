@@ -88,6 +88,8 @@ public class StudentTutorial {
                 
                 tgs.setQty(tgs.getQty() + 1);
                 System.out.println("Entry successfully added.");
+                GroupManagementUI.enterCont();
+                GroupManagementUI.clearScreen();
             
             }else{
                 
@@ -168,6 +170,8 @@ public class StudentTutorial {
                     int qty = tgs.getQty() - 1;
                     tgs.setQty(qty);
                     System.out.println("Entry removal successful.");
+                    GroupManagementUI.enterCont();
+                    GroupManagementUI.clearScreen();
                 }
                 
             }else{
@@ -284,6 +288,8 @@ public class StudentTutorial {
                     tgsNew.setQty(tgsNew.getQty() + 1);
                     tgsOld.setQty(tgsOld.getQty() - 1);
                     System.out.println("Entry changed successful.");
+                    GroupManagementUI.enterCont();
+                    GroupManagementUI.clearScreen();
                 }
                 
             }else{
@@ -377,21 +383,34 @@ public class StudentTutorial {
                         Team team = tempStd.getTeam();
 
 
-                        tgsNew.addStudentList(new Student(name, id, tutorialgroup, team));
+                        status = tgsNew.addStudentList(new Student(name, id, tutorialgroup, team));
                         removedEntry++;
                     }
 
 
                 }
-
+                
+                Student test = null;
                 for(int l=0; l<removedEntry; l++){
 
-                    tgsOld.getStudentList().remove(0);
+                    test = tgsOld.getStudentList().remove(0);
 
                 }
+                
+                if(test != null){
+                    
+                    tgsNew.setQty(tgsNew.getQty() + removedEntry);
+                    tgsOld.setQty(tgsOld.getQty() - removedEntry);
+                    System.out.println("Change successful!");
+                    GroupManagementUI.enterCont();
+                    GroupManagementUI.clearScreen();
+                }else{
+                    
+                    System.out.println("Change is unsuccessful.");
+                }
 
-                tgsNew.setQty(tgsNew.getQty() + removedEntry);
-                tgsOld.setQty(tgsOld.getQty() - removedEntry);
+                
+                
                 
             }else{
                 
