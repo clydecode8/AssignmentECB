@@ -383,7 +383,7 @@ public class StudentTutorial {
                         Team team = tempStd.getTeam();
 
 
-                        status = tgsNew.addStudentList(new Student(name, id, tutorialgroup, team));
+                        tgsNew.addStudentList(new Student(name, id, tutorialgroup, team));
                         removedEntry++;
                     }
 
