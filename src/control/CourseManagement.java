@@ -157,8 +157,12 @@ public class CourseManagement {
                displayCourseinProgramme(programmeChoice);
             }
             else if(choice==9){
-               System.out.println("Choose a report ");
-               System.out.println("-----------------------------------------------");
+               reportChoose();
+               System.out.println("Choose a number to view report: ");
+               int reportChoice = scanner.nextInt();
+               scanner.nextLine();
+               report(reportChoice);
+               
             }
             
         }while (choice !=0);
@@ -482,10 +486,53 @@ public class CourseManagement {
         
         }
 
+       public void report1(){
+           System.out.println("***********************************************************************************************************\n");
+           System.out.println("\t\t\t\tCourse Management Summary Report\t\t\t\t");
+           System.out.println("\t\t\t\t\t#PROGRAMME REPORT#\t\t\t\t\t\n");
+           System.out.println("***********************************************************************************************************\n");
+           System.out.println("Programme Details:");
+           System.out.println("------------------\n");
+           System.out.println("|No|\t      Programme Name     \t\t|\tFaculty\t|\tNumber of courses handeled\t\t|");
            
+           
+            Scanner scanner = new Scanner(System.in);
+            ListInterface<CourseProgramme> courseProgrammeList= new CircularArrayList<>();
+            courseProgrammeList = courseprogramme.getCourseProgrammeList();
+            int num=1;
+            int totalCourse=0;
+            for(int i =0;i<programme.getProgrammeList().size();i++){
+                
+                System.out.println(" "+num+"\t" +programme.getProgrammeList().getEntry(i).getName()+"\t\t\t"+programme.getProgrammeList().getEntry(i).getFaculty()
+                +"\t\t"+totalCourse);
+                num++;
+            }    
+       }
+       
+       public void report2(){
+           System.out.println("diam");
+       }
+       
+       public void reportChoose(){
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
+        System.out.println("Choose to generate any report");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.println("1. Programme summary report ");
+        System.out.println("2. Course summary report");
+     
+    } 
+       
+    public void report(int reportChoice){
+        if (reportChoice == 1){
+            report1();
+        }else if(reportChoice ==2){
+            report2();
+        }
+    }
     
     
-    public static void main(String[] args) {
+    
+        public static void main(String[] args) {
         CourseManagement courseManagement = new CourseManagement();
         courseManagement.CourseManagement();
     }

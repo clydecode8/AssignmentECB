@@ -10,9 +10,9 @@ public class CourseManagementUI {
 
     public int getMenuChoice() {
         clearScreen();
-        System.out.println("\n---------------------------");
-        System.out.println("Course Management System");
-        System.out.println("\n---------------------------");
+        System.out.println("\n---------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\tUniversity Course Management System\t\t\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------------");
         System.out.println("1. Add programme to course");
         System.out.println("2. Remove programme from course");
         System.out.println("3. Add new course to programme");
