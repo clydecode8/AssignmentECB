@@ -268,9 +268,11 @@ public class CourseManagement {
         courseProgrammeList = courseprogramme.getCourseProgrammeList();
         Course C =course.getCourseList().getEntry(courseChoice-1);
         System.out.println("List of programme in "+ C.getCourseName());
+        int number=0;
         for (int i = 0; i < courseProgrammeList.size(); i++) {
             if(courseProgrammeList.getEntry(i).getCourse().equals(C)){
-               System.out.println(courseProgrammeList.getEntry(i).getProgramme().toString()); 
+                number++;
+               System.out.println(number+" "+courseProgrammeList.getEntry(i).getProgramme().toString()); 
             }
         }
         System.out.print("\nEnter choice: ");
@@ -646,8 +648,4 @@ public class CourseManagement {
         CourseManagement courseManagement = new CourseManagement();
         courseManagement.CourseManagement();
     }
-    
-    
-    
-    
 }
