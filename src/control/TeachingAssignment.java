@@ -35,7 +35,11 @@ public class TeachingAssignment {
     public void TeachingAssignment() {
         
         //sample tutorial groups
-        
+//        generateCourseList();
+//        generateTutorList();
+//        generateTutorialGrp();
+//        TeachingAssignment();
+//ignore 
         
         
         int choice = 0;

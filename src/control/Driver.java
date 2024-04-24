@@ -18,7 +18,7 @@ public class Driver {
     AssTeam assTeam = new AssTeam();
     RegistrationManagement rm = new RegistrationManagement();
     CourseManagement courseManagement = new CourseManagement();
-        
+    TeachingAssignment teaching = new TeachingAssignment();
     
     DriverUI driverUI = new DriverUI();
     MessageUI msg = new MessageUI();
@@ -26,7 +26,7 @@ public class Driver {
     public void runSystem(){
         
         boolean loop = true;
-        
+        rm.initialize();
         while(loop == true){
             
             GroupManagementUI.clearScreen();

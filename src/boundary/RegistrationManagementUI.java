@@ -31,7 +31,17 @@ public class RegistrationManagementUI {
         System.out.println();
         return choice;
     }
-    
+     public int reportchoose(){
+        System.out.println("-----------------------------------------------------------------------------------------------------");           
+        System.out.println("Report");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.println("1. Report of Calculated Total Fee for a student");
+        System.out.println("2. Report of Calculated number of Student in a Course");
+        System.out.println("Choose number to view report: ");
+        int reportchoose = scanner.nextInt();
+        scanner.nextLine();
+        return reportchoose;
+    }    
     //Function 1 add new students
     public Student addnewStudentUI(){
         System.out.println("-----------------------------------------------------------------------------------------------------");          
@@ -140,15 +150,5 @@ public class RegistrationManagementUI {
         scanner.nextLine();
         return displaycourse-1;
     }
-    public int reportchoose(){
-        System.out.println("-----------------------------------------------------------------------------------------------------");           
-        System.out.println("Report");
-        System.out.println("-----------------------------------------------------------------------------------------------------");
-        System.out.println("1. Report of Calculated Total Fee for a student");
-        System.out.println("2. Report of Calculated number of Student in a Course");
-        System.out.println("Choose number to view report: ");
-        int reportchoose = scanner.nextInt();
-        scanner.nextLine();
-        return reportchoose;
-    }    
+   
 }

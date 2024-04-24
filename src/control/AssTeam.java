@@ -25,42 +25,7 @@ public class AssTeam {
     private Team team = new Team();
     private AssTeamUI assTeamUI = new AssTeamUI();
     public void runAssTeam(){
-        Programme p1 = new Programme("Software Engineering", "FOCS");
-        TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
-        TutorialGroup g2 = new TutorialGroup("Group 2", 24, p1);
-        TutorialGroup g3 = new TutorialGroup("Group 3", 24, p1);
-        TutorialGroup g4 = new TutorialGroup("Group 4", 24, p1);
-
-        Team t1 = new Team("Robot team1", "Robot Development", g1);
-        Team t2 = new Team("Robot team2", "Robot Development", g1);
-        Team t3 = new Team("Robot team3", "Robot Development", g1);
-        Team t4 = new Team("Gundam team1", "Robot Development", g2);
-
         
-        Student stud1 = new Student("John", "WPF33232", g1, t1);
-        Student stud2 = new Student("Alex", "WPF12344", g1, t1);
-        Student stud3 = new Student("Lex", "WPF22534", g1, t1);
-        Student stud4 = new Student("Pearl", "WPF54565", g1, t1);
-        Student stud5 = new Student("Max", "WPF532432", g1, t1);                
-        Student stud6 = new Student("Jeremy", "WPF532323", g1, null);
-
-        tg.setTutorialGroupList(g1);
-        tg.setTutorialGroupList(g2);
-        tg.setTutorialGroupList(g3);
-        tg.setTutorialGroupList(g4);
- 
-        team.setTeamList(t1);
-        team.setTeamList(t2);
-        team.setTeamList(t3);
-        team.setTeamList(t4);
-
-        student.setStudentList(stud1);
-        student.setStudentList(stud2);
-        student.setStudentList(stud3);
-        student.setStudentList(stud4);
-        student.setStudentList(stud5);
-        student.setStudentList(stud6);
-
         int reportNum = tg.getSortedTutorialGroup().size();
         int teamNum = 0;
         int memberNum = 0;

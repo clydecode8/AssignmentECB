@@ -28,6 +28,10 @@ public class SortedArrayList<T extends Comparable<? super T>> implements SortedL
         while (index < size && newEntry.compareTo(array[index]) > 0) {
             index++;
         }
+        if (size == array.length) {
+            // If array is full, resize it
+            doubleArray();
+        }
         makeRoom(index);
         array[index] = newEntry;
         size++;
@@ -106,6 +110,18 @@ public class SortedArrayList<T extends Comparable<? super T>> implements SortedL
         }
     }
 
+    //Doubles the size of array
+    private void doubleArray(){
+        
+        T[] oldArray = array;
+        array = (T[]) new Comparable[oldArray.length * 2];
+        for (int i = 0; i < oldArray.length; i++) {
+            
+            array[i] = oldArray[i];
+            
+        }
+    }
+    
     private void removeGap(int index) {
         for (int i = index; i < size - 1; i++) {
             array[i] = array[i + 1];

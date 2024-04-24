@@ -26,49 +26,7 @@ public class RegistrationManagement {
     private Team team = new Team();
     
     public void RegistrationManagement(){
-        Programme p1 = new Programme("Software Engineering", "FOCS");
-        TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
-        TutorialGroup g2 = new TutorialGroup("Group 2", 24, p1);
-        TutorialGroup g3 = new TutorialGroup("Group 3", 24, p1);
-        TutorialGroup g4 = new TutorialGroup("Group 4", 24, p1);
-
-        Team t1 = new Team("Robot team1", "Robot Development", g1);
-        Team t2 = new Team("Robot team2", "Robot Development", g1);
-        Team t3 = new Team("Robot team3", "Robot Development", g1);
-        Team t4 = new Team("Gundam team1", "Robot Development", g2);
-
         
-        Student stud1 = new Student("John", "WPF33232", g1, t1);
-        Student stud2 = new Student("Alex", "WPF12344", g1, t1);
-        Student stud3 = new Student("Lex", "WPF22534", g1, t1);
-        Student stud4 = new Student("Pearl", "WPF54565", g1, t1);
-        Student stud5 = new Student("Max", "WPF532432", g1, t1);                
-        Student stud6 = new Student("Jeremy", "WPF532323", g1, t1);
-        
-        Course course1 = new Course("ACCOUNT","12345","ACCOUNT",700);
-        Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT",1000);
-        Course course3 = new Course("Graphics programming","12345","FOR ENGINNER STUDENT",666);
-
-        tg.setTutorialGroupList(g1);
-        tg.setTutorialGroupList(g2);
-        tg.setTutorialGroupList(g3);
-        tg.setTutorialGroupList(g4);
-
-        team.setTeamList(t1);
-        team.setTeamList(t2);
-        team.setTeamList(t3);
-        team.setTeamList(t4);
-
-        student.setStudentList(stud1);
-        student.setStudentList(stud2);
-        student.setStudentList(stud3);
-        student.setStudentList(stud4);
-        student.setStudentList(stud5);
-        student.setStudentList(stud6);
-        
-        course.setCourseList2(course1);
-        course.setCourseList2(course2);
-        course.setCourseList2(course3);
 
         int choice = 0;
         do{
@@ -119,10 +77,56 @@ public class RegistrationManagement {
                     filtercoursetype(filtercourse,displaycourse);
                     break;
                 case 9:
-                    report();
-                break;    
+                    reportChoice();
+                    break;    
             }
         }while(choice !=0);
+    }
+    
+    public void initialize(){
+        Programme p1 = new Programme("Software Engineering", "FOCS");
+        TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
+        TutorialGroup g2 = new TutorialGroup("Group 2", 24, p1);
+        TutorialGroup g3 = new TutorialGroup("Group 3", 24, p1);
+        TutorialGroup g4 = new TutorialGroup("Group 4", 24, p1);
+
+        Team t1 = new Team("Robot team1", "Robot Development", g1);
+        Team t2 = new Team("Robot team2", "Robot Development", g1);
+        Team t3 = new Team("Robot team3", "Robot Development", g1);
+        Team t4 = new Team("Gundam team1", "Robot Development", g2);
+
+        
+        Student stud1 = new Student("John", "WPF33232", g1, t1);
+        Student stud2 = new Student("Alex", "WPF12344", g1, t1);
+        Student stud3 = new Student("Lex", "WPF22534", g1, t1);
+        Student stud4 = new Student("Pearl", "WPF54565", g1, t1);
+        Student stud5 = new Student("Max", "WPF532432", g1, t1);                
+        Student stud6 = new Student("Jeremy", "WPF532323", g1, t2);
+        
+        Course course1 = new Course("ACCOUNT","12345","ACCOUNT",700);
+        Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT",1000);
+        Course course3 = new Course("Graphics programming","12345","FOR ENGINNER STUDENT",666);
+
+        tg.setTutorialGroupList(g1);
+        tg.setTutorialGroupList(g2);
+        tg.setTutorialGroupList(g3);
+        tg.setTutorialGroupList(g4);
+
+        team.setTeamList(t1);
+        team.setTeamList(t2);
+        team.setTeamList(t3);
+        team.setTeamList(t4);
+
+        student.setStudentList(stud1);
+        student.setStudentList(stud2);
+        student.setStudentList(stud3);
+        student.setStudentList(stud4);
+        student.setStudentList(stud5);
+        student.setStudentList(stud6);
+        
+        course.setCourseList2(course1);
+        course.setCourseList2(course2);
+        course.setCourseList2(course3);
     }
     
     private void displaystudent(){
@@ -283,7 +287,7 @@ public class RegistrationManagement {
         System.out.println("The Total student for course "+course.getCourseList2().get(choosecourse-1).getCourseName().toUpperCase()+" :\t\t\t\t\t\t"+num+ " Students");
     }
     
-    public void report(){
+    public void reportChoice(){
         int choosereport = rmUI.reportchoose();
         if (choosereport == 1){
             displaystudent();
