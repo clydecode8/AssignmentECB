@@ -179,49 +179,47 @@ public class CircularArrayList<T> implements ListInterface<T> {
  
     @Override
     public boolean twoCondSearch(String targetWord, String target2, int cond) {
-        // Implementation not provided
-        return false;
+  
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean threeCondSearch(String targetWord, String target2, String target3, int cond) {
-        // Implementation not provided
-        return false;
+      
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean customIntegerContains(int targetValue) {
-        // Implementation not provided
-        return false;
+   
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean customDoubleContains(double targetValue) {
-        // Implementation not provided
-        return false;
+       
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean replaceAll(String word, String word2) {
-        // Implementation not provided
-        return false;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean customRemove(String word) {
-        // Implementation not provided
-        return false;
+      throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void sort(int cond) {
-        // Implementation not provided
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Iterator<T> iterator() {
-        // Implementation not provided
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override

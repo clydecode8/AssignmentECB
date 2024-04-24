@@ -1,7 +1,6 @@
 
 package control;
 import adt.CircularArrayList;
-import adt.LinkedList;
 import adt.ListInterface;
 import boundary.CourseManagementUI;
 import entity.Course;
@@ -9,16 +8,10 @@ import entity.CourseProgramme;
 import static entity.CourseProgramme.removeCourseProgrammeList;
 import entity.Programme;
 import entity.Semester;
-import entity.Student;
 import utility.MessageUI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 
 /**
  *
@@ -262,7 +255,7 @@ public class CourseManagement {
         int num=1;
         for (int i = 0; i < courseProgrammeList.size(); i++) {
             if(courseProgrammeList.getEntry(i).getCourse().equals(C)){
-               System.out.println(num+ " " +courseProgrammeList.getEntry(i).getProgramme()); 
+               System.out.println(num+ " " +courseProgrammeList.getEntry(i).getProgramme().toString()); 
                 num++;
             }
             
@@ -277,7 +270,7 @@ public class CourseManagement {
         System.out.println("List of programme in "+ C.getCourseName());
         for (int i = 0; i < courseProgrammeList.size(); i++) {
             if(courseProgrammeList.getEntry(i).getCourse().equals(C)){
-               System.out.println(courseProgrammeList.getEntry(i).getProgramme()); 
+               System.out.println(courseProgrammeList.getEntry(i).getProgramme().toString()); 
             }
         }
         System.out.print("\nEnter choice: ");
@@ -361,7 +354,7 @@ public class CourseManagement {
         int courseNum=1;
         for (int i = 0; i < courseProgrammeList.size(); i++) {
             if(courseProgrammeList.getEntry(i).getProgramme().equals(P)){
-               System.out.println(courseNum+" "+courseProgrammeList.getEntry(i).getCourse()); 
+               System.out.println(courseNum+" "+courseProgrammeList.getEntry(i).getCourse().toString()); 
                courseNum++;
             }
         }
@@ -533,32 +526,28 @@ public class CourseManagement {
             System.out.println("***********************************************************************************************************\n");
        }
        
-       
-
-
-
 
         public void report2() {
-            ListInterface<CourseProgramme> courseProgrammeList = courseprogramme.getCourseProgrammeList();
+            CircularArrayList<CourseProgramme> courseProgrammeList = (CircularArrayList<CourseProgramme>) courseprogramme.getCourseProgrammeList();
 
             // Get the current date and time
             LocalDateTime currentDateTime = LocalDateTime.now();
 
             // Define a format for the date and time
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             // Format the current date and time using the defined format
             String formattedDateTime = currentDateTime.format(formatter);
 
             // Print the report header with the current date and time
-            System.out.println("***********************************************************************************************************");
-            System.out.println("\t\t\t\tCourse Details Report");
-            System.out.println("Report generated on: " + formattedDateTime);
             System.out.println("***********************************************************************************************************\n");
-
-            // Course Details
+            System.out.println("\t\t\t\tCourse Management Summary Report\t\t\t\t");
+            System.out.println("\t\t\t\t\t#COURSE REPORT#\t\t\t\t\t\n");
+            System.out.println("***********************************************************************************************************\n");
+            System.out.println("Report generated on: " + formattedDateTime);
+            System.out.println("--------------------\n");
             System.out.println("Course Details:");
-            System.out.println("--------------------------\n");
+            System.out.println("------------------");
 
             // Initialize variables to track min and max number of programs taken
             int minPrograms = Integer.MAX_VALUE;
@@ -566,17 +555,22 @@ public class CourseManagement {
             String courseWithMinPrograms = "";
             String courseWithMaxPrograms = "";
 
-            // Set to track encountered course names
-            Set<String> encounteredCourses = new HashSet<>();
-
+            // List to store encountered course names
+            CircularArrayList<String> encounteredCourses = new CircularArrayList<>();
+            
+            System.out.printf("%-45s\t%-8s\n", "|Course Name.|", "|Number of Programs Taking the Course|");
+            
             // Iterate over each courseProgramme
+            
             for (int i = 0; i < courseProgrammeList.size(); i++) {
+                
                 CourseProgramme cp = courseProgrammeList.getEntry(i);
                 Course course = cp.getCourse();
                 String courseName = course.getCourseName();
-
+               
                 // If the course has been encountered before, skip it
                 if (encounteredCourses.contains(courseName)) {
+                    
                     continue;
                 }
 
@@ -592,33 +586,37 @@ public class CourseManagement {
                     maxPrograms = numPrograms;
                     courseWithMaxPrograms = courseName;
                 }
-
+                
                 // Print course details
-                System.out.println("Course Name: " + courseName);
-                System.out.println("Number of Programs Taking the Course: " + numPrograms);
-                System.out.println();
+                System.out.printf(" %-45s\t %-8s\n", courseName, numPrograms);
 
-                // Add the course name to the set of encountered courses
+
+                // Add the course name to the list of encountered courses
                 encounteredCourses.add(courseName);
             }
 
             // Print course with the least and most programs taken
+            System.out.println("--------------------------------------------------------------------------");
             System.out.println("Course with the Least Programs Taken: " + courseWithMinPrograms);
             System.out.println("Course with the Most Programs Taken: " + courseWithMaxPrograms);
-        }
-
+            System.out.println("\n\t\t\t\tEND OF THE COURSE SUMMARY REPORT\t\t\t\t");
+            System.out.println("***********************************************************************************************************\n");
+       }
+        
         // Helper method to count the number of programs that have taken a course
-            private int countProgramsTakingCourse(ListInterface<CourseProgramme> courseProgrammeList, Course course) {
-                int count = 0;
-                for (int i = 0; i < courseProgrammeList.size(); i++) {
-                    CourseProgramme cp = courseProgrammeList.getEntry(i);
-                    if (cp.getCourse().equals(course)) {
-                        count++;
-                    }
+        private int countProgramsTakingCourse(CircularArrayList<CourseProgramme> courseProgrammeList, Course course) {
+            int count = 0;
+       
+            for (int i = 0; i < courseProgrammeList.size(); i++) {
+                CourseProgramme cp = courseProgrammeList.getEntry(i);
+                if (cp.getCourse().equals(course)) {
+             
+                    count++;
                 }
-                return count;
             }
-
+            return count;
+            
+        }
 
 
 
