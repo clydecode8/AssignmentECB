@@ -207,6 +207,10 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedLinkedLi
         }
     }
     
+    public int compareTo(T otherEntry) {
+        return 0;
+    }
+    
     public boolean removeItem(T itemToRemove) {
         Node currentNode = firstNode;
         Node previousNode = null;

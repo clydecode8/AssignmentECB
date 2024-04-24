@@ -50,7 +50,7 @@ public class Driver {
 
                 //Teaching Assignment (khai dee)
                 case 4:
-
+                    teaching.TeachingAssignment();
                     break;
 
                 //Assignment Team (yee jie)

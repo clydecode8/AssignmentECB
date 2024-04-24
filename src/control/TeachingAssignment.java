@@ -45,6 +45,13 @@ public class TeachingAssignment {
     public void TeachingAssignment() {
 
         //sample tutorial groups
+//        generateCourseList();
+//        generateTutorList();
+//        generateTutorialGrp();
+//        TeachingAssignment();
+//ignore 
+        
+        
         tutorList = tutorinitial.initializeTutor();
         courseList = courseinitial.initializeCourse();
         tutorGrpList = tutorgrpinitial.initializeTutorialGroup();
