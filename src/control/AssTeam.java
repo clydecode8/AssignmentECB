@@ -1,9 +1,5 @@
 package control;
 
-//import adt.ArrayQueueInterface;
-//import adt.CustomArrayQueue;
-//import adt.SortedArrayList;
-//import adt.SortedListInterface;
 import adt.SortedArrayList;
 import adt.SortedListInterface;
 import boundary.AssTeamUI;
@@ -15,7 +11,7 @@ import utility.MessageUI;
 
 /**
  *
- * @author jie
+ * @author Liew Yee Jie
  */
 public class AssTeam {
 

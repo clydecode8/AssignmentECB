@@ -1,17 +1,16 @@
-    package boundary;
-import adt.ArrayList;
-//import adt.SortedListInterface;
-//import adt.SortedArrayList;
-import adt.ListInterface;
+package boundary;
+
 import adt.SortedArrayList;
 import adt.SortedListInterface;
 import entity.Student;
 import entity.Team;
 import entity.TutorialGroup;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 /**
  *
- * @author jie
+ * @author Liew Yee Jie
  */
 public class AssTeamUI {
     Scanner scanner = new Scanner(System.in);
@@ -225,8 +224,15 @@ public class AssTeamUI {
     
     public void GroupReport(){
         clscr();
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+
+        String formattedDateTime = now.format(formatter);
+        
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|\t\t\t\t\t\t    Tutorial Group Summary Report    \t\t\t\t\t\t|");
+        System.out.println("|  Created at: "+ formattedDateTime + "                                                                                                     |");
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|\tGroup\t|\t\t      Programme     \t\t|\tNumber of students\t|\tNumber of teams\t\t|");
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
@@ -256,8 +262,14 @@ public class AssTeamUI {
     
     public void TeamReport(){
         clscr();
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+
+        String formattedDateTime = now.format(formatter);
         System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|                                                          Team Summary Report                                                                     |");
+        System.out.println("|  Created at: "+ formattedDateTime + "                                                                                                                    |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|    Tutorial Group    |\t\tTeam\t\t|\t\tSubject\t\t|  Number of students  |              Student List              |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
