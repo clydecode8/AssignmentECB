@@ -41,7 +41,7 @@ public class AssTeam {
                 assTeamUI.TeamReport();               
             }
             // ass team start
-            else if (choice < reportNum){
+            else if (choice <= reportNum){
                 int choice2 = 0;
                 do{
                     SortedListInterface<Team> filteredTeam = new SortedArrayList<>();
