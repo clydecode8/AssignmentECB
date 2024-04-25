@@ -44,14 +44,6 @@ public class TeachingAssignment {
 
     public void TeachingAssignment() {
 
-        //sample tutorial groups
-//        generateCourseList();
-//        generateTutorList();
-//        generateTutorialGrp();
-//        TeachingAssignment();
-//ignore 
-        
-        
         tutorList = tutorinitial.initializeTutor();
         courseList = courseinitial.initializeCourse();
         tutorGrpList = tutorgrpinitial.initializeTutorialGroup();
@@ -250,7 +242,7 @@ public class TeachingAssignment {
              
             int count = 0;
             for (int j = 1; j <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); j++) {
-                if(TeachingAssignment.courseTutorCombineList.getEntry(j) != null){
+                if(TeachingAssignment.courseTutorCombineList.getEntry(j).getTutor() != null){
                     //check course 
                     if (TeachingAssignment.courseTutorCombineList.getEntry(j).getTutor().equals(currentTutor)) {
                         if (TeachingAssignment.courseTutorCombineList.getEntry(j).getCourse() != null) {
