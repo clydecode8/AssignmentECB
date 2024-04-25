@@ -1,7 +1,14 @@
 package control;
+
+import DAO.CourseInitializer;
+import DAO.CourseTutorCombineInitializer;
+import DAO.TutorInitializer;
+import DAO.TutorialGroupInitializer;
 import adt.SortedLinkedList;
 import adt.SortedLinkedListInterface;
 import boundary.TeachingAssignmentUI;
+import static boundary.TeachingAssignmentUI.clrscreen;
+import static boundary.TeachingAssignmentUI.pressToContinue;
 import entity.Course;
 import entity.CourseTutorCombine;
 import entity.Tutor;
@@ -17,52 +24,63 @@ import utility.MessageUI;
 public class TeachingAssignment {
 
     Scanner scanner = new Scanner(System.in);
+
+    public static SortedLinkedListInterface<Tutor> tutorList = new SortedLinkedList<>();
+    public static SortedLinkedListInterface<Course> courseList = new SortedLinkedList<>();
+    public static SortedLinkedListInterface<TutorialGroup> tutorGrpList = new SortedLinkedList<>();
+    public static SortedLinkedListInterface<CourseTutorCombine> courseTutorCombineList = new SortedLinkedList<>();
+
     private Tutor tutor = new Tutor();
     private TutorialGroup tg = new TutorialGroup();
     private TeachingAssignmentUI teachingUI = new TeachingAssignmentUI();
     private Course course = new Course();
-    private CourseTutorCombine coursetutorcombine = new CourseTutorCombine();
-    
-    public static SortedLinkedListInterface<Course> courseList= new SortedLinkedList<>();
-    public static SortedLinkedListInterface<Tutor> tutorList =new SortedLinkedList<>();
-    private static SortedLinkedListInterface<CourseTutorCombine> courseTutorCombineList = new SortedLinkedList<>();
-    public static SortedLinkedListInterface<TutorialGroup> tutorGrpList =new SortedLinkedList<>();
+
+    private TutorInitializer tutorinitial = new TutorInitializer();
+    private CourseInitializer courseinitial = new CourseInitializer();
+    private TutorialGroupInitializer tutorgrpinitial = new TutorialGroupInitializer();
+    private CourseTutorCombineInitializer ctcinitial = new CourseTutorCombineInitializer();
+
     Programme p1 = new Programme("", "");
 
-    
-   
-    
     public void TeachingAssignment() {
-        
+
         //sample tutorial groups
-//        generateCourseList();
-//        generateTutorList();
-//        generateTutorialGrp();
-//        TeachingAssignment();
-//ignore 
-        
-        
+        tutorList = tutorinitial.initializeTutor();
+        courseList = courseinitial.initializeCourse();
+        tutorGrpList = tutorgrpinitial.initializeTutorialGroup();
+        courseTutorCombineList = ctcinitial.initializeCourseTutorCombine();
+
         int choice = 0;
         do {
             choice = teachingUI.getMenuChoice();
             switch (choice) {
                 case 1:
-                   task1();
-                   break;
+                    task1();
+                    break;
                 case 2:
-                   task2();
-                   break;
+                    task2();
+                    break;
                 case 3:
-                   
-                break;
+                    task3();
+                    break;
                 case 4:
                     task4();
-                break;
+                    break;
                 case 5:
                     task5();
-                break;
-                
-               
+                    break;
+                case 6:
+                    task6();
+                    break;
+                case 7:
+                    task7();
+                    break;
+                case 8:
+                    task8();
+                    break;
+                case 9:
+                    task9();
+                    break;
                 case 0:
                     MessageUI.displayExitMessage();
                     break;
@@ -76,201 +94,525 @@ public class TeachingAssignment {
     public static void main(String[] args) {
 
         TeachingAssignment main = new TeachingAssignment();
-        main.generateCourseList();
-        main.generateTutorList();
-        main.generateTutorialGrp();
         main.TeachingAssignment();
-        
+
     }
 
-   
-    public void task1(){
-        
-        Course selectcourse = teachingUI.assignTutorToCourse();
-        Tutor displayTutor = teachingUI.displayAllTutor();
-        char tutorType = teachingUI.tutortype();
-        TutorialGroup emptygroup = new TutorialGroup("", 0, new Programme("", ""));
-        
-//        System.out.println(displayTutor.getTutorName());
-//        System.out.println(selectcourse.getCourseDetails());
-        CourseTutorCombine ctc = new CourseTutorCombine(displayTutor, selectcourse, emptygroup, tutorType);
-        coursetutorcombine.addTutorCombine(ctc);
-        for (int i = 0; i <  coursetutorcombine.getCourseTutorCombineList().getNumberOfEntries(); i++) {
-            
-            if(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1) != null){
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getTutorId());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getTutorName());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getAge());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getGender());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getType());
- 
+    public void test() {
+        for (int i = 1; i <= courseTutorCombineList.getNumberOfEntries(); i++) {
+            CourseTutorCombine current = courseTutorCombineList.getEntry(i);
+            System.out.print(current.getTutor().getTutorName());
+            System.out.print("  ");
+            if (current.getCourse() != null) {
+                System.out.print(current.getCourse().getCourseName());
+            } else {
+                System.out.print("nullCourse");
             }
-   
-        }
-        System.out.println("Add Successfull !");
-        
-        
-        
-    }
-    public void task2(){
-        Tutor resultTutor = teachingUI.displayAllTutor();
-        TutorialGroup resultTutorialGroup = teachingUI.chooseTutorialGroup();
-        Course emptygroup = new Course("","","");
-        
-        CourseTutorCombine ctc = new CourseTutorCombine(resultTutor,emptygroup,resultTutorialGroup,'N');
-        coursetutorcombine.addTutorCombine(ctc);
-        
-         for (int i = 0; i <  coursetutorcombine.getCourseTutorCombineList().getNumberOfEntries(); i++) {
-            
-            if(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1) != null){
-                System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(1).getCourse().getCourseName());
-                System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(1).getCourse().getCourseID());
-                
-                
+
+            System.out.print("  ");
+            if (current.getTutorialgroup() != null) {
+                System.out.println(current.getTutorialgroup().getGroup());
+            } else {
+                System.out.println("nullGroup");
             }
-            
         }
-        
-        
-        
-    }
-    public void task3(){
-        Course selectcourse = teachingUI.assignTutorToCourse();
-        
-        
-        
-        
-        
-    }
-    public void task4(){
-        Tutor displayTutor = teachingUI.searchCourseUnderTutor();
-        
-        for (int i = 0; i <  coursetutorcombine.getCourseTutorCombineList().getNumberOfEntries(); i++) {
-            
-            if(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1) != null){
-                if(displayTutor.getTutorId() == coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getTutorId()){
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getCourse().getCourseName());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getCourse().getCourseID());
-                    
-                }
-                
- 
+
+        if (courseTutorCombineList.getEntry(11) != null) {
+            CourseTutorCombine current = courseTutorCombineList.getEntry(11);
+            System.out.println(current.getTutor().getTutorName());
+            System.out.println(current.getCourse().getCourseName());
+            for (int i = 1; i <= current.getCourseTutorCombineList().getNumberOfEntries(); i++) {
+                System.out.println(current.getCourseTutorCombineList().getEntry(i).getTutorialgroup().getGroup());
             }
-   
+        } else {
+            System.out.println("not yet");
         }
-        //CourseTutorCombine ctc = teachingUI.searchTutorsForCourse();
-  
     }
-    public void task5(){
-        Course selectcourse = teachingUI.searchTutorsForCourse();
-        
-        for (int i = 0; i <  coursetutorcombine.getCourseTutorCombineList().getNumberOfEntries(); i++) {
-            
-            if(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1) != null){
-                if(selectcourse.getCourseID() == coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getCourse().getCourseID()){
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getTutorName());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getGender());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getTutor().getAge());
-                    System.out.println(coursetutorcombine.getCourseTutorCombineList().getEntry(i+1).getType());
-                    
-                }
-                
- 
-            }
-   
+
+    public void displayAllTutor(){
+        for (int i = 1; i <= tutorList.getNumberOfEntries(); i++) {
+               System.out.printf("%3d %-15s %-40s %-5s %5d\n", i, tutorList.getEntry(i).getTutorId(),
+                    tutorList.getEntry(i).getTutorName(), tutorList.getEntry(i).getGender(), 
+                    tutorList.getEntry(i).getAge());
         }
-        
     }
-    public SortedLinkedListInterface<Course> generateCourseList(){
-        Course course1 = new Course("English", "C001", "cd1",1000);
-        Course course2 = new Course("Discrete Math", "C002", "cd2",1000); 
-        Course course3 = new Course("Science","C003","cd3",1000);      
-        Course course4 = new Course("Information Security","C004","cd4", 1000);      
-        courseList.add(course1);
-        courseList.add(course2);
-        courseList.add(course3);
-        courseList.add(course4);
-        courseList.getEntry(1).addTutor(tutorList.getEntry(1));
-        courseList.getEntry(2).addTutor(tutorList.getEntry(2));
-        courseList.getEntry(3).addTutor(tutorList.getEntry(3));
-        courseList.getEntry(4).addTutor(tutorList.getEntry(4));
-
-        return courseList;
-
-    }
-
-    public void generateTutorList(){
-        Tutor newTutor1 = new Tutor("TOO1", "Abu","F",30);
-        Tutor newTutor2 = new Tutor("TOO2", "Ali","F",40);
-        Tutor newTutor3 = new Tutor("TOO3", "Adam","F",50);
-        Tutor newTutor4 = new Tutor("TOO4", "Ahman","G",60);
-        tutor.setTutorList(newTutor1);
-        tutor.setTutorList(newTutor2);
-        tutor.setTutorList(newTutor3);
-        tutor.setTutorList(newTutor4);
-
-    }
-
     
-        
-    public SortedLinkedListInterface<TutorialGroup> generateTutorialGrp() {
-        TutorialGroup g1 = new TutorialGroup("Group 1", 25, p1);
-        TutorialGroup g2 = new TutorialGroup("Group 2", 25, p1);
-        TutorialGroup g3 = new TutorialGroup("Group 3", 25, p1);
-        TutorialGroup g4 = new TutorialGroup("Group 4", 25, p1);
-        tutorGrpList.add(g1);
-        tutorGrpList.add(g2);
-        tutorGrpList.add(g3);
-        tutorGrpList.add(g4);
-
-        return tutorGrpList;
-
-//    Programme p1 = new Programme("Programme Name", "Programme Code");
-//    
-//    // Create CourseTutorCombine instances
-//    CourseTutorCombine sg1 = new CourseTutorCombine(new Tutor(), new Course(), new TutorialGroup("Group 1", 24, p1), 'L');
-//    CourseTutorCombine sg2 = new CourseTutorCombine(new Tutor(), new Course(), new TutorialGroup("Group 2", 24, p1), 'L');
-//    CourseTutorCombine sg3 = new CourseTutorCombine(new Tutor(), new Course(), new TutorialGroup("Group 3", 24, p1), 'L');
-//    CourseTutorCombine sg4 = new CourseTutorCombine(new Tutor(), new Course(), new TutorialGroup("Group 4", 24, p1), 'L');
-//    
-//    // Add CourseTutorCombine instances to the list
-//    courseTutorCombineList.add(sg1);
-//    courseTutorCombineList.add(sg2);
-//    courseTutorCombineList.add(sg3);
-//    courseTutorCombineList.add(sg4);
+    public void displayAllCourse() {
+        for (int i = 1; i <= courseList.getNumberOfEntries(); i++) {
+               System.out.printf("%3d %-15s %-40s \n", i, courseList.getEntry(i).getCourseID(),
+                    courseList.getEntry(i).getCourseName());
+        }
+//        System.out.println("---------------------------------------------------------------------------------");
+//        System.out.print("Enter Your Number Selection:");
+//        int select = scanner.nextInt();
+//        Course courseresult = courseList.getEntry(select);
+//        return courseresult;
     }
 
+    public CourseTutorCombine getTutorCourse(){
+        //section1 : select course
+        SortedLinkedListInterface<CourseTutorCombine> tutorCourse = new SortedLinkedList<>();
         
         
-    public void tutorialEngGrp() {
+        //show tutor details and select tutor
+        displayAllTutor();
+        int resulttutor = teachingUI.inputCourse();
+        Tutor selectedTutor = tutorList.getEntry(resulttutor);
+        System.out.println(selectedTutor.getTutorName() + " and the course");
 
-        //sample tutorial groups
+        //filter to add into tutorCourse
+        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
 
-        TutorialGroup dg1 = new TutorialGroup("Group 1", 25, p1);
-        TutorialGroup dg2 = new TutorialGroup("Group 2", 25, p1);
-        TutorialGroup dg3 = new TutorialGroup("Group 3", 25, p1);
-        TutorialGroup dg4 = new TutorialGroup("Group 4", 25, p1);
-        System.out.println("1" + dg1);
-        System.out.println("2" + dg2);
-        System.out.println("3" + dg3);
-        System.out.println("4" + dg4);
+            //check isNull
+            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
+                //check selectedtutor
+                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().equals(selectedTutor)) {
+                    //filter to get tutor x course
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
+                            && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
+                        tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
+
+                    }
+
+                }
+
+            }
+        }
+
+        //display filtered result
+        for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
+
+            System.out.print(i + ")");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + "  ");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
+            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName());
+        }
+
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.print("Enter a course:");
+        int result = scanner.nextInt();
+        System.out.println();
+        // target selected ctb in ctbList
+        CourseTutorCombine selectedTutorCourse = tutorCourse.getEntry(result);
+
+        return selectedTutorCourse;
     }
-    public void tutorialGrp2(){
+    
+    public CourseTutorCombine getTutorGroup(CourseTutorCombine selectedTutorCourse) {
+        Tutor selectedTutor = selectedTutorCourse.getTutor();
+        //section2 : select group
+        SortedLinkedListInterface<CourseTutorCombine> tutorGroup = new SortedLinkedList<>();
+        //filter out ctbList to get tutor x group
+        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+            //check isNull
+            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
+                //check tutor
+                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().equals(selectedTutor)) {
+                    //check has group
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutorialgroup() != null) {
+                        tutorGroup.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
+                    }
+                }
+            }
+        }
 
-        //sample tutorial groups
-        TutorialGroup dg1 = new TutorialGroup("Group 1", 25, p1) ;
-        TutorialGroup dg2 = new TutorialGroup("Group 2", 25, p1);
-        TutorialGroup dg3 = new TutorialGroup("Group 3", 25, p1);
-        TutorialGroup dg4 = new TutorialGroup("Group 4", 25, p1);
-        System.out.println("1" + dg1);
-        System.out.println("2" + dg2);
-        System.out.println("3" + dg3);
-        System.out.println("4" + dg4);
+        //display filtered result
+        for (int i = 1; i <= tutorGroup.getNumberOfEntries(); i++) {
+            System.out.print((i) + ")");
+            System.out.print(tutorGroup.getEntry(i).getTutorialgroup().getGroup() + " ");
+            System.out.println(tutorGroup.getEntry(i).getTutorialgroup().getQty());
+        }
+        
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.print("Select Number Tutotrial Group Want to assign:");
+        int tgresult = scanner.nextInt();
+        System.out.println();
+
+        CourseTutorCombine selectedGroup = tutorGroup.getEntry(tgresult);
+
+        return selectedGroup;
+        
+        
+        
+
+    }
+    
+    public void functionReport1(){
+        for(int i = 1; i <= TeachingAssignment.tutorList.getNumberOfEntries(); i++){
+            Tutor currentTutor = TeachingAssignment.tutorList.getEntry(i);
+             
+            int count = 0;
+            for (int j = 1; j <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); j++) {
+                if(TeachingAssignment.courseTutorCombineList.getEntry(j) != null){
+                    //check course 
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(j).getTutor().equals(currentTutor)) {
+                        if (TeachingAssignment.courseTutorCombineList.getEntry(j).getCourse() != null) {
+                            count++;
+                        }
+                    }
+                }                
+            }
+            
+            int count2 = 0;
+            for (int k = 1; k <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); k++) {
+                if(TeachingAssignment.courseTutorCombineList.getEntry(k) != null){
+                    //check course 
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(k).getTutor().equals(currentTutor)) {
+                        if (TeachingAssignment.courseTutorCombineList.getEntry(k).getTutorialgroup() != null) {
+                            count2++;
+                        }
+                    }
+                }                
+            }
+            
+            System.out.printf("%-2d.       %-25s%-31s%-25d%-4d\n",i,currentTutor.getTutorId(),currentTutor.getTutorName(),count, count2);
+        }
+    
+        System.out.println();
+        System.out.printf(" ".repeat(35) + "END OF THE SUMMARY REPORT");
+        System.out.println();
+        System.out.println("=".repeat(120));
+        System.out.println("\n");
+    }
+    
+    public void functionReport2(){
+        for (int i = 1 ; i<= TeachingAssignment.courseList.getNumberOfEntries();i++){
+            Course currentCourse = TeachingAssignment.courseList.getEntry(i);
+            
+            int count = 0;
+            for (int j = 1; j <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); j++) {
+                if(TeachingAssignment.courseTutorCombineList.getEntry(j) != null){
+                    //check 
+                    if(TeachingAssignment.courseTutorCombineList.getEntry(j).getCourse() !=null){
+                         if (TeachingAssignment.courseTutorCombineList.getEntry(j).getCourse().equals(currentCourse)) {
+                            if (TeachingAssignment.courseTutorCombineList.getEntry(j).getTutor() != null) {
+                                count++;
+                            }
+                        }
+                    }
+                       
+                }
+                
+            }
+            
+            int count2 =0;
+            for (int k = 1; k <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); k++) {
+                if(TeachingAssignment.courseTutorCombineList.getEntry(k) != null){
+                    //check 
+                    if(TeachingAssignment.courseTutorCombineList.getEntry(k).getCourse() !=null){
+                         if (TeachingAssignment.courseTutorCombineList.getEntry(k).getCourse().equals(currentCourse)) {
+                            if (TeachingAssignment.courseTutorCombineList.getEntry(k).getTutorialgroup()!= null) {
+                                count++;
+                            }
+                        }
+                    }
+                }
+                
+            }
+             System.out.printf("%-2d.       %-25s%-31s%-25d%-4d\n",i,currentCourse.getCourseID(),currentCourse.getCourseName(),count, count2);
+        }
+    }
+    
+    public void task1() {
+        teachingUI.assignTutorToCourse();
+        //show course and select course
+        for (int i = 0; i < courseList.getNumberOfEntries(); i++) {
+            System.out.print((i + 1) + ")");
+            System.out.println(courseList.getEntry(i + 1));
+        }
+        System.out.println("---------------------------------------------------------------------------------");
+        
+
+        int courseResult = teachingUI.inputCourse();
+        Course sCourse = courseList.getEntry(courseResult);
+ 
+        
+        //show tutor details and select tutor
+        displayAllTutor();
+        int selectedresult = teachingUI.inputCourse();
+        Tutor tutorresult = tutorList.getEntry(selectedresult);
+
+        
+        //show type and assign tutor type
+        int select3 = teachingUI.tutortype();
+        char tutortype = 'L';
+        switch (select3) {
+            case 1:
+                tutortype = 'T';
+                break;
+            case 2:
+                tutortype = 'P';
+                break;
+            case 3:
+                tutortype = 'L';
+                break;
+        }
+
+        CourseTutorCombine ctc = new CourseTutorCombine(tutorresult, sCourse, tutortype);
+        courseTutorCombineList.add(ctc);
+
+
+        System.out.println("Add Successfull !!!\n");
+
+    }
+
+    public void task2() {
+        
+        //show tutor details and select tutor
+        displayAllTutor();
+        int selectedresult = teachingUI.inputCourse();
+        Tutor tutorresult = tutorList.getEntry(selectedresult);
+
+
+        //show grp and choose grp
+        for (int i = 0; i < tutorGrpList.getNumberOfEntries(); i++) {
+            System.out.print((i + 1) + ")");
+            System.out.print(tutorGrpList.getEntry(i + 1).getGroup() + "     ");
+            System.out.println("Qty:" + tutorGrpList.getEntry(i + 1).getQty());
 
         }
+        int selectTutorialGroup = teachingUI.chooseTutorialGroup();
+        TutorialGroup resultTutorialGroup= tutorGrpList.getEntry(selectTutorialGroup);
+
+        // combine
+        CourseTutorCombine ctc = new CourseTutorCombine(tutorresult, resultTutorialGroup);
+        courseTutorCombineList.add(ctc);
+
+        System.out.println("Add Successfull !!!\n");
+
+
+    }
+    
+    public void task3() {
+        teachingUI.getTutorCourse();
+        
+        CourseTutorCombine selectedTutorCourse = getTutorCourse();
+        
+        CourseTutorCombine selectedTutorGroup = getTutorGroup(selectedTutorCourse);
+
+        selectedTutorCourse.addTutorCombine(selectedTutorGroup);
+
+        System.out.println("Add Successfull !!!");
+        System.out.println();
+    }
+
+    public void task4() {
+        SortedLinkedList<CourseTutorCombine> tutorCourse = new SortedLinkedList<>();
+        
+        
+        //show tutor details and select tutor
+        displayAllTutor();
+        int tutorresult = teachingUI.inputCourse();
+        Tutor selectedTutor = tutorList.getEntry(tutorresult);
+
+
+        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
+                //check selectedtutor
+                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().equals(selectedTutor)) {
+                    //filter to get tutor x course
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
+                            && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
+                        tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
+
+                    }
+
+                }
+
+            }
+
+        }
+        //display filtered result
+        for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
+
+            System.out.print(i + ")");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseID() + "  ");
+            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName() + " ");
+        }
+
+    }
+
+    public void task5() {
+        teachingUI.searchTutorsForCourse();
+        
+        SortedLinkedList<CourseTutorCombine> tutorCourse = new SortedLinkedList<>();
+        
+        //show course details and select course
+        displayAllCourse();
+        int selectedresult = teachingUI.inputCourse();
+        Course selectedCourse = courseList.getEntry(selectedresult);
+
+        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
+
+                //filter to get course x tutor
+                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
+                        && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
+                    //check selectedcourse
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().equals(selectedCourse)) {
+                        tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
+
+                    }
+
+                }
+            }
+
+        }
+        //display filtered result
+        for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
+
+            System.out.print(i + ")");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + "  ");
+            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
+        }
+
+    }
+
+    public void task6() {
+        teachingUI.listTutorsAndTutorialGroupsForCourse();
+        
+        //show course details and select course
+        displayAllCourse();
+        int selectedresult = teachingUI.inputCourse();
+        Course courseResult = courseList.getEntry(selectedresult);
+        
+        
+        SortedLinkedListInterface<CourseTutorCombine> tutorCourse = new SortedLinkedList<>();
+
+        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+            //check course
+            if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
+                    && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
+
+                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().equals(courseResult)) {
+                    tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
+
+                }
+
+            }
+        }
+
+        for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
+            System.out.print(i + ")");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + "  ");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
+            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutorialgroup().getGroup());
+        }
+
+
+    }
+
+    public void task7() {
+        teachingUI.listCoursesForTutors();
+        
+        SortedLinkedList<CourseTutorCombine> tutorCourse = new SortedLinkedList<>();
+        
+         //show tutor details and select tutor
+        displayAllTutor();
+        int tutorresult = teachingUI.inputCourse();
+        Tutor selectedTutor = tutorList.getEntry(tutorresult);
+       
+
+        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
+                //check selectedtutor
+                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().equals(selectedTutor)) {
+                    //filter to get tutor x course
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
+                            && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
+                        tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
+
+                    }
+
+                }
+
+            }
+
+        }
+        //display filtered result
+        for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
+
+            System.out.print(i + ")");
+            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseID() + "  ");
+            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName() + " ");
+        }
+
+    }
+
+    public void task8() {
+        
+        int result = teachingUI.filterTutorsBasedOnType();
+        char tutortype = 'T';
+        int num = 0;
+        switch (result) {
+            case 1:
+                tutortype = 'T';
+                for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor() != null) {
+                        if (tutortype == TeachingAssignment.courseTutorCombineList.getEntry(i).getType()) {
+                            System.out.print((num + 1) + ". " + TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + " ");
+                            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
+                            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getType());
+                            num++;
+                        }
+
+                    }
+
+                }
+
+                break;
+            case 2:
+                tutortype = 'P';
+                for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor() != null) {
+                        if (tutortype == TeachingAssignment.courseTutorCombineList.getEntry(i).getType()) {
+                            System.out.print((num + 1) + ". " + TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + " ");
+                            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
+                            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getType());
+                            num++;
+                        }
+
+                    }
+
+                }
+                break;
+            case 3:
+                tutortype = 'L';
+                for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
+                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor() != null) {
+                        if (tutortype == TeachingAssignment.courseTutorCombineList.getEntry(i).getType()) {
+                            System.out.print((num + 1) + ". " + TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + " ");
+                            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
+                            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getType());
+                            num++;
+                        }
+
+                    }
+
+                }
+                break;
+        }
+        
+    }
+
+    public void task9() {
+        int select = teachingUI.generateSummaryReports();
+        if (select == 1) {
+            teachingUI.report1();
+            functionReport1();
+            teachingUI.pressToContinue();
+            teachingUI.clrscreen();
+            
+        } else if (select == 2) {
+            teachingUI.report2();
+            functionReport2();
+            teachingUI.pressToContinue();
+            teachingUI.clrscreen();
+        }
+
+
+        
+        
+    }
+
 }
-    
-    
-    
-    
-

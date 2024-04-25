@@ -12,7 +12,7 @@ import adt.SortedLinkedListInterface;
  *
  * @author limws
  */
-public class Course implements Comparable<Course>{
+public class Course implements Comparable<Course> {
     private String courseName;
     private String courseID;
     private String courseDetails;
@@ -188,5 +188,7 @@ public class Course implements Comparable<Course>{
         
         return true;
     }
+    
+    
     
 }

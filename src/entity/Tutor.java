@@ -56,9 +56,9 @@ public class Tutor implements Comparable<Tutor> {
         return tutorName;
     }
 
-    public SortedLinkedListInterface<Tutor> getTutorList() {
-        return tutorList;
-    }
+//    public SortedLinkedListInterface<Tutor> getTutorList() {
+//        return tutorList;
+//    }
 
     public void setTutorList(Tutor tutor) {
         tutorList.add(tutor);
@@ -76,6 +76,8 @@ public class Tutor implements Comparable<Tutor> {
 //        return this.tutorId.compareTo(o.tutorId);
        return 1;
     }
+    
+    
 
   
 }

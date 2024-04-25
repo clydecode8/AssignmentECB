@@ -107,4 +107,5 @@ public interface SortedLinkedListInterface<T extends Comparable<T>> {
      * @return A sorted array containing all entries in the sorted linked list.
      */
     public T[] toSortedArray();
+    public boolean removeItem(T itemToRemove);
 }

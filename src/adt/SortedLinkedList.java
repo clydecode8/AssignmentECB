@@ -206,6 +206,35 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedLinkedLi
             this.next = null;
         }
     }
+    
+    public boolean removeItem(T itemToRemove) {
+        Node currentNode = firstNode;
+        Node previousNode = null;
+
+        while (currentNode != null) {
+            if (currentNode.data.equals(itemToRemove)) {
+                // Found the item to remove
+                if (previousNode == null) {
+                    // Removing the first node
+                    firstNode = currentNode.next;
+                } else {
+                    // Removing a node other than the first one
+                    previousNode.next = currentNode.next;
+                }
+
+                numberOfEntries--;
+                return true; // Item removed successfully
+            }
+
+            // Move to the next node
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        // Item not found in the list
+        return false;
+    }
+
 }
 
 
