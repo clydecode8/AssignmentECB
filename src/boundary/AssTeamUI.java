@@ -78,9 +78,9 @@ public class AssTeamUI {
         clscr();
         System.out.println("Create Assignment Team");
         System.out.println("---------------------------");
-        System.out.print("Enter group name: ");
+        System.out.print("Enter team name: ");
         String name = scanner.nextLine();
-        System.out.print("Enter subject: ");
+        System.out.print("Enter course: ");
         String subject = scanner.nextLine();
         Team tempTeam = new Team(name, subject, tut);
         System.out.println("\nAssignment team created successfully");
@@ -106,7 +106,7 @@ public class AssTeamUI {
             System.out.println("There is no assignment team in this tutorial group");
             
         }
-        System.out.print("Enter group number (0 to exit): ");
+        System.out.print("Enter team number (0 to exit): ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         if(choice != 0){
@@ -142,10 +142,10 @@ public class AssTeamUI {
         clscr();
         System.out.println("---------------------------");
         System.out.println("Team Name: "+ team.getTeamName());
-        System.out.println("Subject: "+ team.getSubject());
+        System.out.println("Course: "+ team.getSubject());
         System.out.println("---------------------------");
         System.out.println("1. Change Team Name");
-        System.out.println("2. Change Subject");
+        System.out.println("2. Change Course");
         System.out.print("Enter your choice (0 to quit): ");
         int choice = scanner.nextInt();
         return choice;
@@ -165,7 +165,7 @@ public class AssTeamUI {
         }
         else if (choice ==2){
             scanner.nextLine();
-            System.out.print("Enter New Subject: ");
+            System.out.print("Enter New Course: ");
             String subject = scanner.nextLine();
             System.out.println("\nAssignment team amendded successfully");
             System.out.println("Press any key to continue ...");
@@ -181,9 +181,10 @@ public class AssTeamUI {
     public SortedListInterface<Integer> mergeTeam(TutorialGroup search){
         clscr();
         SortedListInterface<Integer> choices = new SortedArrayList<>();
-        System.out.println("Merge Assignment Team");        
+        System.out.println("Merge Assignment Team");  
+        System.out.println("---------------------------");
         System.out.println("[Select 2 team to merge together]");
-        System.out.println("[Team name and subject will follow first team]");
+        System.out.println("[Team name and course will follow first team]");
         System.out.println("[maximum 5 students in one team]");
         System.out.println("---------------------------");
         int num=1;
@@ -202,7 +203,7 @@ public class AssTeamUI {
         System.out.println("---------------------------");
         System.out.print("\nEnter first team number: ");
         int choice1 = scanner.nextInt();
-        System.out.print("Enter first team number: ");
+        System.out.print("Enter second team number: ");
         int choice2 = scanner.nextInt();
         choices.add(choice1);
         choices.add(choice2);
@@ -212,10 +213,10 @@ public class AssTeamUI {
      public int mergeTeamChoice(Team team){
         System.out.println("---------------------------");
         System.out.println("Team Name: "+ team.getTeamName());
-        System.out.println("Subject: "+ team.getSubject());
+        System.out.println("Course: "+ team.getSubject());
         System.out.println("\n---------------------------");
         System.out.println("1. Change Team Name");
-        System.out.println("2. Change Subject");
+        System.out.println("2. Change Course");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         return choice;
@@ -246,7 +247,7 @@ public class AssTeamUI {
         for(int i=0; i< tgList.size(); i++){
             int teamNum =0;
             for(int j=0; j< sortedTeam.size(); j++){
-                if(sortedTeam.getEntry(i).getTg().getGroup().equals(tgList.getEntry(i).getGroup())){
+                if(sortedTeam.getEntry(j).getTg().getGroup().equals(tgList.getEntry(i).getGroup())){
                     teamNum++;
                 }
             }
@@ -271,7 +272,7 @@ public class AssTeamUI {
         System.out.println("|                                                          Team Summary Report                                                                     |");
         System.out.println("|  Created at: "+ formattedDateTime + "                                                                                                                    |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("|    Tutorial Group    |\t\tTeam\t\t|\t\tSubject\t\t|  Number of students  |              Student List              |");
+        System.out.println("|    Tutorial Group    |\t\tTeam\t\t|\t\tCourse\t\t|  Number of students  |              Student List              |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
         
         SortedListInterface<Team> sortedTeam = new SortedArrayList<>();
@@ -358,6 +359,7 @@ public class AssTeamUI {
                 return null;
             }
             else{
+                scanner.nextLine();
                 System.out.println("Student added successfully");
                 System.out.println("Press any key to continue ...");
 
