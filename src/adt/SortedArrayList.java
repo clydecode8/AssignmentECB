@@ -60,9 +60,6 @@ public class SortedArrayList<T extends Comparable<? super T>> implements SortedL
         }
         size--;
 
-        // Optional: You may want to re-sort the array after removal
-        // Arrays.sort(array, 0, size);
-
         return removedElement;
     }
 
@@ -143,6 +140,19 @@ public class SortedArrayList<T extends Comparable<? super T>> implements SortedL
             }
         }
         return sb.toString();
+    }
+    
+    public void bubbleSort() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (array[j].compareTo(array[j + 1]) > 0) {
+                    // Swap array[j] and array[j+1]
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
     }
 }
 

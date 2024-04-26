@@ -73,8 +73,8 @@ public class Team implements Comparable<Team>{
     }
 
     @Override
-    public int compareTo(Team o) {
-        return 0;
+    public int compareTo(Team other) {
+        return this.teamName.compareTo(other.teamName);
     }
 
     

@@ -164,7 +164,9 @@ public class TutorialGroup implements Comparable<TutorialGroup>{
         return thisName.compareTo(otherName); 
     }
 
-
+    public int compareTo2(TutorialGroup other) {
+        return this.group.compareTo(other.group);
+    }
     
 }
 

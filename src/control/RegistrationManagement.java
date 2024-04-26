@@ -84,16 +84,17 @@ public class RegistrationManagement {
     }
     
     public void initialize(){
-        Programme p1 = new Programme("Software Engineering", "FOCS");
-        TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
-        TutorialGroup g2 = new TutorialGroup("Group 2", 24, p1);
-        TutorialGroup g3 = new TutorialGroup("Group 3", 24, p1);
-        TutorialGroup g4 = new TutorialGroup("Group 4", 24, p1);
+        Programme p1 = new Programme("Software Engineering", "2020");
 
-        Team t1 = new Team("Robot team1", "Robot Development", g1);
-        Team t2 = new Team("Robot team2", "Robot Development", g1);
-        Team t3 = new Team("Robot team3", "Robot Development", g1);
-        Team t4 = new Team("Gundam team1", "Robot Development", g2);
+        TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
+        TutorialGroup g2 = new TutorialGroup("Group 2", 20, p1);
+        TutorialGroup g3 = new TutorialGroup("Group 3", 21, p1);
+        TutorialGroup g4 = new TutorialGroup("Group 4", 25, p1);
+
+        Team t1 = new Team("Robot team", "Robot Development", g1);
+        Team t2 = new Team("Mobile app team", "Mobile Development", g1);
+        Team t3 = new Team("Java team", "DSA", g1);
+        Team t4 = new Team("Gundam team", "Robot Development", g2);
 
         
         Student stud1 = new Student("John", "WPF33232", g1, t1);
@@ -102,6 +103,8 @@ public class RegistrationManagement {
         Student stud4 = new Student("Pearl", "WPF54565", g1, t1);
         Student stud5 = new Student("Max", "WPF532432", g1, t1);                
         Student stud6 = new Student("Jeremy", "WPF532323", g1, t2);
+        Student stud7 = new Student("Smith", "WPF532323", g1, t2);
+
         
         Course course1 = new Course("ACCOUNT","12345","ACCOUNT",700);
         Course course2 = new Course("Math","12345","FOR ENGINNER STUDENT",1000);
@@ -123,6 +126,8 @@ public class RegistrationManagement {
         student.setStudentList(stud4);
         student.setStudentList(stud5);
         student.setStudentList(stud6);
+        student.setStudentList(stud7);
+
         
         course.setCourseList2(course1);
         course.setCourseList2(course2);

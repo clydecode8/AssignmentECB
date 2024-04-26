@@ -243,6 +243,9 @@ public class AssTeamUI {
         
         tgList = tg.getSortedTutorialGroup();
         sortedTeam = team.getSortedTeam();
+        // Sort the sortedTeam list by teamName in ascending order
+        ((SortedArrayList<Team>) sortedTeam).bubbleSort();
+        
         int num=1;
         for(int i=0; i< tgList.size(); i++){
             int teamNum =0;
@@ -294,7 +297,7 @@ public class AssTeamUI {
             }
 //             System.out.println("|\t" + teamList.getEntry(j).getTeamName() + "\t|\t" + teamList.getEntry(j).getSubject()
 //             + "\t|\t\t" + studNum + "\t\t|\t" + tempName.toString2() + "\t|");
-             System.out.printf("|%22s|%26s|%32s|%22d|%40s|", sortedTeam.getEntry(j).getTg().getGroup(),sortedTeam.getEntry(j).getTeamName(), sortedTeam.getEntry(j).getSubject(),studNum, tempName.toString2() );
+        System.out.printf("|%22s|%26s|%32s|%22d|%40s|", sortedTeam.getEntry(j).getTg().getGroup(),sortedTeam.getEntry(j).getTeamName(), sortedTeam.getEntry(j).getSubject(),studNum, tempName.toString2() );
         System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------");
 
         }
