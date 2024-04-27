@@ -1,9 +1,4 @@
 package boundary;
-
-import DAO.CourseInitializer;
-import DAO.CourseTutorCombineInitializer;
-import DAO.TutorInitializer;
-import DAO.TutorialGroupInitializer;
 import adt.SortedLinkedListInterface;
 import adt.SortedLinkedList;
 import control.Driver;
@@ -60,7 +55,17 @@ public class TeachingAssignmentUI {
     
     public void assignTutorToCourse() {
         System.out.println("--------------------------------Assign Tutor To Course-----------------------------");
+        System.out.println("    Course ID                  Course Name               Course Details");
 
+    }
+    public void assignTutorialTutor(){
+            System.out.println("----------------------------Assign tutorial groups to a tutor----------------------------");
+    }
+    public void displayTitleTutorial(){
+        System.out.println("---------Tutorial Grouop---------");
+    }
+    public void displayDetailsTutorialGroup(){
+        System.out.println("    Group Name      Qty");
     }
     
     public int inputCourse(){
@@ -72,7 +77,8 @@ public class TeachingAssignmentUI {
     }
 
     public int tutortype() {
-        System.out.println("\n" + "1. T(Tutorial) ");
+        System.out.println(" Tutor Type");
+        System.out.println("1. T(Tutorial) ");
         System.out.println("2. P(Practical) ");
         System.out.println("3. L(Lecturer) ");
         System.out.println("---------------------------------------------------------------------------------");
@@ -138,19 +144,21 @@ public class TeachingAssignmentUI {
 
     public void searchCourseUnderTutor() {
         System.out.println("---------------------------Search Courses Under a Tutor---------------------------");
+        
        
 
     }
 
     public void searchTutorsForCourse() {
         System.out.println("---------------------------Search Tutor For a Course---------------------------");
+        System.out.println("   Course ID         Course Name                  ");
        
 
     }
 
     public void listTutorsAndTutorialGroupsForCourse() {
-        System.out.println("-------------------------List Tutors and Tutorial Group For Course-------------------------");
-        
+        System.out.println("--------------------List Tutors and Tutorial Group For Course--------------------");
+        System.out.println("   Course ID         Course Name   ");
     }
 
     public void listCoursesForTutors() {
@@ -167,6 +175,7 @@ public class TeachingAssignmentUI {
         System.out.print("Enter Your Selection(1/2/3): ");
         int result = scanner.nextInt();
         System.out.println();
+        System.out.println("   Tutor ID           Tutor Name        Tutor Type                          Course Name");
         return result;
 
 
