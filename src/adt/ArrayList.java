@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author Kok Ming Han
+ * @author Kok Ming Han, Liew Yee Jie, Lim Wei Sheng, Siew Yuan Feng, Tan Khai Dee
  * @param <T>
  * 
  */

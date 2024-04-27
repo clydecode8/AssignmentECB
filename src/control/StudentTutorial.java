@@ -19,7 +19,7 @@ import utility.MessageUI;
 
 /**
  *
- * @author User
+ * @author Kok Ming Han
  */
 public class StudentTutorial {
     
@@ -360,68 +360,68 @@ public class StudentTutorial {
             }
             System.out.println("====================================================================");
             int choice2 = stdUI.inputMergeIterator2();
-
-            //Get new tutorial group
-            TutorialGroup tgsNew = pg[chosen].getTutorialGroupList().getEntry(choice);
-            //Get old tutorial group   
-            TutorialGroup tgsOld = pg[chosen].getTutorialGroupList().getEntry(choice2);
-
-
-            //(old, new) = merge(b, a) = replaceAll(b, a) = replace All B to A
-            //replaceAll(RSWG4, RSWG2) replace rswg4 to rswg2
-            int initialSize = tgsOld.getStudentList().size();
-            int removedEntry = 0;
-            for (int l = 0; l < initialSize; l++) {
+            
+            if(!pg[chosen].getTutorialGroupList().getEntry(choice2).getStudentList().isEmpty()){
+                
+                 //Get new tutorial group
+                TutorialGroup tgsNew = pg[chosen].getTutorialGroupList().getEntry(choice);
+                //Get old tutorial group   
+                TutorialGroup tgsOld = pg[chosen].getTutorialGroupList().getEntry(choice2);
 
 
-                if(tgsOld.getStudentList().getEntry(l) != null){
-
-                    Student tempStd = tgsOld.getStudentList().getEntry(l);
-                    String name = tempStd.getName();
-                    String id = tempStd.getID();
-                    TutorialGroup tutorialgroup = tgsNew;
-                    Team team = tempStd.getTeam();
+                //(old, new) = merge(b, a) = replaceAll(b, a) = replace All B to A
+                //replaceAll(RSWG4, RSWG2) replace rswg4 to rswg2
+                int initialSize = tgsOld.getStudentList().size();
+                int removedEntry = 0;
+                for (int l = 0; l < initialSize; l++) {
 
 
-                    tgsNew.addStudentList(new Student(name, id, tutorialgroup, team));
-                    removedEntry++;
+                    if(tgsOld.getStudentList().getEntry(l) != null){
+
+                        Student tempStd = tgsOld.getStudentList().getEntry(l);
+                        String name = tempStd.getName();
+                        String id = tempStd.getID();
+                        TutorialGroup tutorialgroup = tgsNew;
+                        Team team = tempStd.getTeam();
+
+
+                        tgsNew.addStudentList(new Student(name, id, tutorialgroup, team));
+                        removedEntry++;
+                    }
+
+
+                }
+
+                Student test = null;
+                for(int l=0; l<removedEntry; l++){
+
+                    test = tgsOld.getStudentList().remove(0);
+
+                }
+
+                if(test != null){
+
+                    tgsNew.setQty(tgsNew.getQty() + removedEntry);
+                    tgsOld.setQty(tgsOld.getQty() - removedEntry);
+                    System.out.println("Change successful!");
+                    GroupManagementUI.enterCont();
+                    GroupManagementUI.clearScreen();
+                }else{
+
+                    System.out.println("Change is unsuccessful.");
                 }
 
 
-            }
-
-            Student test = null;
-            for(int l=0; l<removedEntry; l++){
-
-                test = tgsOld.getStudentList().remove(0);
-
-            }
-
-            if(test != null){
-
-                tgsNew.setQty(tgsNew.getQty() + removedEntry);
-                tgsOld.setQty(tgsOld.getQty() - removedEntry);
-                System.out.println("Change successful!");
-                GroupManagementUI.enterCont();
-                GroupManagementUI.clearScreen();
             }else{
 
-                System.out.println("Change is unsuccessful.");
+
+                GroupManagementUI.clearScreen();
+                System.out.println("There are currently no students.");
+                GroupManagementUI.enterCont();
+
             }
 
-
-
-
-        }else{
-
-
-            GroupManagementUI.clearScreen();
-            System.out.print("There are no students in the tutorial group.");
-            GroupManagementUI.enterCont();
         }
-
-
-          
 
     }
     
