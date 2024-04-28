@@ -152,7 +152,7 @@ public class Course implements Comparable<Course> {
     }
     
     public String toString2() {
-        return String.format("Course Name: %-30s Course ID: %-15s Course price: RM %.2f " ,courseName,courseID,courseprice);
+        return String.format("Course Name: %-15s Course ID: %-15s Course price: RM %.2f " ,courseName,courseID,courseprice);
     }
     
     @Override

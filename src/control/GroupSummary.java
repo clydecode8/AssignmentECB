@@ -46,7 +46,7 @@ public class GroupSummary {
             
             int chooseSort = gsUI.chooseSort();
             GroupManagementUI.clearScreen();
-            System.out.println("=====================================================================================================");
+            System.out.println("=======================================================================================================================================");
             System.out.printf("%75s%n", "TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY");
             System.out.printf("%55s%n", "TUTORIAL GROUP SUBSYSTEM");
             System.out.println("");
@@ -54,9 +54,9 @@ public class GroupSummary {
             System.out.printf("%54s%n", "TUTORIAL GROUP REPORT");
             System.out.printf("%61s%n", "[----------------------------------]");
 
-            System.out.println("=====================================================================================================");
+            System.out.println("=======================================================================================================================================");
             System.out.printf("%-4s | %-13s | %-10s | %-20s | %-12s%n", "No.", "Intake Year", "Group", "Number of Students", "Programme");
-            System.out.println("=====================================================================================================");
+            System.out.println("=======================================================================================================================================");
             
             for(int i = 0; i < 3; i++){
                 
@@ -162,9 +162,9 @@ public class GroupSummary {
             }
             
             
-            System.out.println("=====================================================================================================");
+            System.out.println("=======================================================================================================================================");
             System.out.println("|<Least Amount of Students>|");
-            System.out.println("=====================================================================================================");
+            System.out.println("=======================================================================================================================================");
             for (int i = 0; i < 3; i++) {
                 
                 boolean status = false;
@@ -257,12 +257,12 @@ public class GroupSummary {
                 
 
                 
-                System.out.println("-----------------------------------------------------------------------------------------------------");
+                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
             }
             
             System.out.println("");
             System.out.printf("%54s%n", "END OF TUTORIAL GROUP REPORT");
-            System.out.println("=====================================================================================================");
+            System.out.println("=======================================================================================================================================");
             System.out.println("");
             GroupManagementUI.enterCont();
             
@@ -358,53 +358,14 @@ public class GroupSummary {
                 }
                 
             }
+            
             System.out.println("Total Empty: " + empty);
             System.out.println("");
             System.out.printf("%54s%n", "END OF TUTORIAL GROUP REPORT");
             System.out.println("=====================================================================================================");
             System.out.println("");
             GroupManagementUI.enterCont();
-            /*
-            
-            for (int i = 0; i < pg.length; i++) {
-
-                if(pg[i] != null){
-
-
-                    for (int j = 0; j < pg[i].getTutorialGroupList().size(); j++) {
-                        TutorialGroup tutorialGroup = tg[j];
-                        System.out.println(pg[i].getTutorialGroupList());
-                        TutorialGroup tgs = pg[i].getTutorialGroupList().getEntry(j);
-                        Iterator<Student> iterator = tgs.getStudentList().iterator();
-                        int k = 0;
-                        while (iterator.hasNext()) {
-                            Comparable tl = iterator.next();
-
-                            System.out.println(k+1 + ". " + tl.toString());
-                            k++;
-                        }
-
-                    }
-
-
-
-                }
-
-
-
-
-            }
-
-            for (int i = 0; i < tg.length; i++) {
-
-                if(tg[i] != null){
-
-                    System.out.println(tg[i].getStudentList());
-                }
-
-
-            }
-*/
+           
         }else if (choice == 3){
             
             

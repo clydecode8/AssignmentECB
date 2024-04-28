@@ -159,9 +159,9 @@ public class GroupManagement {
         tutorialList = new ArrayList<>();
         
         
-        pg[0] = new Programme("Software Engineering", "2023/05");
-        pg[1] = new Programme("Marketing", "2023/09");
-        pg[2] = new Programme("Accounting", "2023/09");
+        pg[0] = new Programme("Software Engineering", "2023/05", "FOCS");
+        pg[1] = new Programme("Marketing", "2023/09", "FAFB");
+        pg[2] = new Programme("Accounting", "2023/09", "FAFB");
     
         //Group for software engineering
         group = new String[]{"RSW01", "RSW02", "RSW03","MG01", "MG02", "MG03", "ACC01", "ACC02", "ACC03"};
