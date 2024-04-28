@@ -98,48 +98,7 @@ public class TeachingAssignmentUI {
 
     public void getTutorCourse() {
         System.out.println("--------------------Add Tutors to Tutorial Group for a Course--------------------");
-//        //section1 : select course
-//        SortedLinkedListInterface<CourseTutorCombine> tutorCourse = new SortedLinkedList<>();
-//        
-//        Tutor selectedTutor = displayAllTutor();//get tutor name
-//        System.out.println(selectedTutor.getTutorName() + " and the course");
-//
-//        //filter to add into tutorCourse
-//        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
-//
-//            //check isNull
-//            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
-//                //check selectedtutor
-//                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().equals(selectedTutor)) {
-//                    //filter to get tutor x course
-//                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
-//                            && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
-//                        tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
-//
-//                    }
-//
-//                }
-//
-//            }
-//        }
-//
-//        //display filtered result
-//        for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
-//
-//            System.out.print(i + ")");
-//            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorId() + "  ");
-//            System.out.print(TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().getTutorName() + " ");
-//            System.out.println(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName());
-//        }
-//
-//        System.out.println("---------------------------------------------------------------------------------");
-//        System.out.print("Enter a course:");
-//        int result = scanner.nextInt();
-//        System.out.println();
-//        // target selected ctb in ctbList
-//        CourseTutorCombine selectedTutorCourse = tutorCourse.getEntry(result);
-//
-//        return selectedTutorCourse;
+
     }
 
     public void searchCourseUnderTutor() {
@@ -252,38 +211,3 @@ public class TeachingAssignmentUI {
     }
 
 }
-//    public CourseTutorCombine getTutorGroup(CourseTutorCombine selectedTutorCourse) {
-//        Tutor selectedTutor = selectedTutorCourse.getTutor();
-//        //section2 : select group
-//        SortedLinkedListInterface<CourseTutorCombine> tutorGroup = new SortedLinkedList<>();
-//        //filter out ctbList to get tutor x group
-//        for (int i = 1; i <= TeachingAssignment.courseTutorCombineList.getNumberOfEntries(); i++) {
-//            //check isNull
-//            if (TeachingAssignment.courseTutorCombineList.getEntry(i) != null) {
-//                //check tutor
-//                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutor().equals(selectedTutor)) {
-//                    //check has group
-//                    if (TeachingAssignment.courseTutorCombineList.getEntry(i).getTutorialgroup() != null) {
-//                        tutorGroup.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
-//                    }
-//                }
-//            }
-//        }
-//
-//        //display filtered result
-//        for (int i = 1; i <= tutorGroup.getNumberOfEntries(); i++) {
-//            System.out.print((i) + ")");
-//            System.out.print(tutorGroup.getEntry(i).getTutorialgroup().getGroup() + " ");
-//            System.out.println(tutorGroup.getEntry(i).getTutorialgroup().getQty());
-//        }
-//
-//        System.out.println("---------------------------------------------------------------------------------");
-//        System.out.print("Select Number Tutotrial Group Want to assign:");
-//        int tgresult = scanner.nextInt();
-//        System.out.println();
-//
-//        CourseTutorCombine selectedGroup = tutorGroup.getEntry(tgresult);
-//
-//        return selectedGroup;
-//    }
-
