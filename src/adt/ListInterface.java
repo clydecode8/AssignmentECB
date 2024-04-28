@@ -102,7 +102,7 @@ public interface ListInterface<T> {
     */
     public boolean replace(int indexPosition, T newElement);
     
-    /**/
+    /*Task: Get number of entries from the array*/
     
     public int getNumberOfEntries();
     
