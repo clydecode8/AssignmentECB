@@ -79,7 +79,20 @@ public class RegistrationManagement {
         }while(choice !=0);
     }
     
-    public void initialize(){
+
+    
+    private void displaystudent(){
+        System.out.println("-----------------------------------------------------------------------------------------------------");          
+        System.out.println("STUDENT LIST");
+        System.out.println("-----------------------------------------------------------------------------------------------------"); 
+        int num = 1;
+        for(int i=0; i<student.getStudentListlinked().size();i++){
+        System.out.println(num+"."+student.getStudentListlinked().get(i).getNameId());
+        num++;
+        }
+    }
+    
+        public void initialize(){
         Programme p1 = new Programme("Software Engineering", "2020");
 
         TutorialGroup g1 = new TutorialGroup("Group 1", 24, p1);
@@ -128,17 +141,6 @@ public class RegistrationManagement {
         course.setCourseList2(course1);
         course.setCourseList2(course2);
         course.setCourseList2(course3);
-    }
-    
-    private void displaystudent(){
-        System.out.println("-----------------------------------------------------------------------------------------------------");          
-        System.out.println("STUDENT LIST");
-        System.out.println("-----------------------------------------------------------------------------------------------------"); 
-        int num = 1;
-        for(int i=0; i<student.getStudentListlinked().size();i++){
-        System.out.println(num+"."+student.getStudentListlinked().get(i).getNameId());
-        num++;
-        }
     }
     private void displayCourse(){
         System.out.println("-----------------------------------------------------------------------------------------------------");         
