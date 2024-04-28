@@ -158,25 +158,7 @@ public class Course implements Comparable<Course> {
     @Override
     public int compareTo(Course other) {
         
-        String thisName = this.getCourseName();
-        String otherName = other.getCourseName();
-
-        // Handle null values
-        if (thisName == null && otherName == null) {
-            
-            return 0; // Both names are null, consider them equal
-        
-        }else if (thisName == null) {
-            
-            return -1; // This name is null, consider it less than the other name
-        
-        } else if (otherName == null) {
-            
-            return 1; // Other name is null, consider it greater than this name
-        }
-
-        // Compare based on the names
-        return thisName.compareTo(otherName); 
+        return 1;
     }
 
     //@Override

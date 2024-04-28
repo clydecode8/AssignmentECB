@@ -175,7 +175,7 @@ public class TeachingAssignmentUI {
         System.out.print("Enter Your Selection(1/2/3): ");
         int result = scanner.nextInt();
         System.out.println();
-        System.out.println("   Tutor ID           Tutor Name        Tutor Type                          Course Name");
+        System.out.println("   Tutor ID           Tutor Name        Tutor Type                       Course Name");
         return result;
 
 

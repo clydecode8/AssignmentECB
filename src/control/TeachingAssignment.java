@@ -294,7 +294,7 @@ public class TeachingAssignment {
             System.out.printf("%-2d    %-25s%-31s%-25s\n", i, courseList.getEntry(i).getCourseID(),
                     courseList.getEntry(i).getCourseName(), courseList.getEntry(i).getCourseDetails());
         }
-        System.out.println("---------------------------------------------------------------------------------");
+
 
         // Select a course
         int courseResult = teachingUI.inputCourse();
@@ -400,6 +400,10 @@ public class TeachingAssignment {
         CourseTutorCombine selectedTutorGroup = getTutorGroup(selectedTutorCourse);
 
         selectedTutorCourse.addTutorCombine(selectedTutorGroup);
+        
+        
+       
+        
 
         System.out.println("Add Successfull !!!");
         System.out.println();
@@ -473,10 +477,9 @@ public class TeachingAssignment {
         //display filtered result
         System.out.println("   Tutor ID            Tutor Name           Type         ");
         for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
-            System.out.printf("%2d  %-15s     %-20s %2s\n",i,courseTutorCombineList.getEntry(i).getTutor().getTutorId()
-                    ,courseTutorCombineList.getEntry(i).getTutor().getTutorName(),courseTutorCombineList.getEntry(i).getType());
+            System.out.printf("%2d  %-15s     %-20s %2s\n",i,tutorCourse.getEntry(i).getTutor().getTutorId()
+                    ,tutorCourse.getEntry(i).getTutor().getTutorName(),tutorCourse.getEntry(i).getType());
         }
-        System.out.println();
 
     }
 
@@ -495,22 +498,21 @@ public class TeachingAssignment {
             //check course
             if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse() != null
                     && !"".equals(TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().getCourseName())) {
+                
+                     if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().equals(courseResult)) {
+                            tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
 
-                if (TeachingAssignment.courseTutorCombineList.getEntry(i).getCourse().equals(courseResult)) {
-                    tutorCourse.add(TeachingAssignment.courseTutorCombineList.getEntry(i));
-
-                }
+               
+                }          
 
             }
         }
         
         System.out.println("   Tutor ID           Tutor Name        Tutorial Group                    ");
         for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
-            System.out.printf("%2d  %-15s   %-20s  %-30s\n",i,courseTutorCombineList.getEntry(i).getTutor().getTutorId()
-                    ,courseTutorCombineList.getEntry(i).getTutor().getTutorName(),courseTutorCombineList.getEntry(i).getTutorialgroup().getGroup());
+            System.out.printf("%2d  %-15s   %-20s  %-30s\n",i,tutorCourse.getEntry(i).getTutor().getTutorId()
+                    ,tutorCourse.getEntry(i).getTutor().getTutorName(),courseTutorCombineList.getEntry(i).getTutorialgroup().getGroup());
         }
-        System.out.println();
-
 
     }
 
@@ -542,7 +544,7 @@ public class TeachingAssignment {
 
         }
         //display filtered result
-        System.out.println("   Course ID           Course Name                    ");
+        System.out.println("   Course ID         Course Name                    ");
         for (int i = 1; i <= tutorCourse.getNumberOfEntries(); i++) {
             System.out.printf("%2d  %-15s   %-20s\n",i,courseTutorCombineList.getEntry(i).getCourse().getCourseID()
                     ,courseTutorCombineList.getEntry(i).getCourse().getCourseName());
