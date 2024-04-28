@@ -201,7 +201,7 @@ public class AssTeamUI {
             
         }
         System.out.println("---------------------------");
-        System.out.print("\nEnter first team number: ");
+        System.out.print("Enter first team number: ");
         int choice1 = scanner.nextInt();
         System.out.print("Enter second team number: ");
         int choice2 = scanner.nextInt();

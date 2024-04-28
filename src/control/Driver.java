@@ -24,9 +24,9 @@ public class Driver {
     MessageUI msg = new MessageUI();
     
     public void runSystem(){
-        
-        boolean loop = true;
         rm.initialize();
+        boolean loop = true;
+        
         while(loop == true){
             
             GroupManagementUI.clearScreen();

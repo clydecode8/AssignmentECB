@@ -226,8 +226,8 @@ public class AssTeam {
     }
 
     public static void main(String[] args) {
-        AssTeam assTeam = new AssTeam();
-        assTeam.runAssTeam();
+//        AssTeam assTeam = new AssTeam();
+//        assTeam.runAssTeam();
     }
     
 }
